@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Claude Code
+.claude/
+
+# Playwright MCP cache
+.playwright-mcp/
+
+# Original/raw images and videos (use images-sm/ for web assets)
+images/
+
+# Backup files
+index copy.html
+*.bak
+*~

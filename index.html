@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSA Colombia – Comunidades que Sustentan la Agricultura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #2d5016;
+      --green:      #3d6b2e;
+      --green-mid:  #4e7f3a;
+      --amber:      #c8963e;
+      --amber-lt:   #e4b56a;
+      --cream:      #f5f0e8;
+      --cream-dk:   #e9e1d0;
+      --white:      #ffffff;
+      --txt:        #1c1c1c;
+      --txt-mid:    #484848;
+      --txt-lt:     #888;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--txt);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    /* Parkinsans for all headings and display text */
+    h1,h2,h3,h4 { font-family: 'Parkinsans', sans-serif; }
+    /* Montserrat for quotes (body/secondary) */
+    .t-quote { font-family: 'Montserrat', sans-serif; font-style: italic; }
+    img { display: block; }
+    a { text-decoration: none; }
+
+    /* ── UTILS ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.22s ease;
+    }
+    .btn-green  { background: var(--green);  color: #fff; border-color: var(--green); }
+    .btn-green:hover  { background: var(--green-dark); border-color: var(--green-dark); }
+    .btn-amber  { background: var(--amber);  color: #fff; border-color: var(--amber); }
+    .btn-amber:hover  { background: #a8722a; border-color: #a8722a; }
+    .btn-ghost-w { background: transparent; color: #fff; border-color: rgba(255,255,255,0.7); }
+    .btn-ghost-w:hover { background: #fff; color: var(--txt); border-color: #fff; }
+    .btn-ghost-g { background: transparent; color: var(--green); border-color: var(--green); }
+    .btn-ghost-g:hover { background: var(--green); color: #fff; }
+
+    /* ══════════════════════════════════
+       NAV
+    ══════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 1.5rem 0;
+      transition: background 0.35s, padding 0.35s, box-shadow 0.35s;
+    }
+    .nav.scrolled {
+      background: #fff;
+      padding: 0.85rem 0;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo img { height: 52px; width: auto; transition: height 0.3s; }
+    .nav.scrolled .nav-logo img { height: 42px; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.9);
+      transition: color 0.2s;
+    }
+    .nav.scrolled .nav-links a { color: var(--txt); }
+    .nav-links a:hover, .nav.scrolled .nav-links a:hover { color: var(--amber); }
+    .nav-cta {
+      background: var(--amber); color: #fff;
+      padding: 0.6rem 1.5rem; border-radius: 2px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: #a8722a; }
+
+    /* ══════════════════════════════════
+       HERO
+    ══════════════════════════════════ */
+    .hero {
+      position: relative; height: 100vh; min-height: 640px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(18,36,8,0.5) 0%, rgba(18,36,8,0.68) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 0 2rem;
+    }
+    .hero-content .eyebrow { color: var(--amber-lt); font-size: 0.72rem; }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      font-weight: 700; color: #fff; line-height: 1.08;
+      max-width: 880px; margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--amber-lt); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.8);
+      max-width: 560px; line-height: 1.75; margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.5); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    }
+    .scroll-bar {
+      width: 1px; height: 42px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.5));
+      animation: pulse-bar 2s ease-in-out infinite;
+    }
+    @keyframes pulse-bar { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+    /* ══════════════════════════════════
+       SOBRE LA RED
+    ══════════════════════════════════ */
+    .sobre { background: var(--cream); }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 600px;
+    }
+    .sobre-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem 6rem 2rem; max-width: 580px; margin-left: auto;
+    }
+    .sobre-text h2 { font-size: 2.6rem; color: var(--green-dark); line-height: 1.2; margin-bottom: 1.5rem; }
+    .sobre-text p { font-size: 1rem; line-height: 1.85; color: var(--txt-mid); margin-bottom: 1.25rem; }
+    .sobre-text p strong { color: var(--green-dark); font-weight: 600; }
+    .sobre-img { position: relative; overflow: hidden; }
+    .sobre-img img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .sobre-img::after { display: none; }
+
+    /* ══════════════════════════════════
+       QUÉ SON LAS CSA
+    ══════════════════════════════════ */
+    .que-son { background: var(--green-dark); }
+    .que-son-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 580px; }
+    .que-son-img { position: relative; overflow: hidden; }
+    .que-son-img img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .que-son-img::after { display: none; }
+    .que-son-text {
+      padding: 5rem 3rem 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .que-son-text h2 { font-size: 2.5rem; color: #fff; line-height: 1.2; margin-bottom: 1.5rem; }
+    .que-son-text p { font-size: 0.97rem; line-height: 1.85; color: rgba(255,255,255,0.8); margin-bottom: 1.25rem; }
+    .que-son-text p strong { color: var(--amber-lt); }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.75rem 0 2.25rem; }
+    .pill {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85); padding: 0.45rem 1rem; border-radius: 2rem;
+      font-size: 0.82rem; font-weight: 500;
+    }
+
+    /* ══════════════════════════════════
+       CÓMO FUNCIONAN
+    ══════════════════════════════════ */
+    .como { background: var(--white); padding: 8rem 0; }
+    .como-head { text-align: center; margin-bottom: 5rem; }
+    .como-head h2 { font-size: 2.5rem; color: var(--green-dark); margin-bottom: 0.75rem; }
+    .como-head p { font-size: 1rem; color: var(--txt-mid); max-width: 560px; margin: 0 auto; line-height: 1.75; }
+    .steps {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 3.5rem; margin-bottom: 5rem;
+    }
+    .step {}
+    .step-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; font-weight: 700;
+      color: var(--amber); opacity: 0.22; line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .step h3 { font-size: 1.25rem; color: var(--green-dark); margin-bottom: 0.75rem; }
+    .step p { font-size: 0.93rem; color: var(--txt-mid); line-height: 1.75; }
+    .como-photos {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; height: 360px;
+    }
+    .como-photos .ph { overflow: hidden; }
+    .como-photos img { width:100%; height:100%; object-fit:cover; transition: transform 0.6s ease; }
+    .como-photos .ph:hover img { transform: scale(1.05); }
+
+    /* ══════════════════════════════════
+       PRINCIPIOS
+    ══════════════════════════════════ */
+    .principios { background: var(--cream); padding: 8rem 0; position: relative; overflow: hidden; }
+    .principios-watermark {
+      position: absolute; inset: 0;
+      background: url('images/Agromandala-264.jpg') center/cover no-repeat;
+      opacity: 0.05;
+    }
+    .principios .container { position: relative; }
+    .principios-head { text-align: center; margin-bottom: 4rem; }
+    .principios-head h2 { font-size: 2.5rem; color: var(--green-dark); margin-bottom: 0.75rem; }
+    .principios-head p { font-size: 0.95rem; color: var(--txt-mid); }
+    .principios-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.75rem; }
+    .p-card {
+      background: #fff; padding: 2.5rem 1.75rem; border-radius: 2px;
+      text-align: center; border-top: 3px solid var(--amber);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+    .p-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--green-dark); display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .p-icon svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .p-card h3 { font-size: 1rem; color: var(--green-dark); line-height: 1.45; }
+    .p-card p { font-size: 0.85rem; color: var(--txt-mid); line-height: 1.7; margin-top: 0.75rem; }
+
+    /* ══════════════════════════════════
+       PHOTO STRIP
+    ══════════════════════════════════ */
+    .strip { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; height: 420px; gap: 5px; }
+    .strip-item { overflow: hidden; }
+    .strip-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.6s ease; }
+    .strip-item:hover img { transform: scale(1.06); }
+
+    /* ══════════════════════════════════
+       LA RED EN COLOMBIA
+    ══════════════════════════════════ */
+    .la-red { background: var(--green-dark); padding: 8rem 0; color: #fff; }
+    .la-red-head { text-align: center; margin-bottom: 3.5rem; }
+    .la-red-head h2 { font-size: 2.5rem; color: #fff; margin-bottom: 1rem; }
+    .la-red-head p { color: rgba(255,255,255,0.72); font-size: 1rem; max-width: 560px; margin: 0 auto; line-height: 1.75; }
+    .csa-cards {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 3rem;
+    }
+    .csa-card {
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 2px; overflow: hidden; transition: background 0.2s;
+    }
+    .csa-card:hover { background: rgba(255,255,255,0.12); }
+    .csa-thumb { height: 200px; overflow: hidden; }
+    .csa-thumb img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s; }
+    .csa-card:hover .csa-thumb img { transform: scale(1.05); }
+    .csa-body { padding: 1.5rem; }
+    .csa-body h4 { font-size: 1.1rem; color: var(--amber-lt); margin-bottom: 0.5rem; }
+    .csa-body p { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.65; }
+    .la-red-foot { text-align: center; }
+
+    /* ══════════════════════════════════
+       GUÍA DEL AGRICULTOR
+    ══════════════════════════════════ */
+    .guia { background: var(--cream); }
+    .guia-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+    .guia-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 2rem; max-width: 560px; margin-left: auto;
+    }
+    .guia-text h2 { font-size: 2.2rem; color: var(--green-dark); line-height: 1.25; margin-bottom: 1rem; }
+    .guia-text p { font-size: 0.97rem; color: var(--txt-mid); line-height: 1.8; margin-bottom: 2rem; }
+    .guia-img { position: relative; overflow: hidden; }
+    .guia-img img { position: absolute; inset: 0; width:100%; height:100%; object-fit:cover; object-position: center top; }
+    .guia-img::before { display: none; }
+
+    /* ══════════════════════════════════
+       CALENDARIO
+    ══════════════════════════════════ */
+    .cal { background: var(--white); padding: 8rem 0; }
+    .cal-head { text-align: center; margin-bottom: 3rem; }
+    .cal-head h2 { font-size: 2.5rem; color: var(--green-dark); margin-bottom: 0.75rem; }
+    .cal-head p { font-size: 0.97rem; color: var(--txt-mid); }
+    .cal-wrapper { }
+
+    /* ══════════════════════════════════
+       IMPACTO
+    ══════════════════════════════════ */
+    .impacto { position: relative; padding: 9rem 0; }
+    .impacto-photo {
+      position: absolute; inset: 0;
+      width:100%; height:100%; object-fit:cover; object-position: center 40%;
+    }
+    .impacto-overlay { position: absolute; inset: 0; background: rgba(20,45,8,0.80); }
+    .impacto .container { position: relative; z-index: 2; text-align: center; }
+    .impacto h2 { font-size: 2.5rem; color: #fff; margin-bottom: 0.75rem; }
+    .impacto .sub { color: rgba(255,255,255,0.7); font-size: 1rem; margin-bottom: 4.5rem; }
+    .counters { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
+    .c-item {}
+    .c-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem; font-weight: 700;
+      color: var(--amber-lt); line-height: 1; display: block;
+    }
+    .c-label { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: 0.75rem; line-height: 1.5; }
+
+    /* ══════════════════════════════════
+       MAPA CUSTOM SVG
+    ══════════════════════════════════ */
+    .mapa-csa { display: grid; grid-template-columns: 55fr 45fr; min-height: 660px; }
+    .mapa-left {
+      background: var(--green-dark);
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 3rem; position: relative; overflow: hidden;
+    }
+    .mapa-svg-wrap { width: 100%; max-width: 400px; }
+    .mapa-svg-wrap svg { width: 100%; height: auto; }
+    .mapa-svg-wrap svg path {
+      fill: rgba(255,255,255,1);
+      stroke: rgba(0,0,0,0.3);
+      stroke-width: 0.8; stroke-miterlimit: 10;
+      transition: fill 0.25s ease;
+    }
+    .mapa-svg-wrap svg path.csa { fill: var(--amber); }
+    .mapa-svg-wrap svg path.csa { cursor: pointer; }
+    .mapa-svg-wrap svg path.csa:hover { fill: var(--amber-lt); }
+    .map-tip {
+      position: fixed; padding: 10px 14px;
+      background: #fff; color: var(--green-dark);
+      font-family: 'Parkinsans', sans-serif; font-size: 0.8rem;
+      border-radius: 3px; pointer-events: none; display: none;
+      z-index: 999; min-width: 180px; max-width: 240px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .map-tip strong {
+      display: block; font-size: 0.85rem; font-weight: 700;
+      color: var(--green-dark); margin-bottom: 6px;
+      padding-bottom: 6px; border-bottom: 1px solid var(--cream-dk);
+    }
+    .tip-csa {
+      display: block; padding: 2px 0;
+      font-size: 0.78rem; color: var(--txt-mid);
+    }
+    .tip-csa::before { content: '·  '; color: var(--amber); font-weight: 700; }
+    .tip-empty { display: block; font-size: 0.75rem; color: var(--txt-lt); font-style: italic; }
+    .mapa-right {
+      background: var(--cream);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4.5rem;
+    }
+    .mapa-right h2 { font-size: 2.5rem; color: var(--green-dark); line-height: 1.2; margin-bottom: 1rem; }
+    .mapa-sub { font-size: 0.95rem; color: var(--txt-mid); line-height: 1.8; margin-bottom: 3rem; max-width: 380px; }
+    .mapa-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 3rem; margin-bottom: 2.5rem; }
+    .mnum-val {
+      font-family: 'Parkinsans', sans-serif;
+      font-size: 4.2rem; font-weight: 700;
+      color: var(--green-dark); line-height: 1; display: block;
+    }
+    .mnum-label { font-size: 0.72rem; color: var(--txt-lt); letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-top: 0.5rem; }
+    .mapa-note { font-size: 0.88rem; color: var(--txt-mid); line-height: 1.75; border-top: 1px solid var(--cream-dk); padding-top: 1.5rem; }
+
+    /* ══════════════════════════════════
+       AGRICULTORES CAROUSEL
+    ══════════════════════════════════ */
+    .agricultores { background: var(--white); padding: 8rem 0; }
+    .agri-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 3.5rem; gap: 2rem;
+    }
+    .agri-header h2 { font-size: 2.5rem; color: var(--green-dark); margin-bottom: 0.75rem; }
+    .agri-header p { font-size: 0.97rem; color: var(--txt-mid); line-height: 1.75; max-width: 480px; }
+    .agri-track {
+      display: flex; gap: 1.5rem;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1.5rem;
+      scrollbar-width: thin; scrollbar-color: var(--cream-dk) transparent;
+      /* show peek of next card */
+      margin-right: -2rem; padding-right: 2rem;
+    }
+    .agri-track::-webkit-scrollbar { height: 0; }
+    .agri-carousel-wrap { position: relative; }
+    .agri-arrow {
+      position: absolute; top: 40%; transform: translateY(-50%);
+      z-index: 10;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green-dark); color: #fff;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; line-height: 1;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transition: background 0.2s, transform 0.2s, opacity 0.2s;
+    }
+    .agri-arrow:hover { background: var(--amber); transform: translateY(-50%) scale(1.08); }
+    .agri-arrow.agri-prev { left: -24px; }
+    .agri-arrow.agri-next { right: -24px; }
+    .agri-arrow:disabled { opacity: 0.25; cursor: default; pointer-events: none; }
+    .agri-card {
+      flex: 0 0 290px; scroll-snap-align: start;
+      border: 1px solid var(--cream-dk); border-radius: 2px; overflow: hidden;
+      transition: box-shadow 0.22s, transform 0.22s;
+      background: var(--white);
+    }
+    .agri-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-3px); }
+    .agri-photo { height: 320px; overflow: hidden; }
+    .agri-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.5s ease; }
+    .agri-card:hover .agri-photo img { transform: scale(1.05); }
+    .agri-body { padding: 1.5rem; }
+    .agri-name { font-size: 1.1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.25rem; }
+    .agri-meta { font-size: 0.75rem; color: var(--amber); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
+    .agri-quote {
+      font-family: 'Montserrat', sans-serif; font-style: italic;
+      font-size: 0.88rem; color: var(--txt-mid); line-height: 1.7;
+      margin-bottom: 1.25rem; border-left: 2px solid var(--cream-dk); padding-left: 0.85rem;
+    }
+    .agri-link { font-size: 0.78rem; font-weight: 600; color: var(--green); letter-spacing: 0.05em; transition: color 0.2s; }
+    .agri-link:hover { color: var(--amber); }
+
+    /* ══════════════════════════════════
+       FAQ
+    ══════════════════════════════════ */
+    .faq { background: var(--white); padding: 8rem 0; }
+    .faq-head { text-align: center; margin-bottom: 3.5rem; }
+    .faq-head h2 { font-size: 2.5rem; color: var(--green-dark); }
+    .faq-grid { max-width: 820px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--cream-dk); }
+    .faq-q {
+      width: 100%; background: none; border: none; text-align: left;
+      padding: 1.5rem 0;
+      font-family: 'Parkinsans', sans-serif; font-size: 1.1rem;
+      color: var(--txt); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--green); }
+    .faq-q.open { color: var(--green); }
+    .faq-ico {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: var(--green-dark); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 1.1rem; line-height: 1;
+      transition: transform 0.3s, background 0.2s;
+    }
+    .faq-q.open .faq-ico { transform: rotate(45deg); background: var(--amber); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; }
+    .faq-a.open { max-height: 500px; }
+    .faq-a p { padding: 0 2rem 1.5rem 0; font-size: 0.95rem; color: var(--txt-mid); line-height: 1.85; }
+
+    /* ══════════════════════════════════
+       TESTIMONIOS
+    ══════════════════════════════════ */
+    .test { position: relative; padding: 9rem 0; }
+    .test-photo { position: absolute; inset: 0; width:100%; height:100%; object-fit:cover; object-position: center; }
+    .test-overlay { position: absolute; inset: 0; background: rgba(35,68,16,0.9); }
+    .test .container { position: relative; z-index: 2; }
+    .test-head { text-align: center; margin-bottom: 3.5rem; }
+    .test-head h2 { font-size: 2.5rem; color: #fff; }
+    .test-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .t-card {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 2px; padding: 2.25rem;
+    }
+    .t-quote {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 0.97rem; color: rgba(255,255,255,0.88); line-height: 1.85;
+      margin-bottom: 1.75rem;
+    }
+    .t-quote::before { content: '\201C'; font-size: 3rem; line-height: 0; color: var(--amber-lt); opacity: 0.5; vertical-align: -0.6rem; margin-right: 0.2rem; }
+    .t-name { font-size: 0.85rem; font-weight: 600; color: var(--amber-lt); }
+    .t-role { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+
+    /* ══════════════════════════════════
+       INFORMES
+    ══════════════════════════════════ */
+    .informes { background: var(--cream); padding: 8rem 0; }
+    .informes-head { text-align: center; margin-bottom: 3.5rem; }
+    .informes-head h2 { font-size: 2.5rem; color: var(--green-dark); }
+    .informes-head p { font-size: 0.95rem; color: var(--txt-mid); margin-top: 0.5rem; }
+    .informes-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1.25rem; }
+    .inf-card {
+      background: var(--green-dark); border-radius: 2px; overflow: hidden;
+      text-align: center; transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .inf-card:hover { transform: translateY(-5px); box-shadow: 0 10px 32px rgba(0,0,0,0.18); }
+    .inf-thumb {
+      height: 150px; background: var(--green-mid);
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
+    }
+    .inf-thumb svg { width: 52px; height: 52px; fill: rgba(255,255,255,0.35); }
+    .inf-body { padding: 1.25rem 1rem 1.5rem; }
+    .inf-body h4 { font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.88); line-height: 1.45; margin-bottom: 0.3rem; }
+    .inf-year { font-size: 0.75rem; color: var(--amber-lt); font-weight: 600; margin-bottom: 1rem; }
+    .inf-btn {
+      display: inline-block; background: var(--amber); color: #fff;
+      padding: 0.45rem 1.1rem; border-radius: 1px;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .inf-btn:hover { background: #a8722a; }
+
+    /* ══════════════════════════════════
+       ALIADOS
+    ══════════════════════════════════ */
+    .aliados { background: var(--white); padding: 7rem 0; }
+    .aliados-head { text-align: center; margin-bottom: 3.5rem; }
+    .aliados-head h2 { font-size: 2rem; color: var(--green-dark); }
+    .aliados-head p { font-size: 0.92rem; color: var(--txt-mid); margin-top: 0.5rem; }
+    .aliados-logos {
+      display: flex; flex-wrap: wrap; gap: 1.5rem;
+      align-items: center; justify-content: center;
+    }
+    .al-item {
+      padding: 1rem 1.75rem; border: 1px solid var(--cream-dk);
+      border-radius: 2px; font-size: 0.88rem; font-weight: 600; color: var(--txt-mid);
+      filter: grayscale(1); opacity: 0.55; transition: filter 0.25s, opacity 0.25s;
+    }
+    .al-item:hover { filter: grayscale(0); opacity: 1; }
+
+    /* ══════════════════════════════════
+       NEWSLETTER
+    ══════════════════════════════════ */
+    .newsletter { background: var(--green-dark); padding: 7rem 0; }
+    .nl-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
+    .nl-text h2 { font-size: 2.2rem; color: #fff; margin-bottom: 1rem; }
+    .nl-text p { font-size: 0.97rem; color: rgba(255,255,255,0.72); line-height: 1.8; }
+    .nl-form { display: flex; flex-direction: column; gap: 1rem; }
+    .nl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .nl-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .nl-field label {
+      font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.55);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .nl-field input,
+    .nl-field select {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+      color: #fff; padding: 0.9rem 1rem; border-radius: 2px;
+      font-family: 'Inter', sans-serif; font-size: 0.92rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .nl-field input:focus,
+    .nl-field select:focus { border-color: var(--amber); }
+    .nl-field input::placeholder { color: rgba(255,255,255,0.35); }
+    .nl-field select option { background: var(--green-dark); }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    .footer { background: #0e1a07; padding: 5rem 0 2.5rem; }
+    .footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3.5rem; }
+    .f-brand img { height: 56px; margin-bottom: 1.25rem; filter: brightness(0) invert(1); opacity: 0.8; }
+    .f-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 280px; }
+    .f-col h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; }
+    .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .f-col ul a { font-size: 0.85rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
+    .f-col ul a:hover { color: var(--amber-lt); }
+    .social-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .soc-btn {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .soc-btn:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 1.75rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; color: rgba(255,255,255,0.3);
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.3); transition: color 0.2s; }
+    .footer-bottom a:hover { color: var(--amber-lt); }
+
+    /* ══════════════════════════════════
+       WHATSAPP FLOAT
+    ══════════════════════════════════ */
+    .wa-btn {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 850;
+      width: 58px; height: 58px; background: #25d366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+    .wa-btn svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* ══════════════════════════════════
+       MODAL DONAR
+    ══════════════════════════════════ */
+    .modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+      z-index: 2000; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      backdrop-filter: blur(4px);
+    }
+    .modal-bg.active { opacity: 1; visibility: visible; }
+    .modal {
+      background: #fff; border-radius: 4px; padding: 3rem;
+      max-width: 480px; width: 90%; position: relative;
+      transform: translateY(24px);
+      transition: transform 0.3s;
+    }
+    .modal-bg.active .modal { transform: translateY(0); }
+    .modal-x {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      background: none; border: none; font-size: 1.4rem;
+      cursor: pointer; color: var(--txt-lt); line-height: 1;
+    }
+    .modal-x:hover { color: var(--txt); }
+    .modal h3 { font-size: 1.9rem; color: var(--green-dark); margin-bottom: 0.5rem; }
+    .modal .sub { font-size: 0.93rem; color: var(--txt-mid); line-height: 1.65; margin-bottom: 2rem; }
+    .bank-box { background: var(--cream); border-radius: 3px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .bank-box h4 {
+      font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .bank-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.55rem 0; border-bottom: 1px solid var(--cream-dk);
+      font-size: 0.88rem;
+    }
+    .bank-row:last-child { border-bottom: none; }
+    .bank-row span { color: var(--txt-lt); font-size: 0.78rem; }
+    .bank-row strong { color: var(--txt); }
+    .modal-note { font-size: 0.8rem; color: var(--txt-lt); text-align: center; line-height: 1.65; }
+    .modal-note a { color: var(--green); }
+
+    /* ── TRIBE EVENTS MOCK ── */
+    .tribe-events-wrap { }
+    .tribe-bar {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--cream-dk);
+      margin-bottom: 0;
+    }
+    .tribe-nav {
+      background: none; border: 1px solid var(--cream-dk);
+      color: var(--txt-mid); width: 30px; height: 30px; border-radius: 2px;
+      cursor: pointer; font-size: 1rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tribe-nav:hover { border-color: var(--green); color: var(--green); }
+    .tribe-month-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--txt-mid);
+    }
+    .tribe-list { }
+    .tribe-event {
+      display: grid; grid-template-columns: 72px 1fr;
+      gap: 0 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--cream-dk);
+      transition: opacity 0.18s;
+    }
+    .tribe-event:last-child { border-bottom: none; }
+    .tribe-event:hover { opacity: 0.75; }
+    .tribe-date {
+      display: flex; flex-direction: column; align-items: flex-start;
+      padding-top: 0.15rem;
+    }
+    .tribe-month-sm {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+      color: var(--amber); text-transform: uppercase; margin-bottom: 0.1rem;
+    }
+    .tribe-day {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700; line-height: 1;
+      color: var(--green-dark);
+    }
+    .tribe-year {
+      font-size: 0.68rem; color: var(--txt-lt);
+      margin-top: 0.2rem; letter-spacing: 0.05em;
+    }
+    .tribe-info { display: flex; flex-direction: column; justify-content: center; }
+    .tribe-time {
+      font-size: 0.72rem; color: var(--txt-lt);
+      letter-spacing: 0.02em; margin-bottom: 0.3rem;
+    }
+    .tribe-title {
+      font-family: 'Parkinsans', sans-serif;
+      font-size: 1.1rem; color: var(--green-dark);
+      line-height: 1.35; font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     NAV
+════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="images/logo-CSA-colombia-con-espacio-332x254x34x18x264x218x1746783635.png" alt="CSA Colombia">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">La Red</a></li>
+      <li><a href="#que-son">¿Qué es CSA?</a></li>
+      <li><a href="#principios">Principios</a></li>
+      <li><a href="#agricultores-destacados">Comunidad</a></li>
+      <li><a href="#mapa">Mapa</a></li>
+      <li><a href="#informes">Gestión</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openModal()">♡ Apoyar</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+     HERO
+════════════════════════════════ -->
+<section class="hero" id="inicio">
+  <img class="hero-bg" src="images/David Echavarría_Granja Feliz.jpg" alt="Comunidad en la finca">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Red CSA Colombia</span>
+    <h1>Comunidades que<br><em>Sustentan</em> la<br>Agricultura</h1>
+    <p class="hero-sub">Conectamos familias urbanas con agricultores agroecológicos para construir un sistema alimentario más justo, local y solidario.</p>
+    <div class="hero-btns">
+      <a href="#que-son" class="btn btn-amber">Descubrir cómo funciona</a>
+      <a href="#agricultores-destacados" class="btn btn-ghost-w">Conoce los agricultores</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Explorar</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     SOBRE LA RED CSA
+════════════════════════════════ -->
+<section class="sobre" id="sobre">
+  <div class="sobre-grid">
+    <div class="sobre-text">
+      <span class="eyebrow">Sobre la Red</span>
+      <h2>Una red viva que conecta el campo y la ciudad</h2>
+      <p>Somos una organización sin ánimo de lucro que articula un movimiento ciudadano que incentiva la <strong>agroecología</strong>, el <strong>consumo consciente</strong> y la regeneración de las relaciones entre el campo y la ciudad.</p>
+      <p>A través de la cocreación de Comunidades que Sustentan la Agricultura, apoyamos a familias agricultoras y co-agricultoras en todo el territorio colombiano.</p>
+      <a href="#que-son" class="btn btn-green" style="align-self:flex-start; margin-top:0.5rem;">Conocer más</a>
+    </div>
+    <div class="sobre-img">
+      <img src="images/Agromandala-325.jpg" alt="Agricultora en su huerto">
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     QUÉ SON LAS CSA
+════════════════════════════════ -->
+<section class="que-son" id="que-son">
+  <div class="que-son-grid">
+    <div class="que-son-img">
+      <img src="images/Agromandala-389.jpg" alt="Intercambio de alimentos entre agricultor y coagricultor">
+    </div>
+    <div class="que-son-text">
+      <span class="eyebrow">¿Qué son las CSA?</span>
+      <h2>Un modelo de economía colaborativa en torno a la comida</h2>
+      <p>Las CSA son un modelo donde <strong>familias co-agricultoras financian la producción</strong> de una familia agricultora, garantizando una retribución justa y constante, una alimentación sana y una forma de producción que cuida de la tierra.</p>
+      <p>Consumidores y agricultores se relacionan directamente, creando un sistema alimentario más justo, fraterno, local y responsable.</p>
+      <div class="pills">
+        <span class="pill">Canastas periódicas</span>
+        <span class="pill">Productos agroecológicos</span>
+        <span class="pill">Relación directa</span>
+        <span class="pill">Economía solidaria</span>
+      </div>
+      <a href="#como" class="btn btn-amber">¿Cómo funcionan?</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     CÓMO FUNCIONAN
+════════════════════════════════ -->
+<section class="como" id="como">
+  <div class="container">
+    <div class="como-head">
+      <span class="eyebrow">El proceso</span>
+      <h2>¿Cómo funcionan las CSA?</h2>
+      <p>De manera práctica, las CSA funcionan como un modelo de suscripción donde las familias co-agricultoras financian la producción y reciben alimentos frescos directamente desde la finca.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01</div>
+        <h3>La familia co-agricultora se suscribe</h3>
+        <p>Familias urbanas se comprometen a cubrir cuotas de producción agroecológica. Con esto, el agricultor puede planificar sus siembras con tranquilidad y certeza económica.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <h3>El agricultor cultiva para su comunidad</h3>
+        <p>La familia agricultora produce alimentos frescos, diversos y de temporada. Al conocer quiénes recibirán los alimentos, el vínculo trasciende la transacción económica.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <h3>Entrega periódica de canastas</h3>
+        <p>Las familias reciben su canasta de alimentos semanalmente o cada quince días. Los riesgos y beneficios de la producción se comparten entre toda la comunidad.</p>
+      </div>
+    </div>
+    <div class="como-photos">
+      <div class="ph"><img src="images/_IFE1263 (1).jpg" alt="Comunidad aprendiendo en el campo"></div>
+      <div class="ph"><img src="images/Agromandala-385 (1).jpg" alt="Manos con alimentos"></div>
+      <div class="ph"><img src="images/WhatsApp Image 2026-05-26 at 9.01.5 AM.jpeg" alt="Canasta de alimentos"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     PRINCIPIOS
+════════════════════════════════ -->
+<section class="principios" id="principios">
+  <div class="principios-watermark"></div>
+  <div class="container">
+    <div class="principios-head">
+      <span class="eyebrow">Nuestros valores</span>
+      <h2>Principios de las CSA</h2>
+      <p>Inspiradas en los principios globales de las Comunidades que Sustentan la Agricultura</p>
+    </div>
+    <div class="principios-grid">
+      <div class="p-card">
+        <div class="p-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L3 7l9 5 9-5-9-5zM3 17l9 5 9-5M3 12l9 5 9-5"/></svg>
+        </div>
+        <h3>Transformar la Cultura del Precio a la Cultura del Aprecio</h3>
+        <p>Valorar el trabajo agrícola más allá del dinero, reconociendo su profundo valor social y ambiental.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Confianza entre Agricultores y Co-agricultores</h3>
+        <p>Construir vínculos de solidaridad y transparencia que sustenten una relación duradera y recíproca.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+        </div>
+        <h3>Reducción del Desperdicio Alimentario</h3>
+        <p>Al planificar juntos la producción y el consumo, reducimos significativamente el desperdicio en toda la cadena.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Respeto a la Estacionalidad de la Producción</h3>
+        <p>Consumir lo que la tierra da en cada temporada, reconectando con los ritmos naturales del campo colombiano.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     PHOTO STRIP
+════════════════════════════════ -->
+<div class="strip">
+  <div class="strip-item"><img src="images/Agromandala-399 (1).jpg" alt="Manos con tomates cherry"></div>
+  <div class="strip-item"><img src="images/IMG-20250915-WA0063.jpg" alt="Kale en la huerta"></div>
+  <div class="strip-item"><img src="images/IMG-20250915-WA0064.jpg" alt="Planta morada"></div>
+  <div class="strip-item"><img src="images/Imagen de WhatsApp 2025-05-26 a las 18.08.39_f2cc5089.jpg" alt="Canasta de temporada"></div>
+</div>
+
+<!-- ════════════════════════════════
+     AGRICULTORES DESTACADOS
+════════════════════════════════ -->
+<section class="agricultores" id="agricultores-destacados">
+  <div class="container">
+    <div class="agri-header">
+      <div>
+        <span class="eyebrow">Conoce a quienes cultivan</span>
+        <h2>Los agricultores</h2>
+        <p>Cada canasta lleva el trabajo y la historia de una familia que cuida la tierra. Estas son algunas de las personas detrás de la Red CSA Colombia.</p>
+      </div>
+      <a href="agricultores.html" class="btn btn-ghost-g" style="flex-shrink:0">Ver todos →</a>
+    </div>
+
+    <div class="agri-carousel-wrap">
+      <button class="agri-arrow agri-prev" id="agriPrev" onclick="agriScroll(-1)" disabled>&#8592;</button>
+      <div class="agri-track" id="agriTrack">
+
+      <div class="agri-card">
+        <div class="agri-photo"><img src="images/Isabel Cadavid_Agromandala.jpg" alt="Isabel Cadavid"></div>
+        <div class="agri-body">
+          <p class="agri-name">Isabel Cadavid Ochoa</p>
+          <p class="agri-meta">CSA Agromandala · Antioquia</p>
+          <p class="agri-quote">"Nos fortalece saber que la CSA funciona como una familia extendida en donde cuidamos y nos cuidan."</p>
+          <a href="agricultores.html" class="agri-link">Ver perfil →</a>
+        </div>
+      </div>
+
+      <div class="agri-card">
+        <div class="agri-photo"><img src="images/Reinaldo Correa_Mastay.jpg" alt="Reinaldo Correa"></div>
+        <div class="agri-body">
+          <p class="agri-name">Reinaldo Correa</p>
+          <p class="agri-meta">CSA Mastay · Antioquia</p>
+          <p class="agri-quote">"Cultivar con certeza económica cambia todo para una familia campesina. La CSA nos dio esa paz."</p>
+          <a href="agricultores.html" class="agri-link">Ver perfil →</a>
+        </div>
+      </div>
+
+      <div class="agri-card">
+        <div class="agri-photo"><img src="images/David Echavarría_Granja Feliz.jpg" alt="David Echavarría"></div>
+        <div class="agri-body">
+          <p class="agri-name">David Echavarría</p>
+          <p class="agri-meta">CSA La Granja Feliz · Antioquia</p>
+          <p class="agri-quote">"Compartir el conocimiento del campo con la ciudad es lo que más me mueve cada día."</p>
+          <a href="agricultores.html" class="agri-link">Ver perfil →</a>
+        </div>
+      </div>
+
+      <div class="agri-card">
+        <div class="agri-photo"><img src="images/Agromandala-325.jpg" alt="Agricultora CSA"></div>
+        <div class="agri-body">
+          <p class="agri-name">Agricultora CSA</p>
+          <p class="agri-meta">CSA Cultivando Salud · Cundinamarca</p>
+          <p class="agri-quote">"La agroecología no es solo un método de cultivo, es una forma de entender el mundo y habitarlo."</p>
+          <a href="agricultores.html" class="agri-link">Ver perfil →</a>
+        </div>
+      </div>
+
+      <div class="agri-card">
+        <div class="agri-photo"><img src="images/IMG-20251006-WA0051.jpg" alt="Agricultor CSA"></div>
+        <div class="agri-body">
+          <p class="agri-name">Agricultor CSA</p>
+          <p class="agri-meta">CSA Camino a la Montaña · Antioquia</p>
+          <p class="agri-quote">"Cuando la ciudad y el campo se unen, todo el sistema alimentario mejora para todos."</p>
+          <a href="agricultores.html" class="agri-link">Ver perfil →</a>
+        </div>
+      </div>
+
+    </div><!-- /.agri-track -->
+      <button class="agri-arrow agri-next" id="agriNext" onclick="agriScroll(1)">&#8594;</button>
+    </div><!-- /.agri-carousel-wrap -->
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     LA RED EN COLOMBIA
+════════════════════════════════ -->
+<!-- <section class="la-red" id="la-red">
+  <div class="container">
+    <div class="la-red-head">
+      <span class="eyebrow" style="color:var(--amber-lt)">Comunidad</span>
+      <h2>La Red CSA en Colombia</h2>
+      <p>Más de 18 CSAs activas en distintos municipios del país, cada una con su propia identidad, territorio y comunidad de co-agricultores.</p>
+    </div>
+    <div class="csa-cards">
+      <div class="csa-card">
+        <div class="csa-thumb"><img src="images/Agromandala-325.jpg" alt="CSA Agromandala"></div>
+        <div class="csa-body">
+          <h4>CSA Agromandala</h4>
+          <p>Ubicada en el sureste de Antioquia. Cultivo circular agroecológico y regenerativo, especializada en hortalizas, granos y plantas medicinales.</p>
+        </div>
+      </div>
+      <div class="csa-card">
+        <div class="csa-thumb"><img src="images/IMG-20251006-WA0060.jpg" alt="CSA Camino a la Montaña"></div>
+        <div class="csa-body">
+          <h4>CSA Camino a la Montaña</h4>
+          <p>Ubicada en las afueras de Medellín con vista al valle. Producción diversa con énfasis en agroecología y biodiversidad de cultivos.</p>
+        </div>
+      </div>
+      <div class="csa-card">
+        <div class="csa-thumb"><img src="images/David Echavarría_Granja Feliz.jpg" alt="CSA La Granja Feliz"></div>
+        <div class="csa-body">
+          <h4>CSA La Granja Feliz</h4>
+          <p>En San Cristóbal, Medellín. La familia de David Echavarría tiene una producción familiar agroecológica con una gran comunidad de co-agricultores.</p>
+        </div>
+      </div>
+      <div class="csa-card">
+        <div class="csa-thumb"><img src="images/_IFE1263 (1).jpg" alt="CSA Vizcaya"></div>
+        <div class="csa-body">
+          <h4>CSA Vizcaya</h4>
+          <p>Ubicada en Frontino, Antioquia. Enfocada en la siembra de chumbimbo y diversas especies nativas de la región.</p>
+        </div>
+      </div>
+      <div class="csa-card">
+        <div class="csa-thumb"><img src="images/IMG-20251003-WA0048.jpg" alt="CSA Muya Sungu"></div>
+        <div class="csa-body">
+          <h4>CSA Muya Sungu</h4>
+          <p>Una CSA comunitaria creada por un grupo de personas comprometidas con la soberanía alimentaria y la producción local.</p>
+        </div>
+      </div>
+      <div class="csa-card">
+        <div class="csa-thumb"><img src="images/Imagen de WhatsApp 2025-03-03 a las 08.19.39_ec1dfb6e.jpg" alt="CSA La Bonga"></div>
+        <div class="csa-body">
+          <h4>CSA La Bonga</h4>
+          <p>Ubicada en San Cristóbal. La familia de Armando César tiene una producción familiar agroecológica con siembra de chumbimbo y más.</p>
+        </div>
+      </div>
+    </div>
+    <div class="la-red-foot" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="https://wa.me/573192897230" class="btn btn-amber" target="_blank">Únete a la Red CSA Colombia</a>
+      <a href="agricultores.html" class="btn btn-ghost-w">Ver todos los agricultores →</a>
+    </div>
+  </div>
+</section> -->
+
+<!-- ════════════════════════════════
+     GUÍA DEL AGRICULTOR
+════════════════════════════════ -->
+<section class="guia" id="agricultores">
+  <div class="guia-grid">
+    <div class="guia-text">
+      <span class="eyebrow">Para agricultores</span>
+      <h2>¿Quieres crear tu propia CSA?</h2>
+      <p>Si eres agricultor o agricultora y quieres conocer cómo iniciar tu propia Comunidad que Sustenta la Agricultura, descarga nuestra guía paso a paso. Te acompañamos en todo el proceso.</p>
+      <a href="#" class="btn btn-green" style="align-self:flex-start">
+        ↓ Descargar Guía PDF
+      </a>
+    </div>
+    <div class="guia-img">
+      <img src="images/_IFE1336.jpg" alt="Familia aprendiendo en la finca">
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     CALENDARIO DE EVENTOS
+════════════════════════════════ -->
+<section class="cal" id="eventos">
+  <div class="container">
+    <div class="cal-head">
+      <span class="eyebrow">Agenda</span>
+      <h2>Calendario de Eventos</h2>
+      <p>Visitas a fincas, talleres, encuentros de la red y días de campo para conectar consumidores y agricultores.</p>
+    </div>
+    <!-- Tribe Events list view mock -->
+    <div class="tribe-events-wrap">
+
+      <div class="tribe-bar">
+        <button class="tribe-nav">&#8249;</button>
+        <span class="tribe-month-label">Julio – Agosto 2026</span>
+        <button class="tribe-nav">&#8250;</button>
+      </div>
+
+      <div class="tribe-list">
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">JUL</span>
+            <span class="tribe-day">12</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">julio 12 @ 8:00 am – 1:00 pm</p>
+            <h4 class="tribe-title">Visita a la Finca CSA Agromandala</h4>
+          </div>
+        </div>
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">JUL</span>
+            <span class="tribe-day">19</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">julio 19 @ 9:00 am – 3:00 pm</p>
+            <h4 class="tribe-title">Día de Campo: Cosecha Colectiva en CSA Camino a la Montaña</h4>
+          </div>
+        </div>
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">JUL</span>
+            <span class="tribe-day">26</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">julio 26 @ 10:00 am – 12:00 pm</p>
+            <h4 class="tribe-title">Taller: Agroecología para Familias Urbanas</h4>
+          </div>
+        </div>
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">AGO</span>
+            <span class="tribe-day">2</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">agosto 2 @ 9:00 am – 5:00 pm</p>
+            <h4 class="tribe-title">Encuentro Anual de la Red CSA Colombia</h4>
+          </div>
+        </div>
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">AGO</span>
+            <span class="tribe-day">16</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">agosto 16 @ 8:00 am – 5:00 pm</p>
+            <h4 class="tribe-title">Festival de la Temporada: Semillas y Sabores</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     INDICADORES DE IMPACTO
+════════════════════════════════ -->
+<section class="impacto" id="impacto">
+  <img class="impacto-photo" src="images/Imagen de WhatsApp 2025-03-03 a las 08.19.39_ec1dfb6e.jpg" alt="Comunidad en campo">
+  <div class="impacto-overlay"></div>
+  <div class="container">
+    <span class="eyebrow" style="color:var(--amber-lt); display:block; text-align:center;">Nuestro impacto</span>
+    <h2>Indicadores de la Red</h2>
+    <p class="sub">Cifras que reflejan el crecimiento de un movimiento ciudadano por la alimentación consciente</p>
+    <div class="counters">
+      <div class="c-item">
+        <span class="c-num" data-target="18">0</span>
+        <p class="c-label">CSAs activas en Colombia</p>
+      </div>
+      <div class="c-item">
+        <span class="c-num" data-target="500">0</span>
+        <p class="c-label">Familias co-agricultoras vinculadas</p>
+      </div>
+      <div class="c-item">
+        <span class="c-num" data-target="8">0</span>
+        <p class="c-label">Años construyendo la red</p>
+      </div>
+      <div class="c-item">
+        <span class="c-num" data-target="12">0</span>
+        <p class="c-label">Municipios con presencia CSA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     MAPA DE CSAs
+════════════════════════════════ -->
+<section class="mapa-csa" id="mapa">
+  <div class="mapa-left">
+    <div class="mapa-svg-wrap">
+      <div id="colombian_map"><svg version="1.1" id="colombia" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 661.1 855.5" style="enable-background:new 0 0 661.1 855.5;" xml:space="preserve">
+        <path id="CO-AMA" class="department active" data-tooltip="&lt;strong&gt;Amazonas&lt;/strong&gt;" d="M259.9,657.8l1.7-0.4l1-0.3l6.4-2.3l7.8-2.7l6.1-2l3.4-1l4.1,0.2l2.7,0l1.1,0.6l3.4,2.1l2.2,3.3
+          l4.5,0.5l4.9-0.1l3.1,0l3.4,2.5l0.9,0.7l1.8,0.8l5.5-0.5l0.8-1.4l0.5-1.1l1.5-1.6h1.8l1.1,0.7l1.2,1.5l0.6,1.2l1.4,0.4l1.3,0.1
+          l1.5-0.1l1.2-0.4l1.5-1.5l2.5-0.3l1.5,1.8l1.8,2.1l4.4,2.6l1.5,0.1l0.9-1.8l4.1-4.3l2-0.2l0.6,1.7l3.7,1.8h1.1l1.2-0.6l1.6-1.3
+          l-0.2-2.8l0.3-1l0.9-2.4l0.8-1.7l0.6-0.9l1-1.1l6.6-6.4l1.3-0.6l1.4,0l1.3,0.3l2.9,0.8l2.2,0.1l1.8-1.3l1-1.4l0.7-1.2l0.5-0.9
+          l0.6-1.2l0.6-1l0.9-1.2l4.1-3.4l4.9-5.2l1.9-2.3l0.6-1.4l-0.3-2l0.9-0.7l3.6,0.2l2.3,1.1l1.2,0.9l10.2,6.2l4.9,1.6l1.9-0.8l2.5,2.6
+          l1.2,2.3l2,9.1l1.9,3.2l3.6-1.5l0.8-1.6l12.5,4l1.9,2l0.7,1.1l1.6,1.5l3.3,1.1l1.8-0.4l-0.9-1.5l2.9-2.2l2.4,1.3l0.9,1.1l-1.8,6.6
+          l0.1,5.8l-1.6,2.5l0.1,1.9l1.2,1.1l1.1,1.2l0.4,2.1l-1.3,1l-1.7,1l-0.3,1.1l0.4,1.2l0.6,1l6.1,4.8l1.4,0.1l1-0.4l0.8-0.9l0.4-1.1
+          l-0.7-0.7l-1.4-0.4l-0.7-0.8l0.1-1l0.8-1.1l1.6-1.1l7-0.5l0.2,1.8l-1.3,3.8l0.3,1l1.6,0.3l1-0.4l3.4-1.6l5.1-1.2l3.9,3.4l-0.1,1.1
+          l0.9,4.2l8.1-1.1l-0.2-3.8l1.2-2.6l0.5,1.1l1,4.5l1.1,5.6l0.6,4.5l-0.6,2.1l-3,7.1l-3.5,19.1l-3.5,19.5l-0.7,3.7l-0.9,4.7l-0.5,2.6
+          l-7.8,43.5l-4.4,24.6l-3,14.4l-0.7,1.2l0-1.4l-1.6-1.6l-1.6-1.1l-1-0.6l-4.1-3.4l-0.6-1.1l-0.4-0.9l-0.4-1.3l-0.5-1.5l-0.9-1.8
+          l-2.6-3.3l-4.4-3.5l-0.9-0.5l-1-0.1l-2.2,0.7l-0.9,0.7l-2.7,1.7L451,819h-1.3l-3.9-1.5l-5.8-2.4l2.6-4l2.2-3.4l3-4.7l5.9-9.1
+          l1.7-2.7l17-26.5l-1.5-2.8l-1.1,0.2l-3.7-2.8l-0.7-1.7l-0.5-1.9l-3.8-3.4l-2-0.4l-1,0.3l-1.1,0.7l-9.2-0.9l-0.9-0.5l-3.3-4.1
+          l-0.4-2.1l-10-6.5l-5.8,2.6l-6.2,1.6l-4.3,2.4l-8.6-0.7l-2.5-3.2l-5.3-2.3l-2.8,0.1l-4.8-0.6l-0.5-1.4l0-1.5l-0.5-0.9l-1.4,0.6
+          l-4.3,3.5l-3.1,4.4l-0.9,2.8l-2.1,0.1l-2.5-0.5l-4.3,1.9l-7.8,4.5l-3.6-0.4l-1.4-0.4l-6.1-2l-6.9-1.7l-4.6,1.6l-6.5,2.5l-3.3,0.8
+          l-1-2.6l-1.6-2.6l-2,0.1l-1.4,0.4l-3.5-1.9l-1.5-1.2l-0.5-0.9l-0.8-4.1l1.5-0.7l1.2-1.6l1-2.7l-1.6-10.9l-2.1-3.7l-3.2-2.1l-2.1,1.9
+          l-2.9,1.4l-5.9-2.8l-3.7-2.4l-0.8-0.9l1-4.6l0.5-0.9l1.5-1.3l-1.5-2.8l-2.1-2.9l-1.1-1.2l-0.2-1.5l-0.4-3l-4.8-4.5l-2.9-0.3
+          l-1.9,0.5l-4.4-1.2l-1.3-2.8l-10.4-6.7l-6.8-1.9l-1.2-1.1l-0.7-1.3l-1.4-2.8l0.9-1.5l0.8-2.2l-2.1-2.2l-1.3-1.4l-1.1-3.7l-0.9-3.6
+          L259.9,657.8z"></path>
+        <path id="CO-ANT" class="department active" data-tooltip="&lt;strong&gt;Antioquia&lt;/strong&gt;100 Municipios" d="M245.5,345.8l-1.4-0.2l-7.6,2.2l-6.4,0.7l-2.3,0.6l-1.2,1.6l-0.9,1.2l-4.8,3.3l-1.5-0.7l-1.7-1.3
+          l-1.6-1.5l-1-0.4l-5.3-0.4l-7.7-2.3l-1.9-0.6l-1.6-0.2l-0.1,1.4l0.7,4.6l0.2,3.6l-0.8,0.6l-3.1-0.3l-2.2-0.2l-2.8,0.3l-1.3,0.3
+          l-3.7,1.9l-1,0.1l-4.2,0.1l-0.7-0.4l-1.9-1.7l-1-1.2l-2.3-3l-0.4-1.2l0.9-2l0.1-1.5l-0.3-1.4l-0.8-1.8l-0.7-1.4l-0.5-1.3l-0.2-1.2
+          l0.2-1.2l0.8-1.4l0.3-3.8l-2.8-0.6l-1-0.3l-0.9-0.8l-0.7-2l-0.2-1.5l-0.1-1.6l-0.3-3.4l-0.7-0.8l-2.3-1.2l-1.2-0.2l-11.5,2l-1.4,0.4
+          l-1.1,0.1l-5.2-0.2l-4.1-5.7l-0.3-1.2l0-1.3l0-4l-0.3-1.9l-4.4-9.3l-1.1-1l-2.5-1.6l-0.5-6.5l2.7-0.9l1.9,0.1l1.8,0.6l2.3-1.9
+          l0.1-1.8l-0.6-1.7l-0.9-2.1l0.8-1.2l7-0.3l3.5,0.7l1.7,0.8l1,0.3l0.9-0.5l1.4-8.4l-0.5-2l-0.7-1.6l-0.7-1.1l-2.5-3.4l-1.9-0.5
+          l-1.1-0.6l-3-2.4l-9.1-9.3l-1.1-1.1l-1-1l-3-3.4l-1.5-1.9l-3.7-0.8l-0.7-4.6l1.8-0.5l1.1-0.7l1.1-1.2l0.7-1.8l0.3-1.8l0.5-2.6
+          l0.6-0.9l2.8-2l1.3-0.4l1.7-0.5l1.5-2.3l0.2,0.2l0.1,2.1l-0.2,3l-1.7-0.4l-1.1-0.6l-1.2,0.8l-0.5,2.3l0.2,2.5l2.6,1.3l2.7,0.2
+          l2.9-0.7l0.7-0.8l0.6-5.1l-0.3-2.5l-0.7-5.3l-0.6-7.1l-0.4-3.5l-2.4-3.5l-2.7-1.9l-2.5-0.8l0-1.5l2.2-2.7l3.3-0.6l7.1-2.1L158,192
+          l0.3-1.5l0.8,0.7l0.5,0.9l0.3,1l0.1,1l0,1.8l0.1,1.3l0.3,1.5l0.7,2.4l0.7,1.3l0.7,0.9l0.9,0.9l1.1,0.7l1.4,0.7l1.3,0.5l1.8,0.9
+          l0.7,0.9l0.2,1.3l0,2.1l-0.1,1.6l-0.2,1.6l-0.4,1.3l-0.8,1.3l-0.9,1l-1.4,1.4l-1,0.7l-2.3,2.4l-1.2,1.4l-1.2,2.5l-0.6,1.7l-0.4,1.7
+          l-0.4,2.6l-0.2,1.4l-0.1,2.5l-0.6,1.9l-1.9,1.9l-1.2,1.2l-0.9,1.6l-0.5,5.1l0,1.8l0.1,1.1l0.4,2.6l0.4,1.8l0.4,1.4l0.7,1.3l1.9,2.9
+          l4.7,6l1.7,0.3l1.5-0.1l1.1-0.1l3.4-0.1l9.7-0.1l2.4,0l3.6,0.2l1.5-0.4l8.3-10.3l0.6-3.7l1.4-2.4l0.6-0.9l1.3-1.2l1.5-0.3l1.1,0.6
+          l1.5,1.4l1,0.3l0.8-0.7l0.5-2.3l1-2.8l1.2-0.4l1.6-0.5l1.3-0.6l1.1-1.5l0.3-1l0.6-1.4l5.5-5.2l1.4-0.4l2.9,0.1l2.6,0.2h2.8l1.4-0.1
+          l1.2-0.3l1-0.5l1-0.7l0.8-0.9l0.6-0.9l1.5-2.2l1.5-1.6l2.5,2.1l2.7,2.3l1,0.7l2,1.3l2.6,1.5l1.3,0.8l1,0.7l1.2,1.3l0.4,0.9l0.3,1.2
+          l0,1.1l0,3.7l0.2,2.4l1.1,1.3l-1.2,5.5l-3.3,8.3v1.2l0.5,0.9l0.7,0.9l4,4.1l2.6-2l0.6-1l1.1-2.3l1.1-1.4l1-0.6l0.9,0.4l0.6,1.2
+          l0.1,1.7l-0.6,1l-1.1,1.3l-0.9,1.8l-0.3,1.2l-0.3,4.7l0.2,1.5l2.9,8.5l1.8,0.3l1.5,0l1.9-0.5l5.2-4.5l1.5-1.4l2.3-2.3l2.8-2.8
+          l2.7-2.7l-0.3,0.9l-0.3,1.5l0,1l0.6,5.2l0.6,1.2l0.9,1.1l0.6,2l-0.1,1.3l-2.2,2l-2.2,1l-1.7,0.9l-2.5,2.7l-1.3,2.2l-0.9,1.6
+          l-0.8,0.8l-1.5,1.2l-5.8,4.5l-3.2,1.5l-1.6,0l-1.8,2.2l-0.5,1.7l0.4,4.2l1.3,2.1l-0.4,1l-4.7,5.2l-1.2,0.9l-2,0.8l-0.6,0.7l-0.7,1
+          l-1.3,4.1v2.1l0.2,6.1l-0.8,0.9l-1.7,6L245.5,345.8z"></path>
+        <path id="CO-ARA" class="department active" data-tooltip="&lt;strong&gt;Arauca&lt;/strong&gt;6 Municipios" d="M483.5,332.7l-3-1.8l-8.2-6.6l-3-2.7l-3.9-1.7l-8.8-0.2l-2.5,0.8l-2.6,1.5l-0.9,0.4l-1.3,0.5
+          l-7.2,0.5h-3l-6.8-0.2l-3.3-0.2l-1.9-0.2l-10-2.2l-1.4-0.6l-2.7,0.7l-1.6,0.6l-1.3,0.8l-8.2,2.3l-1,0.1l-3.7,0l-1.4-1.1l-6.6,0.4
+          l-10.7,2.2l-1.9,1.3l-0.9,0.8l-3.6,2.2l-1,0l-2-0.4l-4.2-1.9l-4-5.3l-0.4-1.8l-0.1-1.2l0.3-2.1l4.1-4.7l4.9-2.5l1.2-1.1l0.4-1.5
+          l0.1-1.4l2.8-6.5l2.3-4l0.3-1l0.2-1l0.3-1.7l0.1-1.6l0.4-1.5l0.7-1.3l2.3-3.4l2.5,1.1l2.2,0l1.4-0.8l5.1-2.1l2.8-0.7l2.2,0.1
+          l2.4,0.6l3.2,0.8l1.2,0.3l6.5,0l3.5,1.7l4,1.2l7.7-1l1-0.4l1.7-0.8l3.1-2l1.1-1.3l1.4-0.4l1.9-0.3l4.9-0.5l8.3,2l5.5,2.3l2.7,1.4
+          l1.2,0.9l0.8,0.6l1,0.4l1.4,0.3l1.6-0.4l0.9-0.8l1.1-0.6l3.1-0.4l1.9,0.3l19.5,24.2l14.6,18.2l-2,1.6l-1.4,0.7l-2.6,0.9l-2,0.2
+          l-2.9,0l-2.8-0.3l-3.1-0.3l-1.5,0.3l-1.7,0.7L483.5,332.7z"></path>
+        <path id="CO-ATL" class="department active" data-tooltip="&lt;strong&gt;Atlántico&lt;/strong&gt;6 Municipios" d="M216.7,96.1l1.1-0.3l9.1-5l0.4-1.5l0.4-1.5l5-5.1l2.6-2.5l0.3-0.3l0,0.3l1,2.4l1.6,1l1.2,1.1
+          l0.6,1.1l2.6,4.9l0.1,6.9l-0.1,3.3l-0.3,5.1l-0.5,2.2l-2.3,1.5l-1.1,1l-0.9,1.1l-2.7,6.1l-2.1,5l-3.8-3.2l-5.9-3.6l-6.1-4.4
+          l-0.4-2.1l0.4-1.6l0.3-1.3l0.1-1.5l-0.3-1.6l-0.9-2.8l1.2-1.1l-0.4-1.6l-0.8,0.8l0.1-1.7L216.7,96.1z"></path>
+        <path id="CO-BOL" class="department active" data-tooltip="&lt;strong&gt;Bolívar&lt;/strong&gt;16 Municipios" d="M288.7,227.8l-1.3,0.8l-1.9,1.7l-0.8,1.8l-0.3,1.1l0,1.7l0,1.5l1.5,4.8l0.9,1.9l0.8,3.9l-0.9,8
+          l-2.1,3.2l-2,4.7l-0.9,7.6l-2.7,2.7l-2.8,2.8l-2.3,2.3l-1.5,1.4l-5.2,4.5l-1.9,0.5l-1.5,0l-1.8-0.3l-2.9-8.5l-0.2-1.5l0.3-4.7
+          l0.3-1.2l0.9-1.8l1.1-1.3l0.6-1l-0.1-1.7l-0.6-1.2l-0.9-0.4l-1,0.6l-1.1,1.4l-1.1,2.3l-0.6,1l-2.6,2l-4-4.1l-0.7-0.9l-0.5-0.9l0-1.2
+          l3.3-8.2l1.2-5.5l-1.1-1.3l-0.2-2.4l0-3.7l0-1.1l-0.3-1.2l-0.5-0.9l-1.1-1.3l-1-0.7l-1.3-0.8l-2.6-1.5l-2-1.4l-1-0.7l-2.7-2.3
+          l-2.5-2.1l2.2-1l0.8-0.9l0.4-1.8l0.4-0.3l1.4-0.5l1.8-0.3l2.4-0.3l1.1-1.3l2-4.1l1.3-3.6l-0.7-1.2l-0.7-2.3l-0.4-1.9l0-9l1.8-1.6
+          l-2.6-5.9l-1.6-2.5l-1.4-1.3l-2.8-2l-1.3-0.7l-0.9-0.4l-1-0.4l-2.9-1.8l-2-2.5l-1.7-3.3l-0.8-1.9l-0.2-1.4l0.1-1.2l0.4-2.7l-0.1-1.4
+          l-0.2-1.1l-0.8-1.2l-1.2-1.5l-0.9-1l-12.7-10.5l-3.8-2.7l0.1-1l-0.2-3.6l-0.5-1.3l-2.2-0.9l-4.5-5.6l-2.4-5.6l-2.1,0.5l-0.8,0.4
+          l0.5-2.3l1.9-2.4l0.1-2.7l-0.8-9l3.1-1.4l-0.1-2.2l-0.9-2.9l1.4-2.1l3.3-3.3l6-3.3l1.3,0.2l0.5,0.7l0.9,2.8l0.3,1.6l-0.1,1.4
+          l-0.3,1.3l-0.4,1.6l0.4,2.1l6.1,4.4l5.9,3.6l3.8,3.2l-1.6,5.4l0.5,1.6l2.3,1.1l1.8,0.5l2.6,3.7l-0.3,1.9l-1.6,0.9l-1.5,0.7l-0.5,1.3
+          l0.2,3.1l0.1,1.1l2.3,7.6l0.5,0.9l1.2,5.3l-0.6,3.4l-0.1,2.3l2.9,1.3l1-0.1l1.1-0.2l3.1,2.1l3.4,3.6l5,2l1.7,0l4.6,2l2.1,1.3
+          l3.7,3.3l1.3,2.1l2.7,2.7l7,2.3l4,0.8l2.5,0l-0.3,3.4l0.8,1.7l1.3,1.2l0.7,6.2l-0.3,3.9l1.4,2.9l0.6,1l1.2,4.2l0.5,4.9L290,222
+          L288.7,227.8L288.7,227.8z M216.4,98.9l-0.9-0.3l0.2-2.3l1-0.1l-0.2,1L216.4,98.9z"></path>
+        <path id="CO-BOY" class="department active" data-tooltip="&lt;strong&gt;Boyacá&lt;/strong&gt;11 Municipios" d="M351.7,290.5h3l3.3-0.1l1.2-0.4l1.5-1.3l0.7-1.3l0.8-1.6l5-2.8l1-0.4l1.3,0.1l1.6,0.4l1.4,0l1-0.4
+          l1-0.8l3,2.3l3.2,0.3l-2.3,3.4l-0.7,1.3l-0.4,1.5l-0.1,1.6l-0.3,1.7l-0.2,1l-0.3,1l-2.3,4l-2.8,6.5l-0.1,1.4l-0.4,1.5l-1.2,1.1
+          l-4.9,2.5l-4.1,4.7l-0.4,0.3l-1.5,1.4l-0.8,1.2l-0.4,1.3l-0.1,1.4l-0.3,6.2l2.5,2.7l-1.4,5.9l-0.7,0.7l-0.8,3.4l5.4,2.3l2.3,4
+          l0.1,1.2l-2.2,5.3l-4,1.6l-0.9-0.6l-1,0.4l-0.8,0.7l-0.9,1.3l-0.9,1.3l-1.3,1.9l-0.9,1.1l-6.5,4.7l-4.8,0.7l-1.5-1.7l-2.5-1.8
+          l-6.2,7.8l-1.3,3.8l0.5,1l2.5,2.3l0.5,1.1l-0.2,1l-1.4,1.6l-1.5,0.9l-1.7,0.4l-1.3,1.1l-0.9,1.4l-1.6,5.4l-0.3,1.2l0.2,1l1.6,2.6
+          l-2.1,3.5l-2.1,0.3l-2.5-0.4l-1.1-0.6l-0.7-0.9l-1.6-2l-3.1-2.2l-1.2-0.6l-1-0.3l-1.5-0.6l-1.2-0.5l-1.5-0.9l-2.9-1.9l-1.7-1.6
+          l-0.4-1.4l0.9-3.3l0.8-1.2l1.8-1.9l-0.9-4.9l-1-1.9l-0.9-1.7l-2.1-6.8l-3.4-4.1l-3.5-0.9l-3.8-3.8l-2.1,0.5l-2.4,1.7l-0.7,1.8
+          l-0.1,1.4l-2.2,2.3l-1,1l-0.9,0.5l-1.7,0.7l-1.2-0.1l-6.4-4.8l-3.3-1.2l-4.2-5.3l-0.5-1.8l1.4-1.6l0.9-1.2l-0.8-4.7l-1.3-1.5l-2,1.5
+          l-2.8,1.3l-1.9-0.3l-2.2-0.7l-6,1.3l-0.9,0.7l0-0.7l-0.9-1l0.7-3.5l1.7-6l0.8-0.9l-0.2-6.1v-2.1l1.3-4.1l0.7-1l0.6-0.7l1.7,2
+          l2.6,4.2l1.9,2.9l1.7,1.6l1.4,0.4l0.9-0.4l0.9-0.5l1.3-0.4l1.3,0.5l2.3,4.9l4.5,4.1l5.4,3l0.8,0.8l0.9,2.4l1,0.8l5.9-1.5l6.5-0.7
+          l1.6,1.2l1.5,1l1.2-0.8l0.8-2.9l0.2-1l0.9-5.7l2.9-7.1l1.5-2.1l5.8,3l0.9,0.9l0.5,1.1l0.1,1.3l-0.1,1.1l-0.4,1.3l-1.3,2.5l-0.2,1.2
+          l0.3,2l0.7,1.4l1.1,0.8l1.7,0.5l1.5-0.2l2.8-1.3l0.8-0.9l0.2-1.2l-0.6-1.7l0.2-1.5l0.8-0.9l1.3-0.7l1.1-0.3l1.4-0.2l1.3,0.3l3.1,0.5
+          l3.6-3.6l9.2-11.3l1.3-2.4l0.7-2.1l-0.1-2.5l-0.8-1.4l-0.8-1.2l-0.3-1.7l0-5l1.5-0.2l2.8,1.8l0.6,1.4l0.9,3.3l2.6-0.1l1.2-0.3
+          l0.9-0.6l0.8-1l0.6-1.1l2.3-6.6l0.3-1.3l0.1-1.5l-0.6-7.2l-0.5-1.5L351.7,290.5z"></path>
+        <path id="CO-CAU" class="department active" data-tooltip="&lt;strong&gt;Cauca&lt;/strong&gt;16 Municipios" d="M176.1,578.3l-0.5,1.2l-5.1,1.9l-1.4,0.3l-6.3,0l-1.6-0.2l-1.1-0.4l-5.6-2.3l-1.2-1.3l-1.3-2.7
+          l0.6-4.8l0.3-1l0.5-0.9l0.5-1.1l0-1l-0.5-1.4l-1.9-3.7l-1.3-1.2l-2.1-0.2l-1.4,0.9l-1.3,2.2l-1.8,1.4l-1.4,0.3l-3.5,0.7l1.3-2.4
+          l1.1-8.6l-0.1-1.3l-1-1.5l-9.3-5.8l-1,0.1l-1.9,0.7l-1.1,0.2l-6.9,0.5l-1.9,0l-1.5-0.2l0.5-6.6l0.6-0.9l1.5-1.5l1.1-0.6l1.1-1.7
+          l0.4-1.2l-1.3-1.2l-2.1-1.8l-4-4.9l-2.2-3.7l-0.8-1.1l-0.9-0.5l-5.3,0.6l-2.3,0.1h-1l-2.6-0.4l-1.4-0.3l-1-0.3l-1.3-0.7l-2-1.7
+          l-0.6-1.1l-1.9-4.1l-1.7-3l-2.9-4.3l-1.3-1.7l-0.6-1.1l-0.5-1.2l-0.1-0.9l0.2-2l1.7,2.3l0.3,1.3l1.8,0.9l3.6-0.5l2.1-2l-0.9-1.6
+          l-0.8-5.6l3.3-5.4l7.3-9l0.9-0.5l6.4-9.9l0.5-1.4l1.7,1.9l2.2,3.2l7.8,5.7l8.8,0.8l1.1-1.6l2.9,1.4l2.9,3.3l6.6-3.3l4.4-2.7l2.2-0.3
+          l6-2.7l1.1-2.1l-0.1-2l-0.8-1.1l1.1-1.9l2.3-0.3l4.2,0.8l1.8,0.9l1.2,0.8l1.5,0.9l2.1,0.9l1.8,0.6l2.1,0.3l0.1,0.8l-0.2,1.6
+          l-0.1,1.2l0.6,1l1.4,2l1.5,2.6l0.7,1.6l0.7,0.9l3.1,9.1l2.5,5.4l1.3,2.1l0.7,1.3l2.1,5.3l0.5,1.5l0.2,1l-3.7,1l-1-0.3l-2.4-2
+          l-2.2-1.4l-2.2-0.7l-1.6,1l-1,1.4l-1.5,2l-0.9,0.8l-1.2,0.5l-1.5,0.2l-2.4-0.7l-1.1-0.1l-1.1,0.6l-4.8,5.4l-0.1,1l0.9,2.7l0.5,1.1
+          l0.5,1.1l0.4,1.6v1.5l-0.7,0.6l-1.3,0.4l-2-0.1l-2-0.7l-1.5-0.8l-1.6-0.7l-1.6-0.3l-2.1,0.5l-1.4,1l0,2.5l0.7,7.7l1,1.1l1.1,0
+          l1.7-0.1l2.3,1l2.2,3l0.3,1.5l-0.2,1.8l-0.2,1.7l0.5,1.2l3.6,3.4l5.2,3.2l1,0.4l1.2-0.1l2.4-0.6l0,2.1l-2.4,5l-1.7,3.1l-1.7,1.6
+          l-0.3,1.5l0.9,5.1l2.9,1.9l2.9,1l1.3,0.7L176.1,578.3z"></path>
+        <!-- <path id="CO-CES" class="department active" data-tooltip="<strong>Cesar</strong>5 Municipios" d="M288.7,227.8l1.3-5.9l0.3-5.5l-0.5-4.9l-1.2-4.2l-0.6-1l-1.4-2.9l0.3-3.9l-0.7-6.2l-1.3-1.2
+          l-0.8-1.7l0.3-3.4l0.5-0.8l1.7-2.4l1-1.8l-1-1.6l-1.5-1.6l-1.5-1.3l-2.6-5.6l-0.4-1.5l-1-1.7l-2.3-3.6l-0.6-1l-1.5-1.3l-1.6-0.6
+          l-1-0.9l3.1-4.2l1.4-0.8l5.3,0.3l6.6-0.4l-2.7-7.7l-5.9-8.2l-5.7-7.5l1.2-4.6l0.5-1.3l4.7-8l2.7-1.5l1-0.3l6.6-2.5l9.7-4.7l-0.6-1.7
+          l-1.9-1.8l-0.4-1.4l0-1l0.1-1l0.7-1.1l1-2.4l-1.8-2.1l-1.9-2.1l-0.7-1l-0.2-1.5l0.3-1.1l0.9-1.2l0.9,1.3l0.9,0.9l1.4,0.4l1.3,0.1
+          l4.4,0.1l3.9,0l2.3-0.1l1.5,0.3l1.7,1.1l8.2,8.9l0.7,1.9l-0.6,3.4l-0.6,1.3l-1.6,0.7l-2.7,3.4l2.7,1.9l1.7-0.1l1.7-0.3l1.1-0.3l1.9-0.4l1.5-0.1l2.5,0.2l0.6,0.1l-0.3,3.8l-1.2,11.7l-0.9,1.7l-1,4l-0.4,4.8l-0.9,6.8l-3.8,7.9l-1.8,2.4l-6.3,7.6l-5.9,9.1
+          l-0.7,2.7l-0.3,0.5l-0.5,1l-0.6,1.5l-0.2,1l-1.2,8l-0.2,3.7l0.4,2.5l0.1,2.9l-0.7,1.8l-0.8,1l-1.7,1.6l-0.7,1.2l-0.4,1.3l-0.4,3.6
+          l2.1,8.2l0.6,1.2l1.4,0.4l1.4-1.2l0.1-1.4l-0.1-1.1l-0.2-1.6l0.6-0.9l1.7-0.1l1.1,0.5l0.5,0.9l0.2,1.1l0,1.6l-0.1,2.3l-0.4,2
+          l-1.4,0.9l-1.1,0.1l-0.8,0.9v1.2l0.7,1.8l1.9,2.6l1.1,2.4l0.5,1.4l1.2,4.7l-0.3,1.7l-3,6.3l-1.2,1.9l-1.3,1.2l-2.1,1.1l-1.4,0.3
+          l-5.4,0.7l-0.2-0.6l-1.3-1.2l-2.1-0.2l-3-0.2l-0.6-1.3l0.5-1.8l1.2-1.7l1-1.6l0.4-2l-1.7-4.8l-1-2.1l-1.9-3.7L288.7,227.8z"/> -->
+        <path id="CO-CHO" class="department active" data-tooltip="&lt;strong&gt;Chocó&lt;/strong&gt;6 Municipios" d="M111.8,202l1,0.6l2.3,4.2l0.8,3.1l2.2,2.6l1,0.7l1,0.4l1.8,0.5l1.5,1.2l0.8,1.2l1.8,3l5.6,4.4
+          l0.6,2.4l0.3,1.5l3,1.9l2.4-0.6l-1.5,2.3l-1.7,0.5l-1.3,0.4l-2.8,2L130,235l-0.5,2.6l-0.3,1.8l-0.7,1.8l-1.1,1.2l-1.2,0.7l-1.8,0.5
+          l0.7,4.6l3.7,0.8l1.5,1.9l3,3.4l1,1l1.1,1.1l9.1,9.3l3,2.4l1.1,0.6l1.9,0.5l2.5,3.4l0.7,1.1l0.7,1.6l0.5,2l-1.4,8.4l-0.9,0.5l-1-0.3
+          l-1.7-0.9l-3.5-0.7l-7,0.3l-0.8,1.2l0.9,2.1l0.6,1.7l-0.1,1.8l-2.3,1.9l-1.8-0.6l-1.9-0.1l-2.7,0.9l0.5,6.5l2.5,1.6l1.1,1l4.4,9.3
+          l0.3,1.8l0,4.1l0,1.3l0.3,1.2l4.1,5.7l5.2,0.2l1.1-0.1l1.4-0.4l11.5-2l1.2,0.2l2.3,1.2l0.7,0.8l0.3,3.4l0.1,1.6l0.2,1.5l0.7,2
+          l0.9,0.8l1,0.3l2.8,0.6l-0.3,3.8l-0.8,1.4l-0.2,1.2l0.2,1.2l0.5,1.3l0.7,1.4l0.8,1.8l0.3,1.4l-0.1,1.5l-0.9,2l0.4,1.2l2.3,3l1,1.2
+          l1.9,1.7l-0.9,0.3l-1.2,0.4l-1.6,0.6l-8.1,3.9l-0.9,0.6l-4.1,4.3l0.3,1.5l4.7,10.2l0.6,0.9l0.9,0.9l1,0.6l1.1,0.6l0.8,0.3l-0.1,0.8
+          l-0.3,1.2l-0.6,1.4l-0.9,0.7l-1.2,0.5l-1,0.6l-5.5,4.5l-0.7,0.8l-0.6,1.2l-3.6,8.2l-3.7,6.9l-0.6,0.9l-0.3,1.2l-0.1,1.1l0.2,2.2
+          l0.3,1.4l0.3,1l0.4,0.9l1.2,1.4l2.2,2.2l-0.7,1.8l-5.5,4.4l-7.7,2.4L142,433l-1.4-0.1l-1.1-0.4l-3.5-2.2l-6.8-2.3l-4.9-4.2l-1.6-0.7
+          l-1.1,0.1l-1.9,0.5l-0.9-0.7l-1.1-2.1l0.3-0.8l-2.3-0.5l-2.3,0.1l-2.2-3.6l1.8-5l0.2-0.3l0.4-1.1l1-3.7l-0.2-5l-0.3-3.5l-0.9-4.8
+          l-0.4-1.3l-0.3-1.2l-0.4-3.6l-0.5-7l0-3.5l0.9-2.4l0.3-1.9l-0.6-2.9l-1.8-7.8l-4.1-2.4l-2.5-0.7l1.4-3.2l4.1-2l1.9,0.3l1.2,0.7
+          l1.6-0.6l3.8-4.6l0.5-2.4l-0.2-1.5l-4.6-9.8l-3.4-4.6l-2.3-2.5l-1.1-1.4l-0.6-1.3l0.6-4.8l3.4,2.1l1.1-2.1l1.5-5.4l0.8-8.7l-3.3-6.1
+          l-1.8-1.1l-1.1-0.1l-9.9-8l0.7-5l-0.2-1.2l-1.2-2.7l-5.6-4.7l-4.8-3.8l4.1-12.4l1.6,0.2l1.3-0.4l0.8-1.1l0.6-1.5l-0.4-1.6l-1.2-2.1
+          l-0.2-1l0-1.7l0-1.3l0.7-1.3l4,2l2,3.8l0.7,2l0.5,1.2l1.1,0.6l12.2-8.7l0-1.2l-2-2.6l2.9-5.4l0.8-0.9l3.9-1.6l0.9-3.1l-0.8-4.4
+          l-1.4-2.8l-1.5-2.6l-1.1-0.9l-2.6-2.6l-0.7-0.9l-0.3-2.6l0-1.3l-0.3-1.7l-1.5-2.6l-1.2-1.1l-2,0l-0.4-2.5l1.2-1.8l0.7-0.5l3.3-3.9
+          L111.8,202L111.8,202z M110.2,417.1l1.1,0.6l1,2.3l1.8,0.6l-0.7,0.6l-8.3,1.5l-2.4,0.7l0.5-1.8l5.2-4.9l0.5-0.1l0.6,0.2L110.2,417.1
+          L110.2,417.1z"></path>
+        <path id="CO-CAL" class="department active" data-tooltip="&lt;strong&gt;Caldas&lt;/strong&gt;2 Municipios" d="M209,393l-4-3.4l-2-1.2l-1-0.1l-3.8-0.2l-5.1-1.9l-5.5,1.3l-1.8,0l-1.1-0.9l-2-5.3l0.7-1.7l5.4-5
+          l4.9-2.8l1.7-2l1.2-2.3l-4.2-3l-3.4,0.8l-1.9,0.9l-1.3,0.4l-0.8-1.1l0.3-5.5l3.7-1.9l1.3-0.3l2.8-0.3l2.2,0.2l3.1,0.3l0.8-0.6
+          l-0.2-3.6l-0.7-4.6l0.1-1.4l1.6,0.2l1.9,0.6l7.7,2.3l5.3,0.4l1,0.4l1.6,1.5l1.7,1.3l1.5,0.7l4.8-3.3l0.9-1.2l1.2-1.6l2.3-0.6
+          l6.4-0.7l7.6-2.2l1.4,0.2l0.9,1l0,0.7l-0.4,0.6l-0.9,10.7l0.3,2.2l-1.5,3.9l-0.7,1.4l-0.8,1.3l-1.3,1.9l0,0l-1.1-0.4l-1.9-0.5
+          l-2.1-0.1h-3l-1.1,0.2l-3.5,0.8l-1.3,0.7l-1.5,1.2l-1.2,1.2l-0.5,0.9l-0.6,1.4l-0.8,0.5l-4.4,0.5h-1.7l-1.6,0.2l-1.4,1.5l-0.3,1
+          l-2.1,7.7l0.6,1.4l0.9,1.2l0,1.1l-0.8,0.9L209,393z"></path>
+        <path id="CO-COR" class="department active" data-tooltip="&lt;strong&gt;Córdoba&lt;/strong&gt;10 Municipios" d="M237.3,226.3l-1.5,1.6l-1.5,2.2l-0.6,0.9l-0.8,0.9l-1,0.7l-1,0.5l-1.2,0.3l-1.4,0.1h-2.8l-2.6-0.2
+          l-2.9-0.1l-1.4,0.4l-5.5,5.2l-0.6,1.4l-0.3,1l-1.1,1.5l-1.3,0.6l-1.6,0.5l-1.2,0.4l-1,2.8l-0.5,2.3l-0.8,0.7l-1-0.3l-1.5-1.4
+          l-1.1-0.6l-1.5,0.3l-1.3,1.2l-0.6,0.9l-1.4,2.4l-0.6,3.7l-8.3,10.3l-1.5,0.4l-3.6-0.2l-2.4,0l-9.7,0.1l-3.4,0.1l-1.1,0.1l-1.5,0.1
+          l-1.7-0.3l-4.7-6l-1.9-2.9l-0.7-1.3l-0.4-1.4l-0.4-1.8l-0.4-2.6l-0.1-1.1l0-1.8l0.5-5.1l0.9-1.6l1.2-1.2l1.9-1.9l0.6-1.9l0.1-2.5
+          l0.2-1.4l0.4-2.6l0.4-1.7l0.6-1.7l1.2-2.5l1.2-1.4l2.3-2.4l1-0.7l1.4-1.4l0.9-1l0.8-1.3l0.4-1.3l0.2-1.6l0.1-1.6l0-2.1l-0.2-1.3
+          l-0.7-0.9l-1.8-0.9l-1.3-0.5l-1.4-0.7l-1.1-0.7l-0.9-0.9l-0.7-0.9l-0.7-1.3l-0.7-2.4l-0.3-1.5l-0.1-1.3l0-1.8l-0.1-1l-0.3-1
+          l-0.5-0.9l-0.8-0.7l0.4,0l1-0.2l1.3-0.3l2.8-1.1l2.6-2.8l4.1-9.8l0.4-2.2l3.1-4l1-1l0.9-0.5l7.6-3.8l5.1-0.8l4.5,0.9l0.8,1.7
+          l0.8,1.1l0.9,1l0.9,0.8l6.4,4.2l4.6,4.8l0.9,0.8l3.8,0.9l1,0.4l1,0.5l2.9,2.5l1.9,5.1l0.1,1.2l-0.6,3l-1.5-0.6l-1.6,0.2l-2.1,0.3
+          l-3.8,1.4l-0.1,1.4l2.9,7.5l1.4,8.4l1.4,0.4l2-0.7l1.1-0.2l1.2,0.7l0.2,2.7l0.3,2.1l3.7-1l2.8-1.9l1-1l1.3-1.5l7,2.9l3.6,3.2
+          l0.2,1.9l0.3,1.9l1.1,1.5l-0.4,1.8l-0.8,0.9L237.3,226.3z"></path>
+        <path id="CO-CAQ" class="department active" data-tooltip="&lt;strong&gt;Caquetá&lt;/strong&gt;7 Municipios" d="M375.3,596.4l1,0.8l3.3,3.8l3.3,5.7l1.7,5.3l3.1,0.8l3.6,3.3l3.9,2.5l4.6,2.5l1.1-0.3l0.5-0.5
+          l0.3,2l-0.6,1.4l-1.9,2.3l-4.9,5.2l-4.1,3.4l-0.9,1.2l-0.6,1L388,638l-0.5,0.9l-0.7,1.2l-1,1.4l-1.8,1.3l-2.2-0.1l-2.9-0.8l-1.3-0.3
+          l-1.4,0l-1.3,0.6l-6.6,6.4l-1,1.1l-0.6,0.9l-0.8,1.7l-0.9,2.4l-0.3,1l0.2,2.8l-1.6,1.3l-1.2,0.6h-1.1l-3.7-1.8l-0.6-1.7l-2,0.2
+          l-4.1,4.3l-0.9,1.8l-1.5-0.1l-4.4-2.6l-1.8-2.1l-1.5-1.8l-2.5,0.3l-1.5,1.5l-1.2,0.4l-1.5,0.1l-1.3-0.1l-1.4-0.4l-0.6-1.2l-1.2-1.5
+          l-1.1-0.7h-1.8l-1.5,1.6l-0.5,1.1l-0.8,1.4l-5.5,0.5l-1.8-0.8l-0.9-0.7l-3.4-2.5l-3.1,0l-4.9,0.1l-4.5-0.5l-2.2-3.3l-3.4-2.1
+          l-1.1-0.6l-2.7,0l-4.1-0.2l-4.2-1l-1.8-0.6l-3.3-1.8l-2.4-2.4l-1.7-1.8l-3.7-1L265,638l-0.9-1.3l-2.2-1.7l-5.2-1.6l-0.8,0.7l0.2,1
+          l-0.9,0.9l-5.9-1.1l-3.9-2.3l-1.1-3.9l1.1-0.9l0.8-0.8l-1.9-5.4l-0.8-1.3l-1-0.7l-5.3-0.8l-1.5-0.3l-5.2-2.2l-1.2-5.7l0.7-1.3l0.1-1
+          l-0.6-1.3l-0.8-0.8l-4.7-2.2l-1.4,0.9l-1.5,0.9l-1.4-0.3l-1.5-3.1l-0.2-1.5l0.5-1.7l-2-5.3l-1.4-1.1l-2-0.5l-1.4,0.4l-1,0.2
+          l-2.6,0.2l-4.1-1.1l-1.1-1.1l-0.6-1.6l-4.6-2.6l-2.1,0.8L192,588l-4.5-1.6l-3.3-3.7l-0.6-1l0.2-1.7l-1.2-1.5l-5.8-0.4l-0.7,0.3
+          l-2.2-2.7l-1.3-0.7l-2.9-1l-2.9-1.9l-0.9-5.1l0.3-1.5l1.7-1.6l1.7-3.1l2.4-5l0-2.1l0.6-0.4l5.2-0.4l2-0.1h1.6l1.6-1.1l9.4-12.2
+          l5.2-6.1l4.1-5.6l0.9-2.8l7.9-9.3l2.2-1.9l2.1-3.8l0.5-2.7l0.4-1.7l0.6-1l1.6-1.5l1.8,0.5l1,0.4l1.5-0.4l5.2-4.3l2.2-2.8l-0.3-1.6
+          l-0.6-1.1l-0.9-1.4l-0.1-1.8l0.6-1.4l3.7-4.7l0.3-0.4l4.4,1.1l2,0.6l1,0.4l1,0.6l4.9,3.4l1,0.7l1,1l0.6,0.8l0.6,1.4l0.1,1l-0.1,1.2
+          l-0.4,1.3l-0.6,1.3l-1.1,1.3l-0.7,0.7l-1.5,2.1l-0.4,1.4l0.7,9.6l0.2,1.2l1,2.9l0.8,1.9l0.4,1.3l0.5,3.4l0,1.6l0,2l0.1,1l0.3,1.4
+          l1.7,3l1.6,2l1.5,1.8l1.5,1l2.3,0.9l2.1,0.4l1.5,0.3l1.2,0.1l1.3,0.1l1.6,0.3l3,0.7l3.2,3.1l1.2,1.9l6.1,4.4l1.6,0.3l2.4-0.3
+          l1.3-0.2l2.3-0.9l1.7-0.6l3.7-1.1l1.6-0.2l1.3,0.1l1.6,0.6l-0.1,0.4l-0.1,1.8l0.4,2.6l0.9,1.5l3.8,4.7l2.1,1.8l1.8,2l1.8,3.8
+          l0.3,1.5l0.1,1.6l0.8,1.5l0.9,1l1,0.9l1.7,1.2l1.3,0.8l1.5,1l4.4,3.7l0.9,1.6l3.8,1.6l1.8,0.1l1.2-0.3l7.6-5.7l0.6-1l-0.6-1.1
+          l-0.2-1.2l1.8-2.7l2.3-1.1l4.3-0.8l3.2,0.8l1,1.7l4.1,2.7l1,0.3l1.9-0.4l3,2.9l6,7.9l1.3,3.3l2.2,4.2l1.1-0.3l1.1-0.5l4.6,1.6
+          l2.3,1.8L375.3,596.4z"></path>
+        <path id="CO-CAS" class="department active" data-tooltip="&lt;strong&gt;Casanare&lt;/strong&gt;7 Municipios" d="M325.2,396.9l-1.6-2.6l-0.2-1l0.3-1.2l1.6-5.4l0.9-1.4l1.3-1.1l1.7-0.4l1.5-0.9l1.4-1.6l0.2-1
+          l-0.5-1.1l-2.5-2.3l-0.5-1l1.3-3.8l6.2-7.8l2.5,1.8l1.5,1.7l4.8-0.7l6.5-4.7l0.9-1.1l1.3-1.9l0.9-1.3l0.9-1.3l0.8-0.7l1-0.4l0.9,0.6
+          l4-1.6l2.2-5.3l-0.1-1.2l-2.3-4l-5.4-2.3l0.8-3.4l0.7-0.7l1.4-5.9l-2.5-2.7l0.3-6.2l0.1-1.4l0.4-1.3l0.8-1.2l1.5-1.4l0.4-0.3
+          l-0.3,2.1l0.1,1.2l0.4,1.8l4,5.3l4.2,1.9l2,0.4l1,0l3.6-2.2l0.9-0.8l1.9-1.3l10.7-2.2l6.6-0.4l1.4,1.1l3.7,0l1-0.1l8.2-2.3l1.3-0.8
+          l1.6-0.6l2.7-0.7l1.4,0.6l10,2.2l1.9,0.2l3.3,0.2l6.8,0.2h3l7.2-0.5l1.3-0.5l0.9-0.4l2.6-1.5l2.5-0.8l8.8,0.2l3.9,1.7l3,2.7l8.2,6.6
+          l3,1.8l-0.6,0.4l-1.6,2l-0.7,1.1l-1.2,2.6l-0.7,2.1l-1.2,3.3l-5.1,6.7l-1.3,1.4l-3.5,2.2l-1.3,0.4l-3,0.7l-1.1,0.2l-2.4-0.1
+          l-1.3,0.2l-4.6,1.8l-9,5.3l-1,0.7l-1.4,0.9l-0.5,1.3v1l-0.1,1l-7.8,7.2l-1.4,0.8l-2.1,1l-5.4,9.1l-0.9,1.2l-1.1,0.9l-0.8,0.5
+          l-0.5,0.5l-4,2.4l-1.8,1l-1.9,0.6l-1.4,0.1l-3.1,1.1l-1.2,0.5l-9.8,4.4l-3.3,2.5l-1,0.6l-1.4,0.6l-4.3,1.5l-5.2,3.3l-1.1,1.2
+          l-4.3,3.3l-3.1,1.4l-1.4-0.1l-1.1-1.2l-1-1L370,411l-4.5,0.5l-4.1,1.6l-1.4,1.8l-0.8,0.7l-1.8,1.1l-4.6,0.7l-5.1,0.6l-6.4,0.6
+          l-1-0.9l-8.5-9.2l-2.4-3.3l-0.6-1.8l-0.5-1.3l-1.5-2.1l-1.6-2.1L325.2,396.9z"></path>
+        <path id="CO-CUN" class="department active" data-tooltip="&lt;strong&gt;Cundinamarca&lt;/strong&gt;9 Municipios" d="M241.2,369.4L241.2,369.4l1.4-1.8l0.8-1.3l0.7-1.4l1.5-3.9l-0.3-2.2l0.9-10.7l0.4-0.6l0.9-0.7
+          l6-1.3l2.2,0.7l1.9,0.3l2.8-1.3l2-1.5l1.3,1.5l0.8,4.7l-0.9,1.2l-1.4,1.6l0.5,1.8l4.2,5.3l3.3,1.2l6.4,4.8l1.2,0.1l1.7-0.7l0.9-0.5
+          l1-1l2.2-2.3l0.1-1.4l0.7-1.8l2.4-1.7l2.1-0.5l3.8,3.8l3.5,0.9l3.4,4.1l2.1,6.8l0.9,1.7l1,1.9l0.9,4.9l-1.8,1.9l-0.8,1.2l-0.9,3.3
+          l0.4,1.4l1.7,1.6l2.9,1.9l1.5,0.9l1.2,0.5l1.5,0.6l1,0.3l1.2,0.6l3.1,2.2l1.6,2l0.7,0.9l1.1,0.6l2.5,0.4l2.1-0.3l2.1-3.5v1l-0.4,1.1
+          l-0.9,4.6l-2.6,14.3l-3.9,2.1l-8.1-2l-2.5,0.6l-1.2,0.8l-1.1,0.2L302,419l-1.1-0.9l-1-2.7l-0.2-1.1l-0.3-1.7l-0.6-1.7l-1-0.8
+          l-1.4-0.7l-6.3-1.6l-1.6,1.2l-1.8,2.7l-0.7,1.8l0.9,1.2l1.5,0.4l2.1,4.4l0.2,1.1v2.5l-1.3,0.7l-1.1,0l-2.1,0.1l-8,4.1l-0.9,0.7l-1,1
+          l-1.1,0.8l-2.1,1.3l-1.2,0.4l-1.3,0.1l-0.1-3.1l1.4-5.8l1-5.2l0.3-4.9l0.3-1.2l0.6-1.4l0.4-0.9l0.9-1.5l1.2-1.2l0.9-1.1l0.9-1.5
+          l0.1-8.2l-0.4-2.4l-2.5-1.3l-1.2,0.2l-5.2,9l-1.7,11.5l0.3,3.4l0.5,3.2l-0.2,1.8l-2.6,6.4l-1.3,0.5l-2.5,0.1l-2.8,3.9l0.1,3.4
+          l-1,3.8l-0.4,0.9l-1.5,2.6l-1.6,2.2l-1.2,1l0.1-0.3l0.5-1.5l-0.2-1.1l-2-1.1l-0.7-0.9l-0.1-0.3l1.2-3.1l0.1-1.5l0.2-5.7l1.6-3.3
+          l0-1.5l-0.5-1.2l-1.6-2.5l-1.2-1.4l-1.4-0.4l-1.8,0.6l-1.2,1.9l-1.4,0.6l-1.2-0.1l-9.6-3.7l-1-0.8l0.8-2.2l3.5-6.6l0.9-2.6l-0.6-1.4
+          l-0.3-1.8l-0.2-1.6l-0.5-5.4l2.6-5.7l2.2-13.8l-0.7-8.1L241.2,369.4z"></path>
+        <path id="CO-DC" class="department" d="M253.7,446.2l1.2-1l1.6-2.2l1.5-2.6l0.4-0.9l1-3.8l-0.1-3.4l2.8-3.9l2.5-0.1l1.3-0.5l2.6-6.4
+          l0.2-1.8l-0.5-3.2l-0.3-3.4l1.7-11.5l5.2-9l1.2-0.2l2.5,1.3l0.4,2.4l-0.1,8.2l-0.9,1.5l-0.9,1.1l-1.2,1.2l-0.9,1.5l-0.4,0.9
+          l-0.6,1.4l-0.3,1.2l-0.3,4.9l-1,5.2l-1.4,5.8l0.1,3.1l-1.8-0.1l-1.5,0.3l-1.2,0.9l-7,7.7l-0.9,1.6l-0.7,1.8l-1,2.3l-0.8,0.9l-1,0.2
+          l-0.9-0.5L253.7,446.2z"></path>
+        <path id="CO-GUA" class="department active" data-tooltip="&lt;strong&gt;Guaviare&lt;/strong&gt;1 Municipio" d="M589,430.6l0.8,3.8l0.6,2.4l2.2,6.1l0.9,1.9l0.8,0.9l1.1,0.4l1.7-0.2l1.5-0.1l1,0.7l2.7,3.7l0.4,2
+          l1.6,4.7l0.7,1.3l0.9,0.6l1.1,0.3l1.7,0.7l0.7,2.8l-2.6,4l-1.2,0.4l-3.2,2.5l-3.2,3.1l-7.7,7.3l-8.7,8.2l0.5,2.4l2.9-0.3l6.5,1.1
+          l1.4,0.8l0.8,1.4l2.7,4.1l2.5,1.3l7.9,8.8l2.2,1.7l1.2,0.5l1.9,0.8l1.3,1l0.9,2.8l-0.5,1l-1.1,1l-0.5,1l0.3,1.5l0.6,1.8l1.2,2.7
+          l0.7,1l2.3,5.2l6,16.2l3.2,11.6l1.4,8.6l0.4,1.6l0.8,1.2l0.2,0.3l-0.7,0l-7.3,1.9l-2.1,0.5l-0.4-1l-0.2-3.6v-1l0.4-4.9l0.3-1.4
+          l0.5-1.2l0.3-4l-0.7-4.9l-2.1-5.6l-2.3-4.1l-2.3-2.8l-1.1-0.8l-1.8-2.7l-2.2-4.2l-0.5-1.5l-0.3-1.2l-0.7-1.2l-4.1-1.5L599,526l-3,2
+          l-1,0.7l-4,3.9l-0.5,1.8l-0.5,0.9l-4.1,4.9l-2,1.7l-3,1.4l-2.1,0.5l-1.3,0.1l-1.3-0.2l-1.1-0.4l-1-0.7l-1.2-1.6l-1.5-2.6l-0.5-0.9
+          l-0.7-2.7l-0.8-1.2l-0.9-0.6l-2.5-0.7h-1.1l-1.5,2.2l-0.5,1.2l-1,2.8l1.2,3.8l1.1,0.2l1.4,0.3l1.5,2.1l-33.4-0.1l-13.5-0.1l-6.8,0
+          h-6.5l-1.4-0.8l-2.9-0.8l-4.7-1.2l-7.3,1.9l-4.2,1.8l-3-0.1l-1.6-1.3l-4.5-1.1l-1.4-0.2l-1.5-0.1l-1.4-0.5l-1.9-1.5l-2.5-2.1
+          l-1.2-1.6l-0.3-4.5l1.2-0.6l0.8-1.1l-0.6-2.8l-0.1-0.3l0.8-1.6l2.8-2.1l1.2-0.7l2.7-3.2l-1.6-2.7l-2.2-1l-2.1,1.2l-9.2,1.7l-8.9,0.1
+          l-7.4-3.5l-1.4-2.8l-1.5-3.3l-3.7-4.6l-3.1,0l-1.1-1.4l2.3-2l2.6-1.6l3.6-2.2l1.6-1l6.4-4.3l1-1.4l2.4-0.4l2.3-0.6l1.2-0.6l3.7-5.1
+          l-0.1-1.5l-0.4-2.1l0.3-3.9l2.5-4.2l2-0.5l2,0l2.2-0.4l-0.3-3.6l-0.8-1.2l-0.7-1.6l1.6-2.1l4.1-1.5l1.4,0.8h2.4l5.8-5.1l5.4-2.1
+          l2.3-0.4l3.1-1.5l1.8-1.8l0.1-1.2l-0.3-1.7l1-1.1l4.5-0.3l2.5,1.3l3.3-0.4l1.4-1.2l4.1-0.6l2.2,0.9l1.3,1.1l0.3,1.7l7.5-1.5l5.9-1.2
+          l2.6,1.1l2.3-2l2.6-2.6l3.1-0.9l2.4,0.2l3.5,0.2l2.4-0.8l0.9-1.6l0.6-0.8l6.9-6.1l1.1-0.5l8.6-1h6.5l4,2l0.7,0.9l0.1,1.3l0.9,0.8
+          l2.4-1.8l1.6-1.8l1.2-1.4l0.9-0.7l3.6-1.3L589,430.6z"></path>
+        <path id="CO-GUV" class="department" d="M468.2,527.7l-1.2,0l-9,3.4l-15,4.1l-2.6,0.3l-2.8,0l-5.6-0.5l-6.5,5l-1.1,0.5l-2.2-0.1l-1.5,0.3
+          l-4.8,3l-3.3,4.5l-6.1,6.9l-3.4,2.4l-0.8,1.4l-3,7.4l0.1,1.3l0.2,1.4l0,2.6l-3.7,5.1l-3.1,3.1l-1.2,0.1l-1.6,0.4l-1.6,1.2l-0.7,1
+          l-0.4,1.5l-0.3,1.3l-4.3,4.1l-6.3,6.1l-0.9,1l-0.1,0.1l-0.9,0l-2.3-1.8l-4.6-1.6l-1.1,0.5l-1.1,0.3l-2.2-4.2l-1.3-3.3l-6-7.9l-3-2.9
+          l-1.9,0.4l-1-0.3l-4.1-2.7l-1-1.7l-3.2-0.8l-4.3,0.8l-2.3,1.1l-1.8,2.7l0.2,1.2l0.6,1.1l-0.6,1l-7.6,5.7l-1.2,0.3l-1.8-0.1l-3.8-1.6
+          l-0.9-1.6l-4.4-3.7l-1.5-1l-1.3-0.8l-1.7-1.2l-1-0.9l-0.9-1l-0.8-1.5l-0.1-1.6l-0.3-1.5l-1.8-3.8l-1.8-2l-2.1-1.8l-3.8-4.7l-0.9-1.5
+          l-0.4-2.6l0.1-1.8l0.1-0.4l0-1.5l0.1-11.8l0-1.6l0.6-16.9l1.3-4.4l10.8,1.4l3.7-0.4l7.3-1.6l9.2-3.1l2-2.4l1.5-3.4l0.8-0.7l1.8-0.8
+          l1.5-0.4l2.1,1.2l9.4-2.3l1.5-2.2l2.3-2.1l8.4-4.3l13.2-1.2l4.2,0.9l9.8-1.5l3.2-0.9l6.7,0.4l9-0.1l6-1.3l5.5,0h2.4l2.4,0.2l0.6,0.5
+          l0.4,2.6l4.5-0.8l5.5,1.6l2.8,1.5l5,0.3l1.4-1.2l0.5-2.1l0.8-1.2l3.2,1.2l2.5,1.1l1.3,0.4l0.8-0.4l-1,1.4l-6.4,4.3l-1.6,1l-3.6,2.2
+          l-2.6,1.6l-2.3,2l1.1,1.4l3.1,0l3.7,4.6l1.5,3.3l1.4,2.8l7.4,3.5l8.9-0.1l9.2-1.7l2.1-1.2l2.2,1l1.6,2.7l-2.7,3.2l-1.2,0.7L469,526
+          L468.2,527.7z"></path>
+        <path id="CO-HUI" class="department active" data-tooltip="&lt;strong&gt;Huila&lt;/strong&gt;2 Municipios" d="M171.8,553.6l-2.4,0.6l-1.2,0.1l-1-0.4l-5.2-3.2l-3.6-3.4l-0.5-1.2l0.2-1.7l0.2-1.8l-0.3-1.5
+          l-2.2-3l-2.3-1l-1.7,0.1l-1.1,0l-1-1.1l-0.7-7.7l0-2.5l1.4-1l2.1-0.5l1.6,0.3l1.6,0.7l1.5,0.8l2,0.7l2,0.1l1.3-0.4l0.7-0.6v-1.5
+          l-0.4-1.6l-0.5-1.1l-0.5-1.1l-0.9-2.7l0.1-1l4.8-5.4l1.1-0.6l1.1,0.1l2.4,0.7l1.5-0.2l1.2-0.5l0.9-0.8l1.5-2l1-1.4l1.6-1l2.2,0.7
+          l2.2,1.4l2.4,2l1,0.3l3.7-1l-0.2-1l-0.5-1.5l-2.1-5.3l-0.7-1.3l-1.3-2.1l-2.5-5.4l-3.1-9.1l-0.7-0.9l0.3,0.1l1,0l1.2-0.1l3-0.7
+          l1.9-0.8l3.1-2.3l1.2-1.2l2.7-2.6l1.3-0.5l1.9-0.1l1.6-0.1l1.5-0.2l1-0.4l0.3-1.1l-0.2-1.6l2.6-4.5l0.7-0.9l7.4-3.1l1.4-0.4l13.4-2
+          l1.4,0.4l0.5,1.1l-0.3,2l-0.7,1l-1,0.8l-0.6,1.4l1.1,1.2l2.2,0.6l1.5-0.1l1.4-0.3l3.3-2.4l4.2-5.1l-0.1-1.5l-0.4-1.2l0.3-1l2.7-4.5
+          l1.9-2.8l3.6-4.6l1.2-1.5l1.5-1.2l1.2-0.9l0.4-0.2l0.1,0.3l0.7,0.9l2,1.1l0.2,1.1l-0.5,1.5l-0.1,0.3l-1.9,4.9l-0.6,1.1l-0.7,1
+          l-1.2,1.5l-0.6,1.1l-0.8,2.9l-0.8,3.3l0.3,1l0.2,1.2l0.1,2.8l-2.7,4.7l-0.9,1.2l-1.1,1.3l-1.3,1l-0.9,0.5l-1.3,0.7l-2,1.4l-2.7,2
+          l-1.3,1.1l-1.3,3.3l-0.3,0.4l-3.7,4.7l-0.6,1.4l0.1,1.8l0.9,1.4l0.6,1.1l0.3,1.6l-2.2,2.8l-5.2,4.3l-1.5,0.4l-1-0.4l-1.8-0.5
+          l-1.6,1.5l-0.6,1l-0.4,1.7l-0.5,2.7l-2.1,3.8l-2.2,1.9l-7.9,9.3l-0.9,2.8l-4.1,5.6l-5.2,6.1l-9.4,12.2l-1.6,1.1h-1.6l-2,0.1
+          l-5.2,0.4L171.8,553.6z"></path>
+        <path id="CO-LAG" class="department active" data-tooltip="&lt;strong&gt;La Guajira&lt;/strong&gt;3 Municipios" d="M332.1,114.8l-0.6-0.1l-2.5-0.2l-1.5,0.1l-1.9,0.4l-1.1,0.3l-1.7,0.3l-1.7,0.1l-2.7-1.9l2.7-3.4
+          l1.6-0.7l0.6-1.3l0.6-3.4l-0.7-1.9l-8.2-8.9l-1.7-1.1l-1.5-0.3l-2.3,0.1l-3.9,0l-4.4-0.1l-1.3-0.1l-1.4-0.4l-0.9-0.9l-0.9-1.3
+          l-0.8-3.1l0.9-6.7l1.5-2.2l0.9-0.8l0.8-1.3l0.9-1.5l0.3-1l0-1.1l1.4,0.1l6.2-0.2l2-0.3l1.4-0.3l1.6-0.5l0.8-0.5l3-2.1l0.5-1.4
+          l2.6-2.4l5.3-3.9l13.1-9.3l1.9-0.9l10.5-4.1l1.5,0.2l1.5,0l2-0.6l6.7-3.9l1-0.7l1.3-1.3l4.6-9.6l0-1l-0.3-4l-1.1-0.7l0.5-1l0.9-0.4
+          l5.4-0.4l3.2,0.3l-0.9,1.3l-1.5,1.7l1.3,1.8l1.1,0.2l1.2-0.5l3.6-2.4l2.7-5.2l5.8-2.7l3-2.8L394,14l-2.4,0.2l-1.6,1l0.6-1.4l1.7-0.9
+          l1.4-0.2l4.8,0.5l1.7,0.4l12.5,5l1.6,1.2l1.1,1l5.2,10.2l0.2,1.2l-0.2,1.3l-0.8,1.6l-2.1,1.7l-2.9,1.7l-2.5,1.7l-1.8,2.7l-0.3,0.6
+          l-3.9,2l-3.2,0.9l-7.8,2l-4.7,1.7l-2.4,1.1l-9.8,1.7l-5.2,8.6l-6.7,12.3l-5.4,4.3l-1.6,0.1l-6,1.4l-0.9,0.6l-2.4,4.5l-4.6,6.8
+          l-3.5,6.3l-5.2,9l-1.3,1.8l-3.3,5.5L332.1,114.8z"></path>
+        <path id="CO-MAG" class="department active" data-tooltip="&lt;strong&gt;Magdalena&lt;/strong&gt;4 Municipios" d="M284.3,187l-2.5,0l-4-0.8l-7-2.3l-2.7-2.7l-1.3-2.1l-3.7-3.3l-2.1-1.3l-4.6-2l-1.7,0l-5-2l-3.4-3.6
+          l-3.1-2.1l-1.1,0.2l-1,0.1l-2.9-1.3l0.1-2.4l0.6-3.4l-1.2-5.3l-0.5-0.9l-2.3-7.6l-0.1-1.1l-0.1-3.1l0.5-1.3l1.5-0.7l1.6-0.9l0.3-1.9
+          l-2.6-3.7l-1.8-0.5l-2.3-1.1l-0.5-1.6l1.6-5.4l2.1-5l2.7-6.1l0.9-1.1l1.1-1l2.3-1.5l0.5-2.2l0.3-5.1l0.1-3.3l-0.1-6.9l-2.6-4.9
+          l-0.6-1.1l-1.2-1.1l-1.6-1l-1-2.4l0-0.3l1.3,1l16.3,5.6l1.4,0.3l1.2,0.2l1.3,0h2.2l1.9-0.2l1.3-0.3l1.2-0.4l-0.6,0.8l-1.1,0.4
+          l-1.4,0.2l-3.2,0.3l-2.3-0.3l-6.2,4.7l-0.8,2.7l0.7,2l3.7-1.5l2.7,2.3l0.4,1.2l3.1,0l1-0.7l0.8-1.4l1.3-4l2.1-5.2l1.3-2.5l1.7-5.1
+          l-0.4-3.9l0.1-1.9l1.1-1.7l1.3-2l1.7-1.1l5.8-1.2l1.2,0.1l2.1,0.8l0.9,1l4.2,1.7l3.8,1l5.9,0l2-0.3l1.8-0.1l1.9,0l1,0.1l0,1.1
+          l-0.3,1l-0.9,1.5l-0.8,1.3l-0.9,0.8l-1.5,2.2l-0.9,6.7l0.8,3.1l-0.9,1.2l-0.3,1.1l0.2,1.5l0.7,1l1.9,2.1l1.8,2.1l-1,2.4l-0.7,1.1
+          l-0.1,1l0,1l0.4,1.4l1.9,1.8l0.6,1.7l-9.7,4.7l-6.6,2.5l-1,0.3l-2.7,1.5l-4.7,8l-0.5,1.3l-1.2,4.6l5.7,7.5l5.9,8.2l2.7,7.7l-6.6,0.4
+          l-5.3-0.3l-1.4,0.8l-3.1,4.2l1,0.9l1.6,0.6l1.5,1.3l0.6,1l2.3,3.6l1,1.7l0.4,1.5l2.6,5.6l1.5,1.3l1.5,1.6l1,1.6l-1,1.8l-1.7,2.4
+          L284.3,187z"></path>
+        <path id="CO-MET" class="department active" data-tooltip="&lt;strong&gt;Meta&lt;/strong&gt;5 Municipios" d="M422.3,388.6l-0.1,0.4l0,25.4l0,11l0,12.6l0,30.3l0,12.6l0,6.7l0.1,0.6l-0.6-0.5l-2.4-0.2H417
+          l-5.5,0l-6,1.3l-9,0.1l-6.7-0.4l-3.2,0.9l-9.8,1.5l-4.2-0.9l-13.2,1.2l-8.4,4.3l-2.3,2.1l-1.5,2.2l-9.4,2.3l-2.1-1.2l-1.5,0.4
+          l-1.8,0.8l-0.8,0.7l-1.5,3.4l-2,2.4l-9.2,3.1l-7.3,1.6l-3.7,0.4l-10.8-1.4l-1.3,4.4l-0.6,16.9l0,1.6l-0.1,11.8l0,1.5l-1.6-0.6
+          l-1.3-0.1l-1.6,0.2l-3.7,1.1l-1.7,0.6l-2.3,0.9l-1.3,0.2l-2.4,0.3l-1.6-0.3l-6.1-4.4l-1.2-1.9l-3.2-3.1l-3-0.7l-1.6-0.3l-1.3-0.1
+          l-1.2-0.1l-1.5-0.3l-2.1-0.4l-2.3-0.9l-1.5-1l-1.5-1.8l-1.6-2l-1.7-3l-0.3-1.4l-0.1-1l0-2l0-1.6l-0.5-3.4l-0.4-1.3l-0.8-1.9l-1-2.9
+          l-0.2-1.2l-0.7-9.6l0.4-1.4l1.5-2.1l0.7-0.7l1.1-1.3l0.6-1.3l0.4-1.3l0.1-1.2l-0.1-1l-0.6-1.4l-0.6-0.8l-1-1l-1-0.7l-4.9-3.4l-1-0.6
+          l-1-0.4l-2-0.6l-4.4-1.1l1.3-3.3l1.3-1.1l2.7-2l2-1.4l1.3-0.7l0.9-0.5l1.3-1l1.1-1.3l0.9-1.2l2.7-4.7l-0.1-2.8l-0.2-1.2l-0.3-1
+          l0.8-3.3l0.8-2.9l0.6-1.1l1.2-1.5l0.7-1l0.6-1.1l1.9-4.9l0.1,1l0.9,0.5l1-0.2l0.8-0.9l1-2.3l0.7-1.8l0.9-1.6l7-7.7l1.2-0.9l1.5-0.3
+          l1.8,0.1l1.3-0.1l1.2-0.4l2.1-1.3l1.1-0.8l1-1l0.9-0.7l8-4.1l2.1-0.1l1.1,0l1.3-0.7v-2.5l-0.2-1.1l-2.1-4.4l-1.5-0.4l-0.9-1.2
+          l0.7-1.8l1.8-2.7l1.6-1.2l6.3,1.6l1.4,0.7l1,0.8l0.6,1.7l0.3,1.7l0.2,1.1l1,2.7l1.1,0.9l2.5,0.5l1.1-0.2l1.2-0.8l2.5-0.6l8.1,2
+          l3.9-2.1l2.6-14.3l0.9-4.6l0.4-1.1l1.6,2.1l1.5,2.1l0.5,1.3l0.6,1.8l2.4,3.3l8.5,9.2l1,0.9l6.4-0.6l5.1-0.6l4.6-0.7l1.8-1.1l0.8-0.7
+          l1.4-1.8l4.1-1.6l4.5-0.5l1.5,0.5l1,1l1.1,1.2l1.4,0.1l3.1-1.4l4.3-3.3l1.1-1.2l5.2-3.3l4.3-1.5l1.4-0.6l1-0.6l3.3-2.5l9.8-4.4
+          l1.2-0.5l3.1-1.1l1.4-0.1l1.9-0.6l1.8-1l4-2.4L422.3,388.6z"></path>
+        <path id="CO-NAR" class="department active" data-tooltip="&lt;strong&gt;Nariño&lt;/strong&gt;13 Municipios" d="M138.5,565.1l-1,0.1l-1.5,0.3L135,566l-4.5,2.6l-1.1,0.6l-1.5,1l-1.4,1l-0.6,0.9l0.3,9.3l0.3,1.3
+          l0.5,1.3l1.5,4.7l1.6,7.1l-0.1,1.2l-1.7,1l-1.5,0.5l-1.4,0.3l-0.8,3.7l0.6,1.8l0.5,1.8l0.3,2.8l0.1,1.6l-0.1,1.4l-5.5,1.2l-1.3-0.1
+          l-4.6-1.3l-3.3-1.1l-2.1-1.4l-1.4-6.3l0.2-2.2l0.1-1.8l-1-1.7l-1.5-0.5l-1,0.3l-1.1,0.1l-1.5-0.9l-0.7-0.6l-2.2-1.2l-1.1-0.9
+          l-0.6-1.1l-0.1-1.5l0.3-1.4l-1.1-1.4l-1-0.4l-4,0.9l-1.7,1l-2-0.3l-1.5-0.6l-2.3-2.4l-3.4-1.4l-1.6,0.2l-1.9-0.2l-1.5-0.6l-3.7-2.7
+          l-2.7-2.3l-0.9-0.6l-1.7-0.4l-1.3-0.2l-1.1-0.4L63,577l-4.3-4.2l-0.7-1l-0.5-0.9l-3.6-0.8l-1,0.5l-1.5-2.2l-2-0.9l-1.2-0.5l-1-0.7
+          l-6.5-7.5l-2.4-5.4l-3.4-1.6l-1-0.2l-1.8,0l-2.2-0.7l-1-1.6l3.9-5.9l4.5-3.6l1.8-0.5l4.1,0.8l1.4,0.7l5.5,2l1.7-0.1l1.9-5.6l0.2-1.7
+          l-2.5-5l-1.2-0.6l-1.7-1.7l-1.3-4.5l-0.3-1.9l2.2-4.7l3-5.5l0.9-1.4l0.4,1.9l0.8-1.6l0.9-0.6l2.8-0.4l0.5-3l1.4-0.2l1.9,1.5l1,1
+          l1.1,1l4-4l6,1.4l1.1,0.2l6.7-1.7l1.8-1.7l0.5-2.6l0.1,0.9l0.5,1.2l0.6,1.1l1.3,1.7l2.9,4.3l1.7,3l1.9,4.1l0.6,1.1l2,1.7l1.3,0.7
+          l1,0.3l1.4,0.3l2.6,0.4h1l2.3-0.1l5.3-0.6l0.9,0.5l0.8,1.1l2.2,3.7l4,4.9l2.1,1.9l1.3,1.2l-0.4,1.2l-1.1,1.7l-1.1,0.6l-1.5,1.5
+          l-0.6,0.9l-0.5,6.6l1.5,0.2l1.9,0l6.8-0.5l1.1-0.2l1.9-0.7l1-0.1l9.3,5.8l1,1.5l0.1,1.3l-1.1,8.6L138.5,565.1L138.5,565.1z
+         M74.3,506.7l-0.4-0.1l-4-3.7l0-0.7l0.1-0.8l0.4-0.7l0.7-0.9l1.5-0.4l0.6-0.1l0.8,0.1l1.4,2.5l0.2,0.5l0.5,2.5l-0.2,0.5l-1.2,1.2
+          L74.3,506.7L74.3,506.7z"></path>
+        <path id="CO-NSA" class="department active" data-tooltip="&lt;strong&gt;Norte de Santander&lt;/strong&gt;9 Municipios" d="M374.3,281.9l-1,0.8l-1,0.4l-1.4,0l-1.6-0.4l-1.3-0.1l-1,0.4l-5,2.8l-0.8,1.6l-0.7,1.3l-1.5,1.3
+          l-1.2,0.4l-3.3,0.1h-3l-0.7,0.2h-1l-0.7-0.8l0.2-1.9l-0.1-1.8l-0.8-0.8l-3.6,1l-1.1,0.7l-9.9-4.2l-0.3-8l0.5-5.7v-1.1l-0.2-1.2
+          l-1.3-3.5l-0.7-1.3l-4.2-7.2l-1.2-0.3l-9.3,0l-1,0.5l-0.6,1l-1,1.7l-3.3,0.3l-6.8-2.1l-1-0.3l-1.1-0.9L302,253l-2-2l-1.8-0.9
+          l5.4-0.7l1.4-0.3l2.1-1.1l1.3-1.2l1.2-1.9l3-6.3l0.3-1.7l-1.2-4.7l-0.5-1.4l-1.1-2.4l-1.9-2.6l-0.7-1.8V223l0.8-0.9l1.1-0.1l1.4-0.9
+          l0.4-2l0.1-2.3l0-1.6l-0.2-1.1l-0.5-0.9l-1.1-0.5l-1.7,0.1l-0.6,0.9l0.2,1.6l0.1,1.1l-0.1,1.4l-1.4,1.2l-1.4-0.4l-0.6-1.2l-2.1-8.2
+          l0.4-3.6l0.4-1.3l0.7-1.2l1.7-1.6l0.8-1l0.7-1.8l-0.1-2.9l-0.4-2.5l0.2-3.7l1.2-8l0.2-1l0.6-1.5l0.5-1l0.3-0.5l1.6,0.3l6.1-0.2
+          l2.8-1.2l1.1-1.4l6.6-3.9l1.4,2.1l1.1,3l-0.2,1.1l3.8,2.9l5.2,1.9l2.1,8.1l3.6,13.7l11.9,12.5l0.9,0.2l0.2,0.1l0.7,0.7l0.6,1.6
+          l1.9,9.2l0.6,3.1l-0.2,1.4l-0.9,0.7l-2.1,0l-3.5,6.3l-0.7,13.1l0.1,7.8l2.6,3.8l0.9,0.7l0.2,0l3.7,0.7l3,0.2l5.3,3.2l-0.5,1.8l0,1.3
+          l1,3.2l0.6,1.3l1,1.7l1,1.7l1.3,2L374.3,281.9z"></path>
+        <path id="CO-PUT" class="department active" data-tooltip="&lt;strong&gt;Putumayo&lt;/strong&gt;4 Municipios" d="M176.1,578.3l0.7-0.3l5.8,0.4l1.2,1.5l-0.2,1.7l0.6,1l3.3,3.7l4.5,1.6l3.4-0.5l2.1-0.8l4.6,2.6
+          l0.6,1.6l1.1,1.1l4.1,1.1l2.6-0.2l1-0.2l1.4-0.4l2,0.5l1.4,1.1l2,5.3l-0.5,1.7l0.2,1.5l1.5,3.1l1.4,0.3l1.5-0.9l1.4-0.9l4.7,2.2
+          l0.8,0.8l0.6,1.3l-0.1,1l-0.7,1.3l1.2,5.7l5.2,2.2l1.5,0.3l5.3,0.8l1,0.7l0.8,1.3l1.9,5.4l-0.8,0.8l-1.1,0.9l1.1,3.9l3.9,2.3
+          l5.9,1.1l0.9-0.9l-0.2-1l0.8-0.7l5.2,1.6l2.2,1.7l0.9,1.3l4.3,2.4l3.7,1l1.7,1.8l2.4,2.4l3.3,1.8l1.8,0.6l4.2,1l-3.4,1l-6.1,2
+          l-7.8,2.7l-6.4,2.3l-1,0.3l-1.7,0.4l-0.3-0.5l-0.9-1.2l-8.1-6.2l-2.5-1.7l-1.2,1.1l-3.8-2.2l-0.3-1.4l-0.1-1.1l-0.2-1.1l-0.6-1.4
+          l-0.8-1.2l-1.1-1.4l-1-0.4l-1,0.3l-1.4,1l-0.9,0.3l-3.8-1.6l-1.1-1.4l-3-2.3l-5.7-3.8l-3.4-0.4l-0.6,1.5l-0.5,1.4l-1.6,1.3l-1.3-0.1
+          l-0.7-0.9l-1.3-0.7l-1.2-0.5L209,633l-1.8-0.6l-4.2-2.5l-2.8-2l-5.9-0.6l-1.7,0.4l-1.6-0.6l-7.5-5.7l-3.3-4.6l-2.2-3.1l-0.8-0.9
+          l-5.2-1.6l-4.8-1.2l-7.8,0.2l-0.3,5.9l-2,1.2l-4.8,1.4l-1.1-0.1l-0.9-0.5l-1.3-1.4l-5.2-1.2l-0.5,1l-2.1,0.7l-2,0.4l-2.7,0.1
+          l-8.3-3.3l-2.2-2.6l0.1-1.4l-0.1-1.6l-0.3-2.8l-0.5-1.8l-0.6-1.8l0.8-3.7l1.4-0.3l1.5-0.5l1.8-1l0.1-1.2l-1.6-7.1l-1.5-4.7l-0.5-1.3
+          l-0.3-1.3l-0.3-9.3l0.6-0.8l1.4-1l1.5-1l1.1-0.6l4.5-2.6l1.1-0.4l1.5-0.3l1-0.1l3.5-0.7l1.4-0.3l1.8-1.4l1.3-2.2l1.4-0.9l2.1,0.2
+          l1.3,1.2l1.9,3.7l0.5,1.4l0,1l-0.5,1.1l-0.5,0.9l-0.3,1l-0.6,4.8l1.3,2.7l1.2,1.3l5.6,2.3l1.1,0.4l1.6,0.2l6.3,0l1.4-0.3l5.1-1.9
+          L176.1,578.3z"></path>
+        <path id="CO-QUI" class="department active" data-tooltip="&lt;strong&gt;Quindío&lt;/strong&gt;1 Municipio" d="M193.9,398.9l0.7-0.3l5.2,0.4l3.2,0.5l1.5,0.4l1.4,0l3.1-1.8l0.3,0.7l-3.9,5.7l-3.4,4.1l-1.5,1.9
+          l-0.6,1.1l0.1,2.3l-0.1,2l-0.4,1l-0.4,0.9l-0.5,0.9l-0.6,0.8l-1.2,1.4l-3,4.5l-0.5,2.5l0.1,1.3l-1.1-0.8l-0.9-1.6l-0.7-2.5l-0.9-3.2
+          l-3.5-15.2l-0.3-1.7l0.1-1.1l0.8-0.7l2.5,0.2l2.4,0l2.2-0.5l0.6-1L193.9,398.9z"></path>
+        <path id="CO-RIS" class="department active" data-tooltip="&lt;strong&gt;Risaralda&lt;/strong&gt;4 Municipios" d="M209,398l-3.1,1.8l-1.4,0l-1.5-0.4l-3.2-0.5l-5.2-0.4l-0.7,0.3l-3-1.4l-6.5-1.6l-3.8-5.5l-3.9-3.8
+          l-1.8-1.5l-1-0.4l-2.1,0.4l-0.8-0.3l-1.1-0.6l-1-0.6l-0.9-0.9l-0.6-0.9l-4.7-10.2l-0.3-1.5l4.1-4.3l0.9-0.6l8.1-3.9l1.6-0.6l1.2-0.4
+          l0.9-0.3l0.7,0.4l4.2-0.1l1-0.1l-0.3,5.5l0.8,1.1l1.3-0.4l1.9-0.9l3.4-0.8l4.2,3l-1.2,2.3l-1.7,2l-4.9,2.8l-5.4,5l-0.7,1.7l2,5.3
+          l1.1,0.9l1.8,0l5.5-1.3l5.1,1.9l3.8,0.2l1,0.1l2,1.2l4,3.4l-1.9,2.5l0.2,1L209,398z"></path>
+        <path id="CO-SAN" class="department active" data-tooltip="&lt;strong&gt;Santander&lt;/strong&gt;5 Municipios" d="M281.7,270.5l0.9-7.6l2-4.7l2.1-3.2l0.9-8l-0.8-3.9l-0.9-1.9l-1.5-4.8l0-1.5l0-1.7l0.3-1.1l0.8-1.8
+          l1.9-1.7l1.3-0.8l0.7,1.2l1.9,3.7l1,2.1l1.7,4.8l-0.4,2l-1,1.6l-1.2,1.7l-0.5,1.8l0.6,1.3l3,0.2l2.1,0.2l1.3,1.2l0.2,0.6l1.8,0.9
+          l2,2l0.6,1.7l1.1,0.9l1,0.3l6.8,2.1l3.3-0.3l1-1.7l0.6-1l1-0.5l9.3,0l1.2,0.3l4.2,7.2l0.7,1.3l1.3,3.5l0.2,1.2v1.1l-0.5,5.7l0.3,8
+          l9.9,4.2l1.1-0.7l3.6-1l0.8,0.8l0.1,1.8l-0.2,1.9l0.7,0.8h1l0.7-0.2l0.4,0.8l0.5,1.5l0.6,7.2l-0.1,1.5l-0.3,1.3l-2.3,6.6l-0.6,1.1
+          l-0.8,1l-0.9,0.6l-1.2,0.3l-2.6,0.1l-0.9-3.3l-0.6-1.4L340,306l-1.5,0.2l0,5l0.3,1.7l0.8,1.2l0.8,1.4l0.1,2.5l-0.7,2.1l-1.3,2.4
+          l-9.2,11.3l-3.6,3.6l-3.1-0.5l-1.3-0.3l-1.4,0.2l-1.1,0.3l-1.3,0.7l-0.8,0.9l-0.2,1.5l0.6,1.7l-0.2,1.2l-0.8,0.9l-2.8,1.3l-1.5,0.2
+          l-1.7-0.5l-1.1-0.8l-0.7-1.4l-0.3-2l0.2-1.2l1.3-2.5l0.4-1.3l0.1-1.1l-0.1-1.3l-0.5-1.1l-0.9-0.9l-5.8-3l-1.5,2.1l-2.9,7.1l-0.9,5.7
+          l-0.2,1l-0.8,2.9l-1.2,0.8l-1.5-1l-1.6-1.2l-6.5,0.7l-5.9,1.5l-1-0.8l-0.9-2.4l-0.8-0.8l-5.4-3l-4.5-4.1l-2.3-4.9l-1.3-0.5l-1.3,0.4
+          l-0.9,0.5l-0.9,0.4L259,332l-1.7-1.6l-1.9-2.9l-2.6-4.2l-1.7-2l2-0.8l1.2-0.9l4.7-5.2l0.4-1l-1.3-2.1l-0.4-4.2l0.5-1.7l1.8-2.2
+          l1.6,0l3.2-1.5l5.8-4.5l1.5-1.2l0.8-0.8l0.9-1.6l1.3-2.2l2.5-2.7l1.7-0.9l2.2-1l2.2-2l0.1-1.3l-0.6-2l-0.9-1.1l-0.6-1.2l-0.6-5.2
+          l0-1l0.3-1.5L281.7,270.5z"></path>
+        <path id="CO-CES" class="department active" data-tooltip="&lt;strong&gt;Cesar&lt;/strong&gt;5 Municipios" d="M288.7,227.8l1.3-5.9l0.3-5.5l-0.5-4.9l-1.2-4.2l-0.6-1l-1.4-2.9l0.3-3.9l-0.7-6.2l-1.3-1.2
+          l-0.8-1.7l0.3-3.4l0.5-0.8l1.7-2.4l1-1.8l-1-1.6l-1.5-1.6l-1.5-1.3l-2.6-5.6l-0.4-1.5l-1-1.7l-2.3-3.6l-0.6-1l-1.5-1.3l-1.6-0.6
+          l-1-0.9l3.1-4.2l1.4-0.8l5.3,0.3l6.6-0.4l-2.7-7.7l-5.9-8.2l-5.7-7.5l1.2-4.6l0.5-1.3l4.7-8l2.7-1.5l1-0.3l6.6-2.5l9.7-4.7l-0.6-1.7
+          l-1.9-1.8l-0.4-1.4l0-1l0.1-1l0.7-1.1l1-2.4l-1.8-2.1l-1.9-2.1l-0.7-1l-0.2-1.5l0.3-1.1l0.9-1.2l0.9,1.3l0.9,0.9l1.4,0.4l1.3,0.1
+          l4.4,0.1l3.9,0l2.3-0.1l1.5,0.3l1.7,1.1l8.2,8.9l0.7,1.9l-0.6,3.4l-0.6,1.3l-1.6,0.7l-2.7,3.4l2.7,1.9l1.7-0.1l1.7-0.3l1.1-0.3l1.9-0.4l1.5-0.1l2.5,0.2l0.6,0.1l-0.3,3.8l-1.2,11.7l-0.9,1.7l-1,4l-0.4,4.8l-0.9,6.8l-3.8,7.9l-1.8,2.4l-6.3,7.6l-5.9,9.1
+          l-0.7,2.7l-0.3,0.5l-0.5,1l-0.6,1.5l-0.2,1l-1.2,8l-0.2,3.7l0.4,2.5l0.1,2.9l-0.7,1.8l-0.8,1l-1.7,1.6l-0.7,1.2l-0.4,1.3l-0.4,3.6
+          l2.1,8.2l0.6,1.2l1.4,0.4l1.4-1.2l0.1-1.4l-0.1-1.1l-0.2-1.6l0.6-0.9l1.7-0.1l1.1,0.5l0.5,0.9l0.2,1.1l0,1.6l-0.1,2.3l-0.4,2
+          l-1.4,0.9l-1.1,0.1l-0.8,0.9v1.2l0.7,1.8l1.9,2.6l1.1,2.4l0.5,1.4l1.2,4.7l-0.3,1.7l-3,6.3l-1.2,1.9l-1.3,1.2l-2.1,1.1l-1.4,0.3
+          l-5.4,0.7l-0.2-0.6l-1.3-1.2l-2.1-0.2l-3-0.2l-0.6-1.3l0.5-1.8l1.2-1.7l1-1.6l0.4-2l-1.7-4.8l-1-2.1l-1.9-3.7L288.7,227.8z"></path>
+        <path id="CO-SUC" class="department active" data-tooltip="&lt;strong&gt;Sucre&lt;/strong&gt;10 Municipios" d="M192.9,164.9l1.8,0.5l1.5-0.7l1.1-1.1l0.7-1.2l1.1-2.5l0.3-1.2l0.3-1.8l0-1.2l-0.3-1.4l-0.5-1.5
+          l-1.3-1.7l-1.7-3.1l1.3-3.2l1.9-6.6l0.3-1.1l0.5-3.3v-1.3l-0.1-0.8l0.8-0.4l2.1-0.5l2.4,5.6l4.5,5.6l2.2,0.9l0.5,1.3l0.2,3.6l-0.1,1
+          l3.8,2.7L229,162l0.9,1l1.2,1.5l0.8,1.2l0.2,1.1l0,1.4l-0.4,2.7l-0.1,1.2l0.2,1.4l0.8,1.9l1.7,3.3l2,2.5l2.9,1.8l1,0.4l0.9,0.4
+          l1.3,0.7l2.8,2l1.4,1.3l1.6,2.5l2.6,5.9l-1.8,1.6l0,9l0.4,1.9l0.7,2.3l0.7,1.2l-1.3,3.6l-2,4.1l-1.1,1.3l-2.4,0.3l-1.8,0.3l-1.4,0.5
+          l-0.4,0.3l-1.1-1.5l-0.3-1.9l-0.2-1.9l-3.6-3.2l-7-2.9l-1.3,1.5l-1,1l-2.8,1.9l-3.7,1l-0.3-2.1l-0.2-2.7l-1.2-0.7l-1.1,0.2l-2,0.7
+          l-1.4-0.4l-1.4-8.4l-2.9-7.5l0.1-1.4l3.8-1.4l2.1-0.3l1.6-0.2l1.5,0.6l0.6-3l-0.1-1.2l-1.9-5.1l-2.9-2.5l-1-0.5l-1-0.4l-3.8-0.9
+          l-0.9-0.8l-4.6-4.8l-6.4-4.2l-0.9-0.8l-0.9-1l-0.8-1.1L192.9,164.9z"></path>
+        <path id="CO-SAP" class="department active" data-tooltip="&lt;strong&gt;San Andrés y Providencia&lt;/strong&gt;1 Municipio" d="M192.2,6.5l-4.7-1.1l-3.7,2.9c0,0-4.8,5.4-4.3,8.2s0,16.5,0,16.5l1.8,1.6L184,33l5.2-11.1l0.7-11.8L192.2,6.5z"></path>
+        <path id="CO-TOL" class="department active" data-tooltip="&lt;strong&gt;Tolima&lt;/strong&gt;4 Municipios" d="M193.4,429.2l-0.1-1.3l0.5-2.5l3-4.5l1.2-1.4l0.6-0.8l0.5-0.9l0.4-0.9l0.4-1l0.1-2l-0.1-2.3
+          l0.6-1.1l1.5-1.9l3.4-4.1l3.9-5.7L209,398l-1.6-1.5l-0.2-1l1.9-2.5l2.6-2.1l0.8-0.9l0-1.1l-0.9-1.2l-0.6-1.4l2.1-7.7l0.3-1l1.4-1.5
+          l1.6-0.2h1.7l4.4-0.5l0.8-0.5l0.6-1.4l0.5-0.9l1.2-1.2l1.5-1.2l1.3-0.7l3.5-0.8l1.1-0.2h3l2.1,0.1l1.9,0.5l1.1,0.4l0.2,0.5l0.7,8.1
+          l-2.2,13.8l-2.6,5.7l0.5,5.4l0.2,1.6l0.3,1.8l0.6,1.4l-0.9,2.6l-3.5,6.6l-0.8,2.2l1,0.8l9.6,3.7l1.2,0.1l1.4-0.6l1.2-1.9l1.8-0.6
+          l1.4,0.4l1.2,1.4l1.6,2.5l0.5,1.2l0,1.5l-1.6,3.3l-0.2,5.7l-0.1,1.5l-1.2,3.1l-0.4,0.2l-1.2,0.9l-1.5,1.2l-1.2,1.5l-3.6,4.6
+          l-1.9,2.8l-2.7,4.5l-0.3,1l0.4,1.2l0.1,1.5l-4.2,5.1l-3.3,2.4l-1.4,0.3l-1.5,0.1l-2.2-0.6l-1.1-1.2l0.6-1.4l1-0.8l0.7-1l0.3-2
+          l-0.5-1.1l-1.4-0.4l-13.4,2l-1.4,0.4l-7.4,3.1l-0.7,0.9l-2.6,4.5l0.2,1.6l-0.3,1.1l-1,0.4l-1.5,0.2l-1.6,0.1l-1.9,0.1l-1.3,0.5
+          l-2.7,2.6l-1.2,1.2l-3.1,2.3l-1.9,0.8l-3,0.7l-1.2,0.1l-1,0l-0.3-0.1l-0.7-1.6l-1.5-2.6l-1.4-2l-0.6-1l0.1-1.2l0.2-1.6l-0.1-0.8
+          l0.6-0.5l3.8-12.8l2.7-10.6l1.1-6l0.4-1l1.3-2.4l1.4-2l1.1-1.2l1-0.2l0.9,0.4l0.9,0.4l3-2.4l0.3-1.4l0.1-2L193.4,429.2z"></path>
+        <path id="CO-VAC" class="department active" data-tooltip="&lt;strong&gt;Valle del Cauca&lt;/strong&gt;11 Municipios" d="M174.8,471.6l-2.1-0.3l-1.8-0.6l-2.1-0.9l-1.5-0.9l-1.2-0.8l-1.8-0.9l-4.2-0.8l-2.3,0.3l-1.1,1.9
+          l0.8,1.1l0.1,2l-1.1,2.1l-6,2.7l-2.2,0.3l-4.4,2.7l-6.6,3.3l-2.9-3.3l-2.9-1.4l-1.1,1.6l-8.8-0.8l-7.8-5.7l-2.2-3.2l-1.7-1.9
+          l-1.2-0.6l-1.8-1.4l0.9-1.3l4.3-2.7l5.9-7.6l1.6-0.4l3.5-4.5l0.6-2.1l0.1-2.9l4.6-7.4l-2.5,0.6l-1.5,0.6l-2.3,1.6l-1.4,0.9l-2.4,0.2
+          l-1.4-0.1l-1.1-0.6l-0.5-3.2l0.6-1.7l1.3-0.8l2.3-0.3l1.3-4.3l-1.2-0.8l-2.5-0.9l-1.7,1.6l-0.9,1.1l-0.8,2.7l-0.8,1.7l-1.1,1.2
+          L109,433l-0.6-1.6l-0.1-5.4l0.6-1.8l4.4-1.9l3,0.1l1.4-1.5l1.1,2.1l0.9,0.7l1.9-0.5l1.1,0l1.6,0.6l4.9,4.2l6.8,2.3l3.5,2.2l1.1,0.4
+          l1.4,0.1l1.3-0.2l7.7-2.4l5.5-4.4l0.7-1.8L155,422l-1.2-1.4l-0.4-0.9l-0.3-1l-0.3-1.4l-0.2-2.2l0.1-1.1l0.3-1.2l0.6-0.9l3.7-6.9
+          l3.6-8.2l0.5-1.2l0.7-0.8l5.5-4.5l1-0.6l1.2-0.5l0.9-0.7l0.6-1.4l0.3-1.2l0.1-0.8l2.1-0.4l1,0.4l1.8,1.5l3.9,3.8l3.8,5.5l6.5,1.6
+          l3,1.4l0.6,2.1l-0.6,1l-2.2,0.5l-2.4,0l-2.5-0.2l-0.8,0.7l-0.1,1.1l0.3,1.7l3.5,15.2l0.9,3.2l0.7,2.5l0.9,1.6l1.1,0.8l0.1,0.6
+          l-0.1,2l-0.3,1.4l-3,2.4l-0.9-0.4l-0.9-0.4l-1,0.2l-1.1,1.2l-1.4,2l-1.3,2.4l-0.4,1l-1.1,6l-2.7,10.6l-3.8,12.8L174.8,471.6z"></path>
+        <path id="CO-VID" class="department active" data-tooltip="&lt;strong&gt;Vichada&lt;/strong&gt;1 Municipio" d="M422.3,388.6l0.8-0.5l1.1-0.9l0.9-1.2l5.4-9.1l2.1-1l1.4-0.8l7.8-7.2l0.1-1v-1l0.5-1.3l1.4-0.9
+          l1-0.7l9-5.3l4.6-1.8l1.3-0.2l2.4,0.1l1.1-0.2l3-0.7l1.3-0.4l3.5-2.2l1.3-1.4l5.1-6.7l1.2-3.3l0.7-2.1l1.2-2.6l0.7-1.1l1.6-2
+          l0.6-0.4l0.6-0.4l1.7-0.7l1.5-0.3l3.1,0.3l2.8,0.3l2.9,0l2-0.2l2.6-0.9l1.4-0.7l2-1.6l1.2-0.6l1.6-0.7l2.7-0.1l0.8,1.3l1.5,1.6
+          l1.4,0.3l2.3-0.8l2.1-2l1.9-1.9l1.4-1.2l1.6-0.6l1.5,0.1l9.8,1.4l3.7,0.8l2.1,0.6l1.3,0.8l2.4,0.3l4.4-1.4l3.6-1.1l1.1-0.2l1.7-0.1
+          l2.2,0.6l2.7,0.6l1.2-0.4l3.2-1.1l1.8-0.6l1.9-0.6l1.1,0l1.4,0.1l1.8,0.4l1.5,0.4l1.8-0.1l2-0.5l1.9-1l4.3-3.4l6.8,0.7l2.9,0.4
+          l3.5,1.1l1.4,1l1.9,1.9l1.2,0.5l0.9,0.1l-1.7,1.9l-0.2,1.6l0.3,1.2l0.8,1.4l1.7,1.5l1,2.1l-0.6,0.9l-1.8,1.1l-0.9,0.7l-2.6,2.5
+          l-3.2,3.3l-1.1,1.6l-1.1,3l-0.4,2.4l0.1,1.5l0.3,2l0.4,1.7l0.9,1.5l-1.7,3.4l-1.9,1.5l-2.9,1.8l-1.1,0.3l-1.7,1.2l-2.2,3.8l0.9,8.6
+          l0.5,1.9l0.9,2.6l0.1,3.3l-0.6,7l-0.2,1.5l-0.4,3.2l-1.7,8.6l3.7,11.1l-0.8,1.7l-0.2,1.3l0,2l1,3.2l2.8,3.9l1,2l-1.1,0.3l-3.6,1.3
+          l-0.9,0.7l-1.2,1.4l-1.6,1.8l-2.4,1.8l-0.9-0.8l-0.1-1.3l-0.7-0.9l-4-2H566l-8.6,1l-1.1,0.5l-6.9,6.1l-0.6,0.8L548,443l-2.4,0.8
+          l-3.5-0.2l-2.4-0.2l-3.1,0.9l-2.6,2.6l-2.3,2l-2.6-1.1l-5.9,1.2l-7.5,1.5l-0.3-1.7l-1.3-1.1l-2.2-0.9l-4.1,0.6l-1.4,1.2L503,449
+          l-2.5-1.3l-4.5,0.3l-1,1.1l0.3,1.7l-0.1,1.2l-1.8,1.8l-3.1,1.5l-2.3,0.4l-5.4,2.1l-5.8,5.1h-2.4l-1.4-0.8l-4.1,1.5l-1.6,2.1l0.7,1.6
+          l0.8,1.2l0.3,3.6l-2.2,0.4l-2,0l-2,0.5l-2.5,4.2l-0.3,3.9l0.4,2.1l0.1,1.5l-3.7,5.1l-1.2,0.6l-2.3,0.6l-2.4,0.4l-0.8,0.4l-1.3-0.4
+          l-2.5-1.1l-3.2-1.2l-0.8,1.2l-0.5,2.1l-1.4,1.2l-5-0.3l-2.8-1.5l-5.5-1.6l-4.5,0.8l-0.4-2.6l-0.1-0.6l0-6.7l0-12.6l0-30.3l0-12.6
+          l0-11l0-25.4L422.3,388.6z"></path>
+        <path id="CO-VAU" class="department" d="M503.4,679.4l-1.2,2.6l0.2,3.8l-8.1,1.1l-0.9-4.2l0.1-1.1l-3.9-3.4l-5.1,1.2L481,681l-1,0.4
+          l-1.6-0.3l-0.3-1l1.3-3.8l-0.2-1.8l-7,0.5l-1.6,1.1l-0.8,1.1l-0.1,1l0.7,0.8l1.4,0.4l0.7,0.7l-0.4,1.1l-0.8,0.9l-1,0.4l-1.4-0.1
+          l-6.1-4.8l-0.6-1l-0.4-1.2l0.3-1.1l1.7-1l1.3-1l-0.4-2.1l-1.1-1.2l-1.2-1.1l-0.1-1.9l1.6-2.5l-0.1-5.8l1.8-6.6l-0.9-1.1l-2.4-1.3
+          l-2.9,2.2l0.9,1.5l-1.8,0.4l-3.3-1.1l-1.6-1.5l-0.7-1.1l-1.9-2l-12.5-4l-0.8,1.6l-3.6,1.5l-1.9-3.2l-2-9.1l-1.2-2.3l-2.5-2.6
+          l-1.9,0.8l-4.9-1.6l-10.2-6.2l-1.2-0.9l-2.3-1.1l-3.6-0.2l-0.9,0.7l-0.5,0.5l-1.1,0.3l-4.6-2.5l-3.9-2.5l-3.6-3.3l-3.1-0.8l-1.7-5.3
+          l-3.3-5.7l-3.3-3.8l-1-0.8l0.1-0.1l0.9-1l6.3-6.1l4.3-4.1l0.3-1.3l0.4-1.5l0.7-1l1.6-1.2l1.6-0.4l1.2-0.1l3.1-3.1l3.7-5.1l0-2.6
+          l-0.2-1.4l-0.1-1.3l3-7.4l0.8-1.4l3.4-2.4l6.1-6.9l3.3-4.5l4.8-3l1.5-0.3l2.2,0.1l1.1-0.5l6.5-5l5.6,0.5l2.8,0l2.6-0.3l15-4.1l9-3.4
+          l1.2,0l0.1,0.3l0.6,2.8l-0.8,1.1l-1.2,0.6l0.3,4.5l1.2,1.6l2.5,2.1l1.9,1.5l1.4,0.5l1.5,0.1l1.4,0.2l4.5,1.1l1.6,1.3l0.2,0.6v30.7
+          l6.1,0l5.2-0.3l8.8,1.9l2.9-0.9l1.9-0.8l3.6,1.9l1.8,1.7l4.3,6.7l-0.9,5.4l1.6,5.3l-4.1,1.4l-3.8-0.3l-2.1-1.6l-6.4-3.9l-11.1,2.9
+          l-3.3,2.1l-2.3,1.6l-6.3,0.2h-3l-3,0.6l-0.1,3.6l-0.1,7l-0.1,3l-0.1,8l-0.2,7l-0.1,4.3l0,3.4l1.8,2.3l4.4,4.9l9.6,7.4l1.1,0.3
+          l1.4,0.3l2.9,1.3l1.2,1.3l1.6,5.6l-0.5,1.6l-0.7,1.6l-0.9,1.2l0.1,1.5l4.7,8.7l1.8,1.1l2.3,2.3L503.4,679.4z"></path>
+        </svg>
+        
+        </div>
+    </div>
+    <div class="map-tip" id="mapTip"></div>
+  </div>
+  <div class="mapa-right">
+    <span class="eyebrow">Territorio</span>
+    <h2>Presentes en<br>todo el país</h2>
+    <p class="mapa-sub">CSAs activas conectando familias agricultoras y co-agricultoras en distintos rincones de Colombia.</p>
+    <div class="mapa-nums">
+      <div><span class="c-num mnum-val" data-target="7">0</span><span class="mnum-label">Departamentos</span></div>
+      <div><span class="c-num mnum-val" data-target="12">0</span><span class="mnum-label">Municipios</span></div>
+    </div>
+    <p class="mapa-note">Con presencia principalmente en Antioquia, Cundinamarca, Valle del Cauca y otros departamentos del país.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     FAQ
+════════════════════════════════ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-head">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Resolvemos tus dudas</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué recibo en mi canasta y con qué frecuencia?
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Cada CSA define su canasta según la producción de temporada. En general, recibes hortalizas, frutas, aromáticas, tubérculos y otros productos agroecológicos frescos. La frecuencia puede ser semanal, quincenal o mensual, dependiendo de la CSA que elijas. Siempre es lo que la tierra da en ese momento del año.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto cuesta suscribirme a una CSA?
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-a">
+          <p>El valor varía por CSA, el tamaño de la canasta y la frecuencia de entrega. El modelo CSA propone que el precio cubra los costos reales de producción y garantice una retribución justa al agricultor. Cada CSA define su valor junto a su comunidad, por lo que te invitamos a contactar directamente a la CSA de tu interés.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Puedo suscribirme si vivo en cualquier ciudad de Colombia?
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Tenemos CSAs en varios municipios del país, principalmente en Antioquia y otras regiones. Para suscribirte necesitas estar cerca de una CSA activa. Consulta nuestro mapa para encontrar la más cercana a ti. Si no hay una cerca, ¡puedes apoyar la creación de una nueva en tu comunidad!</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué diferencia hay entre una CSA y un mercado orgánico?
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-a">
+          <p>En un mercado orgánico compras lo que hay disponible en el momento. En una CSA, tú co-financias la producción de antemano, compartiendo los riesgos y beneficios con el agricultor. Esto crea una relación de confianza y compromiso mutuo que va más allá de la transacción comercial: es una alianza entre ciudad y campo.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo puedo unirme como agricultor o crear mi propia CSA?
+          <span class="faq-ico">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Descarga nuestra guía para agricultores donde explicamos el proceso paso a paso. También puedes escribirnos a <a href="mailto:contacto.csacolombia@gmail.com" style="color:var(--green)">contacto.csacolombia@gmail.com</a> o contactarnos por WhatsApp. Te acompañamos desde el inicio en la construcción de tu comunidad CSA.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     TESTIMONIOS
+════════════════════════════════ -->
+<!-- <section class="test" id="testimonios">
+  <img class="test-photo" src="images/Agromandala-400.jpg" alt="Manos compartiendo tomates">
+  <div class="test-overlay"></div>
+  <div class="container">
+    <div class="test-head">
+      <span class="eyebrow" style="color:var(--amber-lt)">Voces de la red</span>
+      <h2>Testimonios</h2>
+    </div>
+    <div class="test-cards">
+      <div class="t-card">
+        <p class="t-quote">Es muy afortunado ponerle rostro a las personas que van a recibir los alimentos que cultivamos. Nos fortalece saber que la CSA funciona como una familia extendida en donde cuidamos y nos cuidan.</p>
+        <p class="t-name">Isabel Cadavid</p>
+        <p class="t-role">Agricultora · CSA Agromandala</p>
+      </div>
+      <div class="t-card">
+        <p class="t-quote">Me genera gran satisfacción saber que generando conexiones con otras personas, hemos logrado impactar positivamente a una familia de campesinos. Estamos ayudando a que más personas se conecten con los alimentos agroecológicos.</p>
+        <p class="t-name">María Claudia</p>
+        <p class="t-role">Co-agricultora · Red CSA Colombia</p>
+      </div>
+      <div class="t-card">
+        <p class="t-quote">La verdad le digo de corazón, con una CSA para un campesino la vida es más fácil. Podemos planificar las siembras y todo va a tener un buen fin porque va a llegar a unas personas que nos están ayudando.</p>
+        <p class="t-name">Don Rubén</p>
+        <p class="t-role">Agricultor · CSA Camino a la Montaña</p>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- ════════════════════════════════
+     INFORMES DE GESTIÓN
+════════════════════════════════ -->
+<section class="informes" id="informes">
+  <div class="container">
+    <div class="informes-head">
+      <span class="eyebrow">Transparencia</span>
+      <h2>Informes de Gestión</h2>
+      <p>Régimen tributario especial 2025 — Documentos disponibles para consulta pública</p>
+    </div>
+    <div class="informes-grid">
+      <div class="inf-card">
+        <div class="inf-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="inf-body">
+          <h4>Nuestro Informe de Gestión</h4>
+          <p class="inf-year">2024</p>
+          <a href="#" class="inf-btn">Leer →</a>
+        </div>
+      </div>
+      <div class="inf-card">
+        <div class="inf-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="inf-body">
+          <h4>Estados Financieros</h4>
+          <p class="inf-year">2024</p>
+          <a href="#" class="inf-btn">Leer →</a>
+        </div>
+      </div>
+      <div class="inf-card">
+        <div class="inf-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="inf-body">
+          <h4>Dictamen del Revisor Fiscal</h4>
+          <p class="inf-year">2024</p>
+          <a href="#" class="inf-btn">Leer →</a>
+        </div>
+      </div>
+      <div class="inf-card">
+        <div class="inf-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="inf-body">
+          <h4>Declaración de Renta</h4>
+          <p class="inf-year">2024</p>
+          <a href="#" class="inf-btn">Leer →</a>
+        </div>
+      </div>
+      <div class="inf-card">
+        <div class="inf-thumb">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="inf-body">
+          <h4>Formato Régimen Tributario</h4>
+          <p class="inf-year">2024</p>
+          <a href="#" class="inf-btn">Leer →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     ALIADOS
+════════════════════════════════ -->
+<section class="aliados" id="aliados">
+  <div class="container">
+    <div class="aliados-head">
+      <span class="eyebrow">Red de apoyo</span>
+      <h2>Aliados</h2>
+      <p>Organizaciones que creen y apoyan el movimiento CSA en Colombia</p>
+    </div>
+    <div class="aliados-logos">
+      <div class="al-item">LowCarbonCity</div>
+      <div class="al-item">Alegra</div>
+      <div class="al-item">Kearney</div>
+      <div class="al-item">Comfama</div>
+      <div class="al-item">Rockstart</div>
+      <div class="al-item">Alliance Bioversity & CIAT</div>
+      <div class="al-item">CGIAR</div>
+      <div class="al-item">URGENCI</div>
+      <div class="al-item">Agroecology Coalition</div>
+      <div class="al-item">Gramor Colombia</div>
+      <div class="al-item">A4IP</div>
+      <div class="al-item">Agromandala</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     NEWSLETTER / SUSCRÍBETE
+════════════════════════════════ -->
+<section class="newsletter" id="contacto">
+  <div class="container">
+    <div class="nl-inner">
+      <div class="nl-text">
+        <span class="eyebrow" style="color:var(--amber-lt)">Mantente conectado</span>
+        <h2>Suscríbete a la Red CSA Colombia</h2>
+        <p>Recibe noticias de la red, convocatorias de eventos, historias de agricultores y co-agricultores, y novedades sobre las CSAs en Colombia.</p>
+      </div>
+      <form class="nl-form" onsubmit="return false;">
+        <div class="nl-row">
+          <div class="nl-field">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre">
+          </div>
+          <div class="nl-field">
+            <label>Apellido</label>
+            <input type="text" placeholder="Tu apellido">
+          </div>
+        </div>
+        <div class="nl-field">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="tu@correo.com">
+        </div>
+        <div class="nl-row">
+          <div class="nl-field">
+            <label>Ciudad</label>
+            <input type="text" placeholder="Tu ciudad">
+          </div>
+          <div class="nl-field">
+            <label>Soy</label>
+            <select>
+              <option value="">Seleccionar...</option>
+              <option>Co-agricultor/a interesado/a</option>
+              <option>Agricultor/a</option>
+              <option>Organización aliada</option>
+              <option>Investigador/a</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-amber" style="align-self:flex-start">Suscribirme</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     FOOTER
+════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="f-brand">
+        <img src="images/logo-CSA-colombia-con-espacio-332x254x34x18x264x218x1746783635.png" alt="CSA Colombia">
+        <p>Comunidades que Sustentan la Agricultura. Una red viva que conecta el campo y la ciudad a través de la agroecología y la solidaridad.</p>
+      </div>
+      <div class="f-col">
+        <h4>La Red</h4>
+        <ul>
+          <li><a href="#sobre">Sobre nosotros</a></li>
+          <li><a href="#que-son">¿Qué son las CSA?</a></li>
+          <li><a href="#principios">Principios</a></li>
+          <li><a href="#la-red">CSAs en Colombia</a></li>
+          <li><a href="#mapa">Mapa</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Participar</h4>
+        <ul>
+          <li><a href="#contacto">Suscribirse</a></li>
+          <li><a href="#agricultores">Guía del Agricultor</a></li>
+          <li><a href="#eventos">Calendario</a></li>
+          <li><a href="#" onclick="openModal()">Apoyar / Donar</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto.csacolombia@gmail.com">contacto.csacolombia@gmail.com</a></li>
+          <li><a href="https://wa.me/573192897230">WhatsApp</a></li>
+        </ul>
+        <div class="social-row" style="margin-top:1.25rem">
+          <a class="soc-btn" href="#" title="Instagram">In</a>
+          <a class="soc-btn" href="#" title="Facebook">Fb</a>
+          <a class="soc-btn" href="#" title="YouTube">Yt</a>
+          <a class="soc-btn" href="#" title="LinkedIn">Li</a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="footer-bottom">
+      <span>© 2025 CSA Colombia · Todos los derechos reservados</span>
+      <span>Hecho con ♡ por la comunidad</span>
+    </div> -->
+  </div>
+</footer>
+
+<!-- ════════════════════════════════
+     WHATSAPP FLOAT
+════════════════════════════════ -->
+<a class="wa-btn" href="https://wa.me/573192897230" target="_blank" title="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<!-- ════════════════════════════════
+     MODAL DONAR / APOYAR
+════════════════════════════════ -->
+<div class="modal-bg" id="donateModal">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">×</button>
+    <span class="eyebrow">Apoyar CSA Colombia</span>
+    <h3>Dona a la Red</h3>
+    <p class="sub">Tu aporte nos ayuda a fortalecer la red, acompañar nuevas CSAs y difundir la agroecología en Colombia.</p>
+    <div class="bank-box">
+      <h4>Datos bancarios</h4>
+      <div class="bank-row"><span>Banco</span><strong>Bancolombia</strong></div>
+      <div class="bank-row"><span>Tipo de cuenta</span><strong>Cuenta de Ahorros</strong></div>
+      <div class="bank-row"><span>Número</span><strong>123 456789 78</strong></div>
+      <div class="bank-row"><span>A nombre de</span><strong>Red CSA Colombia</strong></div>
+      <div class="bank-row"><span>NIT</span><strong>900.XXX.XXX-X</strong></div>
+    </div>
+    <p class="modal-note">
+      Después de tu transferencia, escríbenos a <a href="mailto:contacto.csacolombia@gmail.com">contacto.csacolombia@gmail.com</a> o por <a href="https://wa.me/573192897230">WhatsApp</a> con el comprobante. ¡Gracias!
+    </p>
+  </div>
+</div>
+
+<script>
+  /* NAV scroll */
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* MODAL */
+  function openModal() {
+    document.getElementById('donateModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('donateModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('donateModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  /* FAQ ACCORDION */
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-q.open').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+  /* COUNTER ANIMATION */
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1800;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + (target >= 100 ? '+' : '');
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counters = document.querySelectorAll('.c-num[data-target]');
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObs.observe(c));
+
+
+  /* FARMERS CAROUSEL */
+  const agriTrack = document.getElementById('agriTrack');
+  const agriPrev  = document.getElementById('agriPrev');
+  const agriNext  = document.getElementById('agriNext');
+
+  function agriScroll(dir) {
+    const cardWidth = agriTrack.querySelector('.agri-card').offsetWidth + 24;
+    agriTrack.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+  }
+
+  agriTrack.addEventListener('scroll', () => {
+    agriPrev.disabled = agriTrack.scrollLeft < 10;
+    agriNext.disabled = agriTrack.scrollLeft + agriTrack.clientWidth >= agriTrack.scrollWidth - 10;
+  });
+
+  /* MAP — CSA data per department (⚠️ verify/correct assignments) */
+  const csaData = {
+    'CO-ANT': { name: 'Antioquia',        csas: ['CSA Agromandala','CSA La Bonga','CSA Bonga Nebraska','CSA La Granja Feliz','CSA Camino a la Montaña','CSA De mi finca','CSA MiMaloka','CSA Vizcaya','CSA Herbolaria la Floresta','CSA Mastay'] },
+    'CO-CUN': { name: 'Cundinamarca',     csas: ['CSA Kundina','CSA Cultivando Salud','CSA Volver al Origen'] },
+    'CO-DC':  { name: 'Bogotá D.C.',      csas: ['CSA El Maná'] },
+    'CO-VAC': { name: 'Valle del Cauca',  csas: ['CSA Arroyo Verde'] },
+    'CO-BOY': { name: 'Boyacá',           csas: ['CSA Totta Terra'] },
+    'CO-SAN': { name: 'Santander',        csas: ['CSA Muya Sungu'] },
+    'CO-TOL': { name: 'Tolima',           csas: ['CSA Despensa Manantial'] },
+    'CO-HUI': { name: 'Huila',            csas: ['CSA Elmasayá'] },
+    'CO-NAR': { name: 'Nariño',           csas: [] },
+    'CO-CAU': { name: 'Cauca',            csas: [] },
+    'CO-CAL': { name: 'Caldas',           csas: [] },
+    'CO-RIS': { name: 'Risaralda',        csas: [] },
+    'CO-MET': { name: 'Meta',             csas: [] },
+    'CO-QUI': { name: 'Quindío',          csas: [] },
+  };
+
+  /* Mark active departments + tooltip */
+  const mapTip = document.getElementById('mapTip');
+  Object.keys(csaData).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (csaData[id].csas.length > 0) el.classList.add('csa');
+
+    el.addEventListener('mousemove', e => {
+      const dept = csaData[id];
+      const list = dept.csas.length
+        ? dept.csas.map(c => `<span class="tip-csa">${c}</span>`).join('')
+        : '<span class="tip-empty">Sin CSA registrada aún</span>';
+      mapTip.innerHTML = `<strong>${dept.name}</strong>${list}`;
+      mapTip.style.display = 'block';
+      mapTip.style.top  = (e.clientY + 16) + 'px';
+      mapTip.style.left = (e.clientX + 16) + 'px';
+    });
+    el.addEventListener('mouseleave', () => { mapTip.style.display = 'none'; });
+  });
+
+  /* Inactive departments — name only on hover */
+  document.querySelectorAll('.mapa-svg-wrap svg path:not([id])').forEach(path => {
+    path.addEventListener('mouseleave', () => { mapTip.style.display = 'none'; });
+  });
+</script>
+</body>
+</html>
