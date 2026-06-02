@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
       --green-dark: #2d5016;
@@ -77,6 +78,7 @@
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 900;
       padding: 1.5rem 0;
+      padding-top: 20px;
       transition: background 0.35s, padding 0.35s, box-shadow 0.35s;
     }
     .nav.scrolled {
@@ -88,7 +90,7 @@
       max-width: 1320px; margin: 0 auto; padding: 0 2rem;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .nav-logo img { height: 52px; width: auto; transition: height 0.3s; }
+    .nav-logo img { height: 85px; width: auto; transition: height 0.3s; }
     .nav.scrolled .nav-logo img { height: 42px; }
     .nav-links { list-style: none; display: flex; gap: 2rem; align-items: center; }
     .nav-links a {
@@ -102,13 +104,32 @@
     .nav-cta {
       background: var(--amber); color: #fff;
       padding: 0.6rem 1.5rem; border-radius: 2px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem; font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase;
-      border: none; cursor: pointer;
+      border: 2px solid var(--amber); cursor: pointer;
       transition: background 0.2s;
+      text-decoration: none; display: inline-block;
     }
-    .nav-cta:hover { background: #a8722a; }
+    .nav-cta:hover { background: #a8722a; border-color: #a8722a; }
+    /* Secondary nav button — transparent bg on hero, white bg on scroll */
+    .nav-cta-secondary {
+      background: transparent; color: rgba(255,255,255,0.9);
+      padding: 0.6rem 1.5rem; border-radius: 2px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.6); cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .nav-cta-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.9); color: #fff; }
+    .nav.scrolled .nav-cta-secondary {
+      background: #fff; color: var(--green-dark);
+      border-color: var(--green-dark);
+    }
+    .nav.scrolled .nav-cta-secondary:hover { background: var(--green-dark); color: #fff; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
 
     /* ══════════════════════════════════
        HERO
@@ -145,11 +166,11 @@
     .hero-scroll {
       position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      color: rgba(255,255,255,0.5); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,1); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
     }
     .scroll-bar {
       width: 1px; height: 42px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.5));
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,1));
       animation: pulse-bar 2s ease-in-out infinite;
     }
     @keyframes pulse-bar { 0%,100%{opacity:0.3} 50%{opacity:1} }
@@ -535,11 +556,11 @@
       align-items: center; justify-content: center;
     }
     .al-item {
-      padding: 1rem 1.75rem; border: 1px solid var(--cream-dk);
-      border-radius: 2px; font-size: 0.88rem; font-weight: 600; color: var(--txt-mid);
-      filter: grayscale(1); opacity: 0.55; transition: filter 0.25s, opacity 0.25s;
+      padding: 1rem 1.5rem;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
     }
     .al-item:hover { filter: grayscale(0); opacity: 1; }
+    .al-item img { width: auto; max-width: 140px; object-fit: contain; display: block; }
 
     /* ══════════════════════════════════
        NEWSLETTER
@@ -721,7 +742,7 @@
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <img src="images/logo-CSA-colombia-con-espacio-332x254x34x18x264x218x1746783635.png" alt="CSA Colombia">
+      <img src="images/logo.webp" alt="CSA Colombia">
     </a>
     <ul class="nav-links">
       <li><a href="#sobre">La Red</a></li>
@@ -732,7 +753,10 @@
       <li><a href="#informes">Gestión</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <button class="nav-cta" onclick="openModal()">♡ Apoyar</button>
+    <div class="nav-actions">
+      <a href="agricultores.html" class="nav-cta">Quiero unirme</a>
+      <button class="nav-cta-secondary" onclick="openModal()">♡ Apoyar</button>
+    </div>
   </div>
 </nav>
 
@@ -1691,27 +1715,26 @@
      ALIADOS
 ════════════════════════════════ -->
 <section class="aliados" id="aliados">
-  <div class="container">
+  
     <div class="aliados-head">
       <span class="eyebrow">Red de apoyo</span>
       <h2>Aliados</h2>
       <p>Organizaciones que creen y apoyan el movimiento CSA en Colombia</p>
     </div>
     <div class="aliados-logos">
-      <div class="al-item">LowCarbonCity</div>
-      <div class="al-item">Alegra</div>
-      <div class="al-item">Kearney</div>
-      <div class="al-item">Comfama</div>
-      <div class="al-item">Rockstart</div>
-      <div class="al-item">Alliance Bioversity & CIAT</div>
-      <div class="al-item">CGIAR</div>
-      <div class="al-item">URGENCI</div>
-      <div class="al-item">Agroecology Coalition</div>
-      <div class="al-item">Gramor Colombia</div>
-      <div class="al-item">A4IP</div>
-      <div class="al-item">Agromandala</div>
+      <div class="al-item"><img src="images/logos/Logo-Low-Carbon-City-330x214x0x50x330x112x1746783627.png" alt="Low Carbon City"></div>
+      <div class="al-item"><img src="images/logos/Logo_de_Alegra.png" alt="Alegra"></div>
+      <div class="al-item"><img src="images/logos/Kearney_Logo.svg_.png" alt="Kearney"></div>
+      <div class="al-item"><img src="images/logos/LOGO-COMFAMA.png" alt="Comfama"></div>
+      <div class="al-item"><img src="images/logos/Logo-rockstart.png" alt="Rockstart"></div>
+      <div class="al-item"><img src="images/logos/aliance-CGIAR.png" alt="Alliance Bioversity & CIAT / CGIAR"></div>
+      <div class="al-item"><img src="images/logos/Imagen-CSA-Agromandala-328x160x0x0x328x160x1746783626.png" alt="Agromandala"></div>
+      <div class="al-item"><img src="images/logos/urgenci.png" alt="URGENCI"></div>
+      <div class="al-item"><img src="images/logos/agroecology.png" alt="Agroecology Coalition"></div>
+      <div class="al-item"><img src="images/logos/gramor.png" alt="Gramor Colombia"></div>
+      <div class="al-item"><img src="images/logos/A4IP.png" alt="A4IP"></div>
     </div>
-  </div>
+  
 </section>
 
 <!-- ════════════════════════════════
@@ -1798,10 +1821,9 @@
           <li><a href="https://wa.me/573192897230">WhatsApp</a></li>
         </ul>
         <div class="social-row" style="margin-top:1.25rem">
-          <a class="soc-btn" href="#" title="Instagram">In</a>
-          <a class="soc-btn" href="#" title="Facebook">Fb</a>
-          <a class="soc-btn" href="#" title="YouTube">Yt</a>
-          <a class="soc-btn" href="#" title="LinkedIn">Li</a>
+          <a class="soc-btn" href="https://www.instagram.com/csacolombia/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="soc-btn" href="https://www.facebook.com/csacolombia" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="soc-btn" href="https://www.youtube.com/@csacolombia" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
     </div>
