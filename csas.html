@@ -248,26 +248,23 @@
     /* ══════════════════════════════════
        FOOTER
     ══════════════════════════════════ */
-    .footer { background: var(--green-dark); padding: 5rem 0 3rem; }
-    .footer-grid {
-      display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
-      gap: 2rem; margin-bottom: 3.5rem;
-    }
-    .f-brand img { height: 60px; width: auto; margin-bottom: 1.25rem; filter: brightness(0) invert(1); opacity: 0.85; }
-    .f-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 280px; }
-    .f-col h4 { font-family: 'Parkinsans', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; }
+    .footer { background: #0e1a07; padding: 5rem 0 2.5rem; }
+    .footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 3.5rem; }
+    .f-brand img { height: 56px; margin-bottom: 1.25rem; filter: brightness(0) invert(1); opacity: 0.8; }
+    .f-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 280px; }
+    .f-col h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; }
     .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
     .f-col ul a { font-size: 0.85rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
     .f-col ul a:hover { color: var(--amber-lt); }
-    .social-row { display: flex; gap: 0.75rem; }
+    .social-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
     .soc-btn {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255,255,255,0.1);
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.6); font-size: 0.85rem;
-      transition: background 0.2s, color 0.2s;
+      color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 600;
+      transition: all 0.2s;
     }
-    .soc-btn:hover { background: var(--amber); color: #fff; }
+    .soc-btn:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
 
     /* WhatsApp float */
     .wa-btn {
@@ -401,7 +398,7 @@
             <span class="csa-meta-freq">Quincenal</span>
             <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
           </div>
-          <a href="#" class="csa-card-cta">Ver CSA →</a>
+          <a href="csa-detalle.html" class="csa-card-cta">Ver CSA →</a>
         </div>
       </div>
 
@@ -654,7 +651,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="f-brand">
-        <img src="images-web/logo.webp" alt="CSA Colombia">
+        <img src="images-web/logo-CSA-colombia-con-espacio-332x254x34x18x264x218x1746783635.png" alt="CSA Colombia">
         <p>Comunidades que Sustentan la Agricultura. Una red viva que conecta el campo y la ciudad a través de la agroecología y la solidaridad.</p>
       </div>
       <div class="f-col">
