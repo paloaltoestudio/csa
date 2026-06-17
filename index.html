@@ -6,7 +6,7 @@
   <title>CSA Colombia – Comunidades que Sustentan la Agricultura</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Parkinsans:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
@@ -131,6 +131,87 @@
     .nav.scrolled .nav-cta-secondary:hover { background: var(--green-dark); color: #fff; }
     .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
 
+    /* Inline tooltip */
+    .tt {
+      border-bottom: 1px dashed var(--green);
+      cursor: help;
+      position: relative;
+      display: inline;
+    }
+    .tt::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.92);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.74rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.55;
+      padding: 0.65rem 1rem;
+      border-radius: 3px;
+      width: 230px;
+      white-space: normal;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.22);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      pointer-events: none;
+      z-index: 200;
+    }
+    .tt::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--green-dark);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      pointer-events: none;
+      z-index: 201;
+    }
+    .tt:hover::after, .tt:hover::before { opacity: 1; visibility: visible; }
+
+    /* Dropdown nav */
+    .has-dropdown { position: relative; }
+    .has-dropdown > a { display: flex; align-items: center; gap: 0.35rem; }
+    .nav-chevron {
+      font-size: 0.55rem; opacity: 0.7;
+      transition: transform 0.22s;
+      display: inline-block;
+    }
+    .has-dropdown:hover .nav-chevron { transform: rotate(180deg); }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 1.1rem); left: -1rem;
+      background: var(--green-dark);
+      min-width: 200px;
+      list-style: none;
+      padding: 0.4rem 0;
+      border-radius: 2px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+      opacity: 0; visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      z-index: 20;
+    }
+    .has-dropdown:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown li a {
+      display: block;
+      padding: 0.55rem 1.2rem;
+      color: rgba(255,255,255,0.82) !important;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .nav-dropdown li a:hover { color: var(--amber-lt) !important; background: rgba(255,255,255,0.06); }
+    .nav.scrolled .nav-dropdown { top: calc(100% + 0.85rem); }
+
     /* ══════════════════════════════════
        HERO
     ══════════════════════════════════ */
@@ -151,7 +232,7 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 0 2rem;
     }
-    .hero-content .eyebrow { color: var(--amber-lt); font-size: 0.72rem; }
+    .hero-content .eyebrow { color: var(--amber-lt); font-size: 1.42rem; }
     .hero h1 {
       font-size: clamp(2.6rem, 6vw, 5.2rem);
       font-weight: 700; color: #fff; line-height: 1.08;
@@ -202,7 +283,8 @@
     .que-son { background: var(--green-dark); }
     .que-son-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 580px; }
     .que-son-img { position: relative; overflow: hidden; }
-    .que-son-img img {
+    .que-son-img img,
+    .que-son-img video {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
     }
     .que-son-img::after { display: none; }
@@ -230,15 +312,40 @@
     .steps {
       display: grid; grid-template-columns: repeat(3,1fr); gap: 3.5rem; margin-bottom: 5rem;
     }
-    .step {}
+    .step {
+      padding: 2rem 1.5rem 0;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+      cursor: default;
+    }
+    .step:hover {
+      transform: translateY(-7px);
+      background: var(--cream);
+      box-shadow: 0 16px 40px rgba(45,80,22,0.10);
+    }
     .step-n {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Parkinsans', sans-serif;
       font-size: 5rem; font-weight: 700;
       color: var(--amber); opacity: 0.22; line-height: 1;
       margin-bottom: 1rem;
+      transition: opacity 0.28s ease;
     }
+    .step:hover .step-n { opacity: 1; }
     .step h3 { font-size: 1.25rem; color: var(--green-dark); margin-bottom: 0.75rem; }
     .step p { font-size: 0.93rem; color: var(--txt-mid); line-height: 1.75; }
+    .step-img {
+      margin: 1.5rem -1.5rem 0;
+      height: 220px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .step-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+    .step:hover .step-img img { transform: scale(1.05); }
     .como-photos {
       display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 6px; height: 360px;
     }
@@ -275,12 +382,56 @@
     .p-card p { font-size: 0.85rem; color: var(--txt-mid); line-height: 1.7; margin-top: 0.75rem; }
 
     /* ══════════════════════════════════
-       PHOTO STRIP
+       PHOTO STRIP CAROUSEL
     ══════════════════════════════════ */
-    .strip { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; height: 420px; gap: 5px; }
-    .strip-item { overflow: hidden; }
-    .strip-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.6s ease; }
-    .strip-item:hover img { transform: scale(1.06); }
+    .strip-carousel { position: relative; }
+    .strip-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      gap: 5px;
+      height: 420px;
+    }
+    .strip-track::-webkit-scrollbar { display: none; }
+    .strip-item {
+      flex: 0 0 calc(33.333% - 4px);
+      scroll-snap-align: start;
+      overflow: hidden;
+      position: relative;
+    }
+    .strip-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--cream);
+      opacity: 0.5;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+    .strip-item:hover::after { opacity: 0; }
+    .strip-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(0.08);
+      transition: transform 0.5s ease, filter 0.45s ease;
+    }
+    .strip-item:hover img { transform: scale(1.04); filter: saturate(1); }
+    .strip-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(255,255,255,0.92);
+      color: var(--green-dark);
+      border: none; cursor: pointer;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.14);
+      transition: background 0.2s, color 0.2s;
+    }
+    .strip-arrow:hover { background: var(--amber); color: #fff; }
+    .strip-arrow.s-prev { left: 1rem; }
+    .strip-arrow.s-next { right: 1rem; }
 
     /* ══════════════════════════════════
        LA RED EN COLOMBIA
@@ -308,17 +459,38 @@
     /* ══════════════════════════════════
        GUÍA DEL AGRICULTOR
     ══════════════════════════════════ */
-    .guia { background: var(--cream); }
-    .guia-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
-    .guia-text {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 5rem 4rem 5rem 2rem; max-width: 560px; margin-left: auto;
+    /* Split CTA — co-agricultor / agricultor */
+    .split-cta { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; padding-top: 20px; }
+    .split-panel {
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 3.5rem;
     }
-    .guia-text h2 { font-size: 2.2rem; color: var(--green-dark); line-height: 1.25; margin-bottom: 1rem; }
-    .guia-text p { font-size: 0.97rem; color: var(--txt-mid); line-height: 1.8; margin-bottom: 2rem; }
-    .guia-img { position: relative; overflow: hidden; }
-    .guia-img img { position: absolute; inset: 0; width:100%; height:100%; object-fit:cover; object-position: center top; }
-    .guia-img::before { display: none; }
+    .split-panel:hover .split-bg img { transform: scale(1.05); }
+    .split-bg { position: absolute; inset: 0; }
+    .split-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .split-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,35,8,0.95) 0%, rgba(15,35,8,0.78) 50%, rgba(15,35,8,0.68) 100%);
+    }
+    .split-label {
+      position: relative; z-index: 1;
+      font-family: 'Parkinsans', sans-serif;
+      font-size: 2.6rem; font-weight: 500;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.25;
+    }
+    .split-body {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .split-body h2 {
+      font-family: 'Parkinsans', sans-serif;
+      font-size: 2rem; color: #fff; line-height: 1.2; margin-bottom: 0.25rem;
+    }
+    .split-body p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.8; }
+    .split-body .btn { align-self: flex-start; }
+    .split-divider { border-left: 1px solid rgba(255,255,255,0.18); }
 
     /* ══════════════════════════════════
        CALENDARIO
@@ -344,7 +516,7 @@
     .counters { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; }
     .c-item {}
     .c-num {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Parkinsans', sans-serif;
       font-size: 4.5rem; font-weight: 700;
       color: var(--amber-lt); line-height: 1; display: block;
     }
@@ -353,13 +525,13 @@
     /* ══════════════════════════════════
        MAPA CUSTOM SVG
     ══════════════════════════════════ */
-    .mapa-csa { display: grid; grid-template-columns: 55fr 45fr; min-height: 660px; }
+    .mapa-csa { display: grid; grid-template-columns: 55fr 45fr; min-height: 780px; }
     .mapa-left {
       background: var(--green-dark);
       display: flex; align-items: center; justify-content: center;
       padding: 4rem 3rem; position: relative; overflow: hidden;
     }
-    .mapa-svg-wrap { width: 100%; max-width: 400px; }
+    .mapa-svg-wrap { width: 100%; max-width: 520px; }
     .mapa-svg-wrap svg { width: 100%; height: auto; }
     .mapa-svg-wrap svg path {
       fill: rgba(255,255,255,1);
@@ -394,7 +566,7 @@
       display: flex; flex-direction: column; justify-content: center;
       padding: 5rem 4.5rem;
     }
-    .mapa-right h2 { font-size: 2.5rem; color: var(--green-dark); line-height: 1.2; margin-bottom: 1rem; }
+    .mapa-right h2 { font-size: 5.5rem; color: var(--green-dark); line-height: 1.2; margin-bottom: 1rem; }
     .mapa-sub { font-size: 0.95rem; color: var(--txt-mid); line-height: 1.8; margin-bottom: 3rem; max-width: 380px; }
     .mapa-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 3rem; margin-bottom: 2.5rem; }
     .mnum-val {
@@ -542,10 +714,11 @@
     .informes-head { text-align: center; margin-bottom: 3.5rem; }
     .informes-head h2 { font-size: 2.5rem; color: var(--green-dark); }
     .informes-head p { font-size: 0.95rem; color: var(--txt-mid); margin-top: 0.5rem; }
-    .informes-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1.25rem; }
+    .informes-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; }
     .inf-card {
       background: var(--green-dark); border-radius: 2px; overflow: hidden;
       text-align: center; transition: transform 0.22s, box-shadow 0.22s;
+      width: calc(20% - 1rem); min-width: 180px;
     }
     .inf-card:hover { transform: translateY(-5px); box-shadow: 0 10px 32px rgba(0,0,0,0.18); }
     .inf-thumb {
@@ -571,16 +744,26 @@
     .aliados-head { text-align: center; margin-bottom: 3.5rem; }
     .aliados-head h2 { font-size: 2rem; color: var(--green-dark); }
     .aliados-head p { font-size: 0.92rem; color: var(--txt-mid); margin-top: 0.5rem; }
-    .aliados-logos {
-      display: flex; flex-wrap: wrap; gap: 1.5rem;
-      align-items: center; justify-content: center;
+    .aliados-logos { overflow: hidden; }
+    .aliados-track {
+      display: flex; align-items: center;
+      width: max-content;
+      animation: al-marquee 90s linear infinite;
+    }
+    .aliados-track:hover { animation-play-state: paused; }
+    @keyframes al-marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .al-item {
-      padding: 1rem 1.5rem;
-      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      padding: 1rem 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      filter: grayscale(1); opacity: 0.5;
+      transition: filter 0.3s, opacity 0.3s;
     }
     .al-item:hover { filter: grayscale(0); opacity: 1; }
-    .al-item img { width: auto; max-width: 140px; object-fit: contain; display: block; }
+    .al-item img { width: auto; max-width: 140px; height: 48px; object-fit: contain; display: block; }
 
     /* ══════════════════════════════════
        NEWSLETTER
@@ -612,7 +795,7 @@
        FOOTER
     ══════════════════════════════════ */
     .footer { background: #0e1a07; padding: 5rem 0 2.5rem; }
-    .footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3.5rem; }
+    .footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 3.5rem; }
     .f-brand img { height: 56px; margin-bottom: 1.25rem; filter: brightness(0) invert(1); opacity: 0.8; }
     .f-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 280px; }
     .f-col h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; }
@@ -751,6 +934,103 @@
       font-family: 'Parkinsans', sans-serif;
       font-size: 1.1rem; color: var(--green-dark);
       line-height: 1.35; font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .tribe-meta {
+      display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem;
+      margin-top: 0.35rem;
+    }
+    .tribe-lugar, .tribe-contacto {
+      font-size: 0.75rem; color: var(--txt-lt);
+      letter-spacing: 0.01em;
+    }
+    .tribe-lugar::before { content: 'Lugar: '; font-weight: 600; color: var(--txt-mid); }
+    .tribe-contacto::before { content: 'Contacto: '; font-weight: 600; color: var(--txt-mid); }
+
+    /* ══════════════════════════════════
+       EQUIPO
+    ══════════════════════════════════ */
+    .equipo { background: var(--cream); padding: 4rem 0; padding-bottom: 0; }
+    .equipo-head { text-align: center; margin-bottom: 4rem; }
+    .equipo-head h2 { font-size: 2.5rem; color: var(--green-dark); margin-bottom: 0.75rem; }
+    .equipo-head p { font-size: 0.97rem; color: var(--txt-mid); }
+    .equipo-carousel { position: relative; }
+    .equipo-track {
+      display: flex; gap: 0;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .equipo-track::-webkit-scrollbar { display: none; }
+    .team-card {
+      flex: 0 0 25%;
+      scroll-snap-align: start;
+      position: relative; overflow: hidden;
+      aspect-ratio: 3 / 4;
+      cursor: pointer;
+    }
+    .team-card img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+      transition: filter 0.45s ease;
+      display: block;
+    }
+    .team-card:hover img { filter: grayscale(1); }
+    .team-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(30,60,15,0.92) 40%, rgba(30,60,15,0.55) 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem 1.25rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .team-card:hover .team-overlay { opacity: 1; }
+    .team-name {
+      font-family: 'Parkinsans', sans-serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: #fff; line-height: 1.3; margin-bottom: 0.3rem;
+    }
+    .team-role {
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--amber-lt); letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+    .equipo-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: #fff; border: none; cursor: pointer;
+      width: 44px; height: 44px; border-radius: 50%; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.14); z-index: 10;
+      color: var(--green-dark);
+      transition: background 0.2s, color 0.2s;
+    }
+    .equipo-arrow:hover { background: var(--amber); color: #fff; }
+    .equipo-arrow:disabled { opacity: 0.25; cursor: default; pointer-events: none; }
+    .eq-prev { left: 1rem; }
+    .eq-next { right: 1rem; }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .split-cta { grid-template-columns: 1fr 1fr; min-height: 500px; }
+      .split-panel { padding: 2.5rem; }
+      .split-label { font-size: 2rem; }
+      .split-body h2 { font-size: 1.6rem; }
+      .split-divider { border-left: 1px solid rgba(255,255,255,0.18); border-top: none; }
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .split-cta { grid-template-columns: 1fr; }
+      .split-panel { min-height: 520px; padding: 2rem; }
+      .split-label { font-size: 1.8rem; }
+      .split-body h2 { font-size: 1.5rem; }
+      .split-body p { font-size: 0.88rem; }
+      .split-divider {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.18);
+      }
     }
   </style>
 </head>
@@ -765,13 +1045,31 @@
       <img src="images-web/logo.webp" alt="CSA Colombia">
     </a>
     <ul class="nav-links">
-      <li><a href="#sobre">La Red</a></li>
-      <li><a href="#que-son">¿Qué es CSA?</a></li>
-      <li><a href="#principios">Principios</a></li>
-      <li><a href="#agricultores-destacados">Comunidad</a></li>
-      <li><a href="#mapa">Mapa</a></li>
-      <li><a href="#informes">Gestión</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li class="has-dropdown">
+        <a href="#sobre">La Red <span class="nav-chevron">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="#sobre">Sobre La Red</a></li>
+          <li><a href="#">Quienes Somos</a></li>
+          <li><a href="#informes">Gestión</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="#que-son">¿Qué es CSA? <span class="nav-chevron">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="#que-son">Nuestro Propósito</a></li>
+          <li><a href="#como">Cómo Funciona</a></li>
+          <li><a href="#principios">Principios</a></li>
+          <li><a href="#faq">Preguntas Frecuentes</a></li>
+        </ul>
+      </li>
+      <li><a href="#impacto">Impacto</a></li>
+      <li><a href="#eventos">Eventos</a></li>
+      <li class="has-dropdown">
+        <a href="#">Recursos <span class="nav-chevron">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="#">Recetas</a></li>
+        </ul>
+      </li>
     </ul>
     <div class="nav-actions">
       <a href="agricultores.html" class="nav-cta">Quiero unirme</a>
@@ -789,10 +1087,9 @@
   <div class="hero-content">
     <span class="eyebrow">Red CSA Colombia</span>
     <h1>Comunidades que<br><em>Sustentan</em> la<br>Agricultura</h1>
-    <p class="hero-sub">Conectamos familias urbanas con agricultores agroecológicos para construir un sistema alimentario más justo, local y solidario.</p>
     <div class="hero-btns">
-      <a href="#que-son" class="btn btn-amber">Descubrir cómo funciona</a>
-      <a href="#agricultores-destacados" class="btn btn-ghost-w">Conoce los agricultores</a>
+      <a href="#que-son" class="btn btn-amber">Descubre cómo funcionan</a>
+      <a href="#agricultores-destacados" class="btn btn-ghost-w">Conoce los CSAs</a>
     </div>
   </div>
   <div class="hero-scroll">
@@ -807,14 +1104,14 @@
 <section class="sobre" id="sobre">
   <div class="sobre-grid">
     <div class="sobre-text">
-      <span class="eyebrow">Sobre la Red</span>
-      <h2>Una red viva que conecta el campo y la ciudad</h2>
+      <span class="eyebrow">Sobre la Red CSA Colombia</span>
+      <h2>Somos parte de una red global que conecta el campo y la ciudad</h2>
       <p>Somos una organización sin ánimo de lucro que articula un movimiento ciudadano que incentiva la <strong>agroecología</strong>, el <strong>consumo consciente</strong> y la regeneración de las relaciones entre el campo y la ciudad.</p>
-      <p>A través de la cocreación de Comunidades que Sustentan la Agricultura, apoyamos a familias agricultoras y co-agricultoras en todo el territorio colombiano.</p>
-      <a href="#que-son" class="btn btn-green" style="align-self:flex-start; margin-top:0.5rem;">Conocer más</a>
+      <p>A través de la cocreación de Comunidades que Sustentan la Agricultura, apoyamos a familias agricultoras y <span class="tt" data-tip="Familias urbanas que financian la producción del agricultor y reciben a cambio una canasta de alimentos frescos directamente de la finca.">co-agricultoras</span> en todo el territorio colombiano.</p>
+      
     </div>
     <div class="sobre-img">
-      <img src="images-web/Agromandala-325.jpg" alt="Agricultora en su huerto">
+      <img src="images-web/Agromandala-389.jpg" alt="Intercambio de alimentos entre agricultor y coagricultor">
     </div>
   </div>
 </section>
@@ -825,20 +1122,16 @@
 <section class="que-son" id="que-son">
   <div class="que-son-grid">
     <div class="que-son-img">
-      <img src="images-web/Agromandala-389.jpg" alt="Intercambio de alimentos entre agricultor y coagricultor">
+      <video autoplay muted loop playsinline>
+        <source src="Video-CSA-MASTAY.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="que-son-text">
-      <span class="eyebrow">¿Qué son las CSA?</span>
-      <h2>Un modelo de economía colaborativa en torno a la comida</h2>
+      <span class="eyebrow">¿Qué es CSA?</span>
+      <h2>Un modelo de economía colaborativa en torno al alimento</h2>
       <p>Las CSA son un modelo donde <strong>familias co-agricultoras financian la producción</strong> de una familia agricultora, garantizando una retribución justa y constante, una alimentación sana y una forma de producción que cuida de la tierra.</p>
       <p>Consumidores y agricultores se relacionan directamente, creando un sistema alimentario más justo, fraterno, local y responsable.</p>
-      <div class="pills">
-        <span class="pill">Canastas periódicas</span>
-        <span class="pill">Productos agroecológicos</span>
-        <span class="pill">Relación directa</span>
-        <span class="pill">Economía solidaria</span>
-      </div>
-      <a href="#como" class="btn btn-amber">¿Cómo funcionan?</a>
+      
     </div>
   </div>
 </section>
@@ -849,7 +1142,6 @@
 <section class="como" id="como">
   <div class="container">
     <div class="como-head">
-      <span class="eyebrow">El proceso</span>
       <h2>¿Cómo funcionan las CSA?</h2>
       <p>De manera práctica, las CSA funcionan como un modelo de suscripción donde las familias co-agricultoras financian la producción y reciben alimentos frescos directamente desde la finca.</p>
     </div>
@@ -858,22 +1150,20 @@
         <div class="step-n">01</div>
         <h3>La familia co-agricultora se suscribe</h3>
         <p>Familias urbanas se comprometen a cubrir cuotas de producción agroecológica. Con esto, el agricultor puede planificar sus siembras con tranquilidad y certeza económica.</p>
+        <div class="step-img"><img src="images-web/_IFE1263 (1).jpg" alt="Comunidad aprendiendo en el campo"></div>
       </div>
       <div class="step">
         <div class="step-n">02</div>
         <h3>El agricultor cultiva para su comunidad</h3>
         <p>La familia agricultora produce alimentos frescos, diversos y de temporada. Al conocer quiénes recibirán los alimentos, el vínculo trasciende la transacción económica.</p>
+        <div class="step-img"><img src="images-web/Agromandala-385 (1).jpg" alt="Manos con alimentos"></div>
       </div>
       <div class="step">
         <div class="step-n">03</div>
         <h3>Entrega periódica de canastas</h3>
         <p>Las familias reciben su canasta de alimentos semanalmente o cada quince días. Los riesgos y beneficios de la producción se comparten entre toda la comunidad.</p>
+        <div class="step-img"><img src="images-web/WhatsApp Image 2026-05-26 at 9.01.5 AM.jpg" alt="Canasta de alimentos"></div>
       </div>
-    </div>
-    <div class="como-photos">
-      <div class="ph"><img src="images-web/_IFE1263 (1).jpg" alt="Comunidad aprendiendo en el campo"></div>
-      <div class="ph"><img src="images-web/Agromandala-385 (1).jpg" alt="Manos con alimentos"></div>
-      <div class="ph"><img src="images-web/WhatsApp Image 2026-05-26 at 9.01.5 AM.jpg" alt="Canasta de alimentos"></div>
     </div>
   </div>
 </section>
@@ -925,322 +1215,49 @@
 <!-- ════════════════════════════════
      PHOTO STRIP
 ════════════════════════════════ -->
-<div class="strip">
-  <div class="strip-item"><img src="images-web/Agromandala-399 (1).jpg" alt="Manos con tomates cherry"></div>
-  <div class="strip-item"><img src="images-web/IMG-20250915-WA0063.jpg" alt="Kale en la huerta"></div>
-  <div class="strip-item"><img src="images-web/IMG-20250915-WA0064.jpg" alt="Planta morada"></div>
-  <div class="strip-item"><img src="images-web/Imagen de WhatsApp 2025-05-26 a las 18.08.39_f2cc5089.jpg" alt="Canasta de temporada"></div>
+<div class="strip-carousel">
+  <button class="strip-arrow s-prev" onclick="stripScroll(-1)">&#8592;</button>
+  <div class="strip-track" id="stripTrack">
+    <div class="strip-item"><img src="images-web/Agromandala-399 (1).jpg" alt="Manos con tomates cherry"></div>
+    <div class="strip-item"><img src="images-web/IMG-20250915-WA0063.jpg" alt="Kale en la huerta"></div>
+    <div class="strip-item"><img src="images-web/IMG-20250915-WA0064.jpg" alt="Planta morada"></div>
+    <div class="strip-item"><img src="images-web/Imagen de WhatsApp 2025-05-26 a las 18.08.39_f2cc5089.jpg" alt="Canasta de temporada"></div>
+  </div>
+  <button class="strip-arrow s-next" onclick="stripScroll(1)">&#8594;</button>
 </div>
 
-<!-- ════════════════════════════════
-     AGRICULTORES DESTACADOS
-════════════════════════════════ -->
-<section class="agricultores" id="agricultores-destacados">
-  <div class="container">
-    <div class="agri-header">
-      <div>
-        <span class="eyebrow">CSAs de la Red</span>
-        <h2>Encuentra tu CSA</h2>
-        <p>Cada CSA es única — diferente tierra, diferentes cultivos, diferente comunidad. Encuentra la que está cerca de ti.</p>
-      </div>
-      <a href="csas.html" class="btn btn-ghost-g" style="flex-shrink:0">Ver todas las CSAs →</a>
-    </div>
 
-    <div class="agri-carousel-wrap">
-      <button class="agri-arrow agri-prev" id="agriPrev" onclick="agriScroll(-1)" disabled>&#8592;</button>
-      <div class="agri-track" id="agriTrack">
-
-        <div class="agri-card">
-          <div class="agri-photo"><img src="images-web/Agromandala-325.jpg" alt="CSA Agromandala"></div>
-          <div class="agri-body">
-            <p class="agri-location">Antioquia · El Retiro</p>
-            <p class="agri-name">CSA Agromandala</p>
-            <div class="agri-alimentos">
-              <span class="agri-tag">Hortalizas</span>
-              <span class="agri-tag">Aromáticas</span>
-              <span class="agri-tag">Granos</span>
-              <span class="agri-tag">Medicinales</span>
-            </div>
-            <div class="agri-stats">
-              <div class="agri-stat">
-                <span class="agri-stat-val">Quincenal</span>
-                <span class="agri-stat-label">Frecuencia</span>
-              </div>
-              <div class="agri-stat">
-                <span class="agri-stat-val">A convenir</span>
-                <span class="agri-stat-label">Suscripción</span>
-              </div>
-            </div>
-            <a href="csas.html" class="agri-cta">Ver CSA</a>
-          </div>
-        </div>
-
-        <div class="agri-card">
-          <div class="agri-photo"><img src="images-web/David Echavarría_Granja Feliz.jpg" alt="CSA La Granja Feliz"></div>
-          <div class="agri-body">
-            <p class="agri-location">Antioquia · Medellín (San Cristóbal)</p>
-            <p class="agri-name">CSA La Granja Feliz</p>
-            <div class="agri-alimentos">
-              <span class="agri-tag">Hortalizas</span>
-              <span class="agri-tag">Frutas</span>
-              <span class="agri-tag">Aromáticas</span>
-            </div>
-            <div class="agri-stats">
-              <div class="agri-stat">
-                <span class="agri-stat-val">Semanal</span>
-                <span class="agri-stat-label">Frecuencia</span>
-              </div>
-              <div class="agri-stat">
-                <span class="agri-stat-val">A convenir</span>
-                <span class="agri-stat-label">Suscripción</span>
-              </div>
-            </div>
-            <a href="csas.html" class="agri-cta">Ver CSA</a>
-          </div>
-        </div>
-
-        <div class="agri-card">
-          <div class="agri-photo"><img src="images-web/_IFE1263 (1).jpg" alt="CSA Camino a la Montaña"></div>
-          <div class="agri-body">
-            <p class="agri-location">Antioquia · Medellín</p>
-            <p class="agri-name">CSA Camino a la Montaña</p>
-            <div class="agri-alimentos">
-              <span class="agri-tag">Hortalizas</span>
-              <span class="agri-tag">Tubérculos</span>
-              <span class="agri-tag">Aromáticas</span>
-            </div>
-            <div class="agri-stats">
-              <div class="agri-stat">
-                <span class="agri-stat-val">Quincenal</span>
-                <span class="agri-stat-label">Frecuencia</span>
-              </div>
-              <div class="agri-stat">
-                <span class="agri-stat-val">A convenir</span>
-                <span class="agri-stat-label">Suscripción</span>
-              </div>
-            </div>
-            <a href="csas.html" class="agri-cta">Ver CSA</a>
-          </div>
-        </div>
-
-        <div class="agri-card">
-          <div class="agri-photo"><img src="images-web/IMG-20251006-WA0060.jpg" alt="CSA Kundina"></div>
-          <div class="agri-body">
-            <p class="agri-location">Cundinamarca · Bojacá</p>
-            <p class="agri-name">CSA Kundina</p>
-            <div class="agri-alimentos">
-              <span class="agri-tag">Hortalizas</span>
-              <span class="agri-tag">Legumbres</span>
-              <span class="agri-tag">Aromáticas</span>
-            </div>
-            <div class="agri-stats">
-              <div class="agri-stat">
-                <span class="agri-stat-val">Mensual</span>
-                <span class="agri-stat-label">Frecuencia</span>
-              </div>
-              <div class="agri-stat">
-                <span class="agri-stat-val">A convenir</span>
-                <span class="agri-stat-label">Suscripción</span>
-              </div>
-            </div>
-            <a href="csas.html" class="agri-cta">Ver CSA</a>
-          </div>
-        </div>
-
-        <div class="agri-card">
-          <div class="agri-photo"><img src="images-web/Reinaldo Correa_Mastay.jpg" alt="CSA Mastay"></div>
-          <div class="agri-body">
-            <p class="agri-location">Antioquia · Medellín</p>
-            <p class="agri-name">CSA Mastay</p>
-            <div class="agri-alimentos">
-              <span class="agri-tag">Hortalizas</span>
-              <span class="agri-tag">Frutas de temporada</span>
-              <span class="agri-tag">Raíces</span>
-            </div>
-            <div class="agri-stats">
-              <div class="agri-stat">
-                <span class="agri-stat-val">Quincenal</span>
-                <span class="agri-stat-label">Frecuencia</span>
-              </div>
-              <div class="agri-stat">
-                <span class="agri-stat-val">A convenir</span>
-                <span class="agri-stat-label">Suscripción</span>
-              </div>
-            </div>
-            <a href="csas.html" class="agri-cta">Ver CSA</a>
-          </div>
-        </div>
-
-      </div><!-- /.agri-track -->
-      <button class="agri-arrow agri-next" id="agriNext" onclick="agriScroll(1)">&#8594;</button>
-    </div><!-- /.agri-carousel-wrap -->
-  </div>
-</section>
-
-<!-- ════════════════════════════════
-     LA RED EN COLOMBIA
-════════════════════════════════ -->
-<!-- <section class="la-red" id="la-red">
-  <div class="container">
-    <div class="la-red-head">
-      <span class="eyebrow" style="color:var(--amber-lt)">Comunidad</span>
-      <h2>La Red CSA en Colombia</h2>
-      <p>Más de 18 CSAs activas en distintos municipios del país, cada una con su propia identidad, territorio y comunidad de co-agricultores.</p>
-    </div>
-    <div class="csa-cards">
-      <div class="csa-card">
-        <div class="csa-thumb"><img src="images-web/Agromandala-325.jpg" alt="CSA Agromandala"></div>
-        <div class="csa-body">
-          <h4>CSA Agromandala</h4>
-          <p>Ubicada en el sureste de Antioquia. Cultivo circular agroecológico y regenerativo, especializada en hortalizas, granos y plantas medicinales.</p>
-        </div>
-      </div>
-      <div class="csa-card">
-        <div class="csa-thumb"><img src="images-web/IMG-20251006-WA0060.jpg" alt="CSA Camino a la Montaña"></div>
-        <div class="csa-body">
-          <h4>CSA Camino a la Montaña</h4>
-          <p>Ubicada en las afueras de Medellín con vista al valle. Producción diversa con énfasis en agroecología y biodiversidad de cultivos.</p>
-        </div>
-      </div>
-      <div class="csa-card">
-        <div class="csa-thumb"><img src="images-web/David Echavarría_Granja Feliz.jpg" alt="CSA La Granja Feliz"></div>
-        <div class="csa-body">
-          <h4>CSA La Granja Feliz</h4>
-          <p>En San Cristóbal, Medellín. La familia de David Echavarría tiene una producción familiar agroecológica con una gran comunidad de co-agricultores.</p>
-        </div>
-      </div>
-      <div class="csa-card">
-        <div class="csa-thumb"><img src="images-web/_IFE1263 (1).jpg" alt="CSA Vizcaya"></div>
-        <div class="csa-body">
-          <h4>CSA Vizcaya</h4>
-          <p>Ubicada en Frontino, Antioquia. Enfocada en la siembra de chumbimbo y diversas especies nativas de la región.</p>
-        </div>
-      </div>
-      <div class="csa-card">
-        <div class="csa-thumb"><img src="images-web/IMG-20251003-WA0048.jpg" alt="CSA Muya Sungu"></div>
-        <div class="csa-body">
-          <h4>CSA Muya Sungu</h4>
-          <p>Una CSA comunitaria creada por un grupo de personas comprometidas con la soberanía alimentaria y la producción local.</p>
-        </div>
-      </div>
-      <div class="csa-card">
-        <div class="csa-thumb"><img src="images-web/Imagen de WhatsApp 2025-03-03 a las 08.19.39_ec1dfb6e.jpg" alt="CSA La Bonga"></div>
-        <div class="csa-body">
-          <h4>CSA La Bonga</h4>
-          <p>Ubicada en San Cristóbal. La familia de Armando César tiene una producción familiar agroecológica con siembra de chumbimbo y más.</p>
-        </div>
-      </div>
-    </div>
-    <div class="la-red-foot" style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="https://wa.me/573192897230" class="btn btn-amber" target="_blank">Únete a la Red CSA Colombia</a>
-      <a href="agricultores.html" class="btn btn-ghost-w">Ver todos los agricultores →</a>
-    </div>
-  </div>
-</section> -->
 
 <!-- ════════════════════════════════
      GUÍA DEL AGRICULTOR
 ════════════════════════════════ -->
-<section class="guia" id="agricultores">
-  <div class="guia-grid">
-    <div class="guia-text">
-      <span class="eyebrow">Para agricultores</span>
+<section class="split-cta" id="agricultores">
+
+  <!-- Left: Co-agricultor -->
+  <div class="split-panel">
+    <div class="split-bg"><img src="images-web/Imagen Coagricultores.jpg" alt="Familias co-agricultoras recibiendo su canasta"></div>
+    <div class="split-overlay"></div>
+    <p class="split-label">Soy co-agricultor<br>Quiero recibir alimentos</p>
+    <div class="split-body">
+      <h2>Encuentra tu CSA</h2>
+      <p>Cada CSA es única — diferente tierra, diferentes cultivos, diferente comunidad. Encuentra la que está cerca de ti.</p>
+      <a href="csas.html" class="btn btn-ghost-w">Ver todas las CSAs →</a>
+    </div>
+  </div>
+
+  <!-- Right: Agricultor -->
+  <div class="split-panel split-divider">
+    <div class="split-bg"><img src="images-web/Reinaldo Correa_Mastay.jpg" alt="Agricultor en su finca"></div>
+    <div class="split-overlay"></div>
+    <p class="split-label">Soy Agricultor<br>Cultivo alimentos</p>
+    <div class="split-body">
       <h2>¿Quieres crear tu propia CSA?</h2>
-      <p>Si eres agricultor o agricultora y quieres conocer cómo iniciar tu propia Comunidad que Sustenta la Agricultura, descarga nuestra guía paso a paso. Te acompañamos en todo el proceso.</p>
-      <a href="#" class="btn btn-green" style="align-self:flex-start">
-        ↓ Descargar Guía PDF
-      </a>
-    </div>
-    <div class="guia-img">
-      <img src="images-web/_IFE1336.jpg" alt="Familia aprendiendo en la finca">
+      <p>Si eres agricultor o agricultora y quieres conocer cómo iniciar tu propia Comunidad que Sustenta la Agricultura, descarga nuestra guía paso a paso.</p>
+      <a href="#" class="btn btn-amber">↓ Descargar Guía PDF</a>
+      <a href="https://wa.me/573192897230" class="btn btn-ghost-w" target="_blank">Hablemos</a>
     </div>
   </div>
-</section>
 
-<!-- ════════════════════════════════
-     CALENDARIO DE EVENTOS
-════════════════════════════════ -->
-<section class="cal" id="eventos">
-  <div class="container">
-    <div class="cal-head">
-      <span class="eyebrow">Agenda</span>
-      <h2>Calendario de Eventos</h2>
-      <p>Visitas a fincas, talleres, encuentros de la red y días de campo para conectar consumidores y agricultores.</p>
-    </div>
-    <!-- Tribe Events list view mock -->
-    <div class="tribe-events-wrap">
-
-      <div class="tribe-bar">
-        <button class="tribe-nav">&#8249;</button>
-        <span class="tribe-month-label">Julio – Agosto 2026</span>
-        <button class="tribe-nav">&#8250;</button>
-      </div>
-
-      <div class="tribe-list">
-
-        <div class="tribe-event">
-          <div class="tribe-date">
-            <span class="tribe-month-sm">JUL</span>
-            <span class="tribe-day">12</span>
-            <span class="tribe-year">2026</span>
-          </div>
-          <div class="tribe-info">
-            <p class="tribe-time">julio 12 @ 8:00 am – 1:00 pm</p>
-            <h4 class="tribe-title">Visita a la Finca CSA Agromandala</h4>
-          </div>
-        </div>
-
-        <div class="tribe-event">
-          <div class="tribe-date">
-            <span class="tribe-month-sm">JUL</span>
-            <span class="tribe-day">19</span>
-            <span class="tribe-year">2026</span>
-          </div>
-          <div class="tribe-info">
-            <p class="tribe-time">julio 19 @ 9:00 am – 3:00 pm</p>
-            <h4 class="tribe-title">Día de Campo: Cosecha Colectiva en CSA Camino a la Montaña</h4>
-          </div>
-        </div>
-
-        <div class="tribe-event">
-          <div class="tribe-date">
-            <span class="tribe-month-sm">JUL</span>
-            <span class="tribe-day">26</span>
-            <span class="tribe-year">2026</span>
-          </div>
-          <div class="tribe-info">
-            <p class="tribe-time">julio 26 @ 10:00 am – 12:00 pm</p>
-            <h4 class="tribe-title">Taller: Agroecología para Familias Urbanas</h4>
-          </div>
-        </div>
-
-        <div class="tribe-event">
-          <div class="tribe-date">
-            <span class="tribe-month-sm">AGO</span>
-            <span class="tribe-day">2</span>
-            <span class="tribe-year">2026</span>
-          </div>
-          <div class="tribe-info">
-            <p class="tribe-time">agosto 2 @ 9:00 am – 5:00 pm</p>
-            <h4 class="tribe-title">Encuentro Anual de la Red CSA Colombia</h4>
-          </div>
-        </div>
-
-        <div class="tribe-event">
-          <div class="tribe-date">
-            <span class="tribe-month-sm">AGO</span>
-            <span class="tribe-day">16</span>
-            <span class="tribe-year">2026</span>
-          </div>
-          <div class="tribe-info">
-            <p class="tribe-time">agosto 16 @ 8:00 am – 5:00 pm</p>
-            <h4 class="tribe-title">Festival de la Temporada: Semillas y Sabores</h4>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ════════════════════════════════
@@ -1250,13 +1267,13 @@
   <img class="impacto-photo" src="images-web/Imagen de WhatsApp 2025-03-03 a las 08.19.39_ec1dfb6e.jpg" alt="Comunidad en campo">
   <div class="impacto-overlay"></div>
   <div class="container">
-    <span class="eyebrow" style="color:var(--amber-lt); display:block; text-align:center;">Nuestro impacto</span>
-    <h2>Indicadores de la Red</h2>
-    <p class="sub">Cifras que reflejan el crecimiento de un movimiento ciudadano por la alimentación consciente</p>
+    <span class="eyebrow" style="color:var(--amber-lt); display:block; text-align:center; font-size:1.1rem;">Nuestro impacto</span>
+    <h2>En 3 años hemos impactado a</h2>
+    
     <div class="counters">
       <div class="c-item">
         <span class="c-num" data-target="18">0</span>
-        <p class="c-label">CSAs activas en Colombia</p>
+        <p class="c-label">Agricultores</p>
       </div>
       <div class="c-item">
         <span class="c-num" data-target="500">0</span>
@@ -1264,11 +1281,11 @@
       </div>
       <div class="c-item">
         <span class="c-num" data-target="8">0</span>
-        <p class="c-label">Años construyendo la red</p>
+        <p class="c-label">Hectareas en agroecología</p>
       </div>
       <div class="c-item">
         <span class="c-num" data-target="12">0</span>
-        <p class="c-label">Municipios con presencia CSA</p>
+        <p class="c-label">Especies de alimentos y semillas cultivadas</p>
       </div>
     </div>
   </div>
@@ -1637,7 +1654,7 @@
   </div>
   <div class="mapa-right">
     <span class="eyebrow">Territorio</span>
-    <h2>Presentes en<br>todo el país</h2>
+    <h2>24</h2>
     <p class="mapa-sub">CSAs activas conectando familias agricultoras y co-agricultoras en distintos rincones de Colombia.</p>
     <div class="mapa-nums">
       <div><span class="c-num mnum-val" data-target="7">0</span><span class="mnum-label">Departamentos</span></div>
@@ -1645,6 +1662,184 @@
     </div>
     <p class="mapa-note">Con presencia principalmente en Antioquia, Cundinamarca, Valle del Cauca y otros departamentos del país.</p>
   </div>
+</section>
+
+<!-- ════════════════════════════════
+     CALENDARIO DE EVENTOS
+════════════════════════════════ -->
+<section class="cal" id="eventos">
+  <div class="container">
+    <div class="cal-head">
+      <span class="eyebrow">Agenda</span>
+      <h2>Calendario de Eventos</h2>
+      <p>Visitas a fincas, talleres, encuentros de la red y días de campo para conectar consumidores y agricultores.</p>
+    </div>
+    <!-- Tribe Events list view mock -->
+    <div class="tribe-events-wrap">
+
+      <div class="tribe-bar">
+        <button class="tribe-nav">&#8249;</button>
+        <span class="tribe-month-label">Julio – Agosto 2026</span>
+        <button class="tribe-nav">&#8250;</button>
+      </div>
+
+      <div class="tribe-list">
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">JUL</span>
+            <span class="tribe-day">12</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">julio 12 @ 8:00 am – 1:00 pm</p>
+            <h4 class="tribe-title">Visita a la Finca CSA Agromandala</h4>
+            <div class="tribe-meta">
+              <span class="tribe-lugar">Finca Agromandala, El Retiro, Antioquia</span>
+              <span class="tribe-contacto">Sandra Milena · 300 123 4567</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">JUL</span>
+            <span class="tribe-day">19</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">julio 19 @ 9:00 am – 3:00 pm</p>
+            <h4 class="tribe-title">Día de Campo: Cosecha Colectiva en CSA Camino a la Montaña</h4>
+            <div class="tribe-meta">
+              <span class="tribe-lugar">CSA Camino a la Montaña, Medellín, Antioquia</span>
+              <span class="tribe-contacto">Laura Gómez · 312 456 7890</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">JUL</span>
+            <span class="tribe-day">26</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">julio 26 @ 10:00 am – 12:00 pm</p>
+            <h4 class="tribe-title">Taller: Agroecología para Familias Urbanas</h4>
+            <div class="tribe-meta">
+              <span class="tribe-lugar">Casa de la Cultura, Bogotá D.C.</span>
+              <span class="tribe-contacto">contacto.csacolombia@gmail.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">AGO</span>
+            <span class="tribe-day">2</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">agosto 2 @ 9:00 am – 5:00 pm</p>
+            <h4 class="tribe-title">Encuentro Anual de la Red CSA Colombia</h4>
+            <div class="tribe-meta">
+              <span class="tribe-lugar">Jardín Botánico de Medellín, Antioquia</span>
+              <span class="tribe-contacto">contacto.csacolombia@gmail.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tribe-event">
+          <div class="tribe-date">
+            <span class="tribe-month-sm">AGO</span>
+            <span class="tribe-day">16</span>
+            <span class="tribe-year">2026</span>
+          </div>
+          <div class="tribe-info">
+            <p class="tribe-time">agosto 16 @ 8:00 am – 5:00 pm</p>
+            <h4 class="tribe-title">Festival de la Temporada: Semillas y Sabores</h4>
+            <div class="tribe-meta">
+              <span class="tribe-lugar">Parque Arví, Santa Elena, Medellín</span>
+              <span class="tribe-contacto">319 289 7230</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ════════════════════════════════
+     EL EQUIPO
+════════════════════════════════ -->
+<section class="equipo" id="equipo">
+  <div class="container">
+    <div class="equipo-head">
+      <span class="eyebrow">Quienes Somos</span>
+      <h2>El Equipo</h2>
+      <p>Personas apasionadas por la agroecología, el territorio y la construcción de comunidad.</p>
+    </div>
+  </div>
+    <div class="equipo-carousel">
+      <button class="equipo-arrow eq-prev" id="eqPrev" onclick="eqScroll(-1)" disabled>&#8592;</button>
+      <div class="equipo-track" id="eqTrack">
+
+        <div class="team-card">
+          <img src="images-web/team-placeholder.jpg" alt="Isabel Cadavid Ochoa">
+          <div class="team-overlay">
+            <h4 class="team-name">Isabel Cadavid Ochoa</h4>
+            <p class="team-role">Ecóloga y Agricultora Agroecológica</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="images-web/team-placeholder.jpg" alt="Carolina Alzate Gouzy">
+          <div class="team-overlay">
+            <h4 class="team-name">Carolina Alzate Gouzy</h4>
+            <p class="team-role">Ing. Biológica · Dra. Desarrollo Sostenible</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="images-web/team-placeholder.jpg" alt="Andrea Cano Rengifo">
+          <div class="team-overlay">
+            <h4 class="team-name">Andrea Cano Rengifo</h4>
+            <p class="team-role">Administradora de Agronegocios</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="images-web/team-placeholder.jpg" alt="Elisabeth Alves Muller">
+          <div class="team-overlay">
+            <h4 class="team-name">Elisabeth Alves Muller</h4>
+            <p class="team-role">Ingeniera · Co-agricultora</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="images-web/team-placeholder.jpg" alt="Natalia Luna Montenegro">
+          <div class="team-overlay">
+            <h4 class="team-name">Natalia Luna Montenegro</h4>
+            <p class="team-role">Ing. Biológica · Biotecnología de Alimentos</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="images-web/team-placeholder.jpg" alt="Andrea Gómez">
+          <div class="team-overlay">
+            <h4 class="team-name">Andrea Gómez</h4>
+            <p class="team-role">Bióloga e Ingeniera Ambiental</p>
+          </div>
+        </div>
+
+      </div>
+      <button class="equipo-arrow eq-next" id="eqNext" onclick="eqScroll(1)">&#8594;</button>
+    </div>
 </section>
 
 <!-- ════════════════════════════════
@@ -1745,7 +1940,7 @@
     <div class="informes-head">
       <span class="eyebrow">Transparencia</span>
       <h2>Informes de Gestión</h2>
-      <p>Régimen tributario especial 2025 — Documentos disponibles para consulta pública</p>
+      
     </div>
     <div class="informes-grid">
       <div class="inf-card">
@@ -1763,41 +1958,12 @@
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
         <div class="inf-body">
-          <h4>Estados Financieros</h4>
-          <p class="inf-year">2024</p>
+          <h4>Nuestro Informe de Gestión</h4>
+          <p class="inf-year">2025</p>
           <a href="#" class="inf-btn">Leer →</a>
         </div>
       </div>
-      <div class="inf-card">
-        <div class="inf-thumb">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="inf-body">
-          <h4>Dictamen del Revisor Fiscal</h4>
-          <p class="inf-year">2024</p>
-          <a href="#" class="inf-btn">Leer →</a>
-        </div>
-      </div>
-      <div class="inf-card">
-        <div class="inf-thumb">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="inf-body">
-          <h4>Declaración de Renta</h4>
-          <p class="inf-year">2024</p>
-          <a href="#" class="inf-btn">Leer →</a>
-        </div>
-      </div>
-      <div class="inf-card">
-        <div class="inf-thumb">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div class="inf-body">
-          <h4>Formato Régimen Tributario</h4>
-          <p class="inf-year">2024</p>
-          <a href="#" class="inf-btn">Leer →</a>
-        </div>
-      </div>
+      
     </div>
   </div>
 </section>
@@ -1808,22 +1974,36 @@
 <section class="aliados" id="aliados">
   
     <div class="aliados-head">
-      <span class="eyebrow">Red de apoyo</span>
-      <h2>Aliados</h2>
-      <p>Organizaciones que creen y apoyan el movimiento CSA en Colombia</p>
+      
+      <h2>Redes y aliados</h2>
+      
     </div>
     <div class="aliados-logos">
-      <div class="al-item"><img src="images-web/logos/Logo-Low-Carbon-City-330x214x0x50x330x112x1746783627.png" alt="Low Carbon City"></div>
-      <div class="al-item"><img src="images-web/logos/Logo_de_Alegra.png" alt="Alegra"></div>
-      <div class="al-item"><img src="images-web/logos/Kearney_Logo.svg_.png" alt="Kearney"></div>
-      <div class="al-item"><img src="images-web/logos/LOGO-COMFAMA.png" alt="Comfama"></div>
-      <div class="al-item"><img src="images-web/logos/Logo-rockstart.png" alt="Rockstart"></div>
-      <div class="al-item"><img src="images-web/logos/aliance-CGIAR.png" alt="Alliance Bioversity & CIAT / CGIAR"></div>
-      <div class="al-item"><img src="images-web/logos/Imagen-CSA-Agromandala-328x160x0x0x328x160x1746783626.png" alt="Agromandala"></div>
-      <div class="al-item"><img src="images-web/logos/urgenci.png" alt="URGENCI"></div>
-      <div class="al-item"><img src="images-web/logos/agroecology.png" alt="Agroecology Coalition"></div>
-      <div class="al-item"><img src="images-web/logos/gramor.png" alt="Gramor Colombia"></div>
-      <div class="al-item"><img src="images-web/logos/A4IP.png" alt="A4IP"></div>
+      <div class="aliados-track">
+        <div class="al-item"><img src="images-web/logos/Logo-Low-Carbon-City-330x214x0x50x330x112x1746783627.png" alt="Low Carbon City"></div>
+        <div class="al-item"><img src="images-web/logos/Logo_de_Alegra.png" alt="Alegra"></div>
+        <div class="al-item"><img src="images-web/logos/Kearney_Logo.svg_.png" alt="Kearney"></div>
+        <div class="al-item"><img src="images-web/logos/LOGO-COMFAMA.png" alt="Comfama"></div>
+        <div class="al-item"><img src="images-web/logos/Logo-rockstart.png" alt="Rockstart"></div>
+        <div class="al-item"><img src="images-web/logos/aliance-CGIAR.png" alt="Alliance Bioversity & CIAT / CGIAR"></div>
+        <div class="al-item"><img src="images-web/logos/Imagen-CSA-Agromandala-328x160x0x0x328x160x1746783626.png" alt="Agromandala"></div>
+        <div class="al-item"><img src="images-web/logos/urgenci.png" alt="URGENCI"></div>
+        <div class="al-item"><img src="images-web/logos/agroecology.png" alt="Agroecology Coalition"></div>
+        <div class="al-item"><img src="images-web/logos/gramor.png" alt="Gramor Colombia"></div>
+        <div class="al-item"><img src="images-web/logos/A4IP.png" alt="A4IP"></div>
+        <!-- duplicate for seamless loop -->
+        <div class="al-item"><img src="images-web/logos/Logo-Low-Carbon-City-330x214x0x50x330x112x1746783627.png" alt="Low Carbon City"></div>
+        <div class="al-item"><img src="images-web/logos/Logo_de_Alegra.png" alt="Alegra"></div>
+        <div class="al-item"><img src="images-web/logos/Kearney_Logo.svg_.png" alt="Kearney"></div>
+        <div class="al-item"><img src="images-web/logos/LOGO-COMFAMA.png" alt="Comfama"></div>
+        <div class="al-item"><img src="images-web/logos/Logo-rockstart.png" alt="Rockstart"></div>
+        <div class="al-item"><img src="images-web/logos/aliance-CGIAR.png" alt="Alliance Bioversity & CIAT / CGIAR"></div>
+        <div class="al-item"><img src="images-web/logos/Imagen-CSA-Agromandala-328x160x0x0x328x160x1746783626.png" alt="Agromandala"></div>
+        <div class="al-item"><img src="images-web/logos/urgenci.png" alt="URGENCI"></div>
+        <div class="al-item"><img src="images-web/logos/agroecology.png" alt="Agroecology Coalition"></div>
+        <div class="al-item"><img src="images-web/logos/gramor.png" alt="Gramor Colombia"></div>
+        <div class="al-item"><img src="images-web/logos/A4IP.png" alt="A4IP"></div>
+      </div>
     </div>
   
 </section>
@@ -1835,7 +2015,7 @@
   <div class="container">
     <div class="nl-inner">
       <div class="nl-text">
-        <span class="eyebrow" style="color:var(--amber-lt)">Mantente conectado</span>
+        
         <h2>Suscríbete a la Red CSA Colombia</h2>
         <p>Recibe noticias de la red, convocatorias de eventos, historias de agricultores y co-agricultores, y novedades sobre las CSAs en Colombia.</p>
       </div>
@@ -1903,6 +2083,13 @@
           <li><a href="#agricultores">Guía del Agricultor</a></li>
           <li><a href="#eventos">Calendario</a></li>
           <li><a href="#" onclick="openModal()">Apoyar / Donar</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">RTE</a></li>
+          <li><a href="#">PTD</a></li>
         </ul>
       </div>
       <div class="f-col">
@@ -2017,20 +2204,39 @@
   counters.forEach(c => counterObs.observe(c));
 
 
+  /* TEAM CAROUSEL */
+  const eqTrack = document.getElementById('eqTrack');
+  const eqPrev  = document.getElementById('eqPrev');
+  const eqNext  = document.getElementById('eqNext');
+  function eqScroll(dir) {
+    if (!eqTrack) return;
+    const cardW = eqTrack.querySelector('.team-card').offsetWidth + 20;
+    eqTrack.scrollBy({ left: dir * cardW, behavior: 'smooth' });
+  }
+  if (eqTrack) {
+    eqTrack.addEventListener('scroll', () => {
+      eqPrev.disabled = eqTrack.scrollLeft < 10;
+      eqNext.disabled = eqTrack.scrollLeft + eqTrack.clientWidth >= eqTrack.scrollWidth - 10;
+    });
+  }
+
   /* FARMERS CAROUSEL */
   const agriTrack = document.getElementById('agriTrack');
   const agriPrev  = document.getElementById('agriPrev');
   const agriNext  = document.getElementById('agriNext');
 
   function agriScroll(dir) {
+    if (!agriTrack) return;
     const cardWidth = agriTrack.querySelector('.agri-card').offsetWidth + 24;
     agriTrack.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
   }
 
-  agriTrack.addEventListener('scroll', () => {
-    agriPrev.disabled = agriTrack.scrollLeft < 10;
-    agriNext.disabled = agriTrack.scrollLeft + agriTrack.clientWidth >= agriTrack.scrollWidth - 10;
-  });
+  if (agriTrack) {
+    agriTrack.addEventListener('scroll', () => {
+      agriPrev.disabled = agriTrack.scrollLeft < 10;
+      agriNext.disabled = agriTrack.scrollLeft + agriTrack.clientWidth >= agriTrack.scrollWidth - 10;
+    });
+  }
 
   /* MAP — CSA data per department (⚠️ verify/correct assignments) */
   const csaData = {
@@ -2074,6 +2280,49 @@
   document.querySelectorAll('.mapa-svg-wrap svg path:not([id])').forEach(path => {
     path.addEventListener('mouseleave', () => { mapTip.style.display = 'none'; });
   });
+
+  (function () {
+    const track = document.getElementById('stripTrack');
+    if (!track) return;
+
+    // Clone all items and append for seamless loop
+    const originals = Array.from(track.querySelectorAll('.strip-item'));
+    originals.forEach(el => track.appendChild(el.cloneNode(true)));
+    const count = originals.length;
+    let idx = 0;
+    let locked = false;
+
+    function scrollTo(i, animate) {
+      const all = track.querySelectorAll('.strip-item');
+      if (!animate) track.style.scrollBehavior = 'auto';
+      track.scrollLeft = all[i].offsetLeft;
+      if (!animate) requestAnimationFrame(() => { track.style.scrollBehavior = ''; });
+    }
+
+    function advance() {
+      if (locked) return;
+      idx++;
+      scrollTo(idx, true);
+      // When we land on a clone, silently snap back to the original
+      if (idx >= count) {
+        locked = true;
+        setTimeout(() => {
+          idx = idx - count;
+          scrollTo(idx, false);
+          locked = false;
+        }, 550);
+      }
+    }
+
+    window.stripScroll = function(dir) {
+      idx = ((idx + dir) % count + count) % count;
+      scrollTo(idx, true);
+    };
+
+    let timer = setInterval(advance, 3000);
+    track.addEventListener('mouseenter', () => clearInterval(timer));
+    track.addEventListener('mouseleave', () => { timer = setInterval(advance, 3000); });
+  })();
 </script>
 </body>
 </html>
