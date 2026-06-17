@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSAs en Colombia — Red CSA Colombia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Parkinsans:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #2d5016;
+      --green:      #3d6b2e;
+      --green-mid:  #4e7f3a;
+      --amber:      #c8963e;
+      --amber-lt:   #e4b56a;
+      --cream:      #f5f0e8;
+      --cream-dk:   #e9e1d0;
+      --white:      #ffffff;
+      --txt:        #1c1c1c;
+      --txt-mid:    #484848;
+      --txt-lt:     #888;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; color: var(--txt); background: var(--white); }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+    h1,h2,h3,h4 { font-family: 'Parkinsans', sans-serif; }
+
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── EYEBROW ── */
+    .eyebrow {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 0.75rem;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.75rem 1.75rem; border-radius: 2px;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      border: 2px solid transparent; cursor: pointer;
+    }
+    .btn-amber  { background: var(--amber); color: #fff; border-color: var(--amber); }
+    .btn-amber:hover { background: #a8722a; border-color: #a8722a; }
+    .btn-green  { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
+    .btn-green:hover { background: var(--green); border-color: var(--green); }
+    .btn-ghost-g { background: transparent; color: var(--green-dark); border-color: var(--green-dark); }
+    .btn-ghost-g:hover { background: var(--green-dark); color: #fff; }
+
+    /* ══════════════════════════════════
+       NAV
+    ══════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 900; padding: 1rem 0;
+      background: #fff;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+    }
+    .nav-inner {
+      max-width: 1320px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo img { height: 42px; width: auto; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.03em;
+      color: var(--txt); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-cta {
+      background: var(--amber); color: #fff;
+      padding: 0.6rem 1.5rem; border-radius: 2px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: 2px solid var(--amber);
+      transition: background 0.2s; display: inline-block;
+    }
+    .nav-cta:hover { background: #a8722a; border-color: #a8722a; }
+    .nav-cta-secondary {
+      background: #fff; color: var(--green-dark);
+      padding: 0.6rem 1.5rem; border-radius: 2px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border: 2px solid var(--green-dark); cursor: pointer;
+      transition: all 0.2s; display: inline-block;
+    }
+    .nav-cta-secondary:hover { background: var(--green-dark); color: #fff; }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+    /* Dropdown nav */
+    .has-dropdown { position: relative; }
+    .has-dropdown > a { display: flex; align-items: center; gap: 0.35rem; }
+    .nav-chevron { font-size: 0.55rem; opacity: 0.7; transition: transform 0.22s; display: inline-block; }
+    .has-dropdown:hover .nav-chevron { transform: rotate(180deg); }
+    .nav-dropdown {
+      position: absolute; top: calc(100% + 1.1rem); left: -1rem;
+      background: var(--green-dark); min-width: 200px;
+      list-style: none; padding: 0.4rem 0; border-radius: 2px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s; z-index: 20;
+    }
+    .has-dropdown:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown li a {
+      display: block; padding: 0.55rem 1.2rem;
+      color: rgba(255,255,255,0.82) !important;
+      font-size: 0.78rem; letter-spacing: 0.02em; white-space: nowrap;
+    }
+    .nav-dropdown li a:hover { color: var(--amber-lt) !important; background: rgba(255,255,255,0.06); }
+
+    /* ══════════════════════════════════
+       PAGE HEADER
+    ══════════════════════════════════ */
+    .page-header {
+      background: var(--cream);
+      padding: 8rem 0 5rem;
+      margin-top: 60px;
+    }
+    .page-header .container { max-width: 1320px; }
+    .page-header h1 { font-size: 3rem; color: var(--green-dark); line-height: 1.1; margin-bottom: 0.75rem; }
+    .page-header p { font-size: 1rem; color: var(--txt-mid); line-height: 1.8; }
+
+    /* ══════════════════════════════════
+       FILTER BAR
+    ══════════════════════════════════ */
+    .filter-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--cream-dk);
+      padding: 1rem 0;
+      position: sticky; top: 60px; z-index: 100;
+    }
+    .filter-inner {
+      display: flex; align-items: center; justify-content: flex-end; gap: 1rem;
+    }
+    .filter-count {
+      font-size: 0.82rem; font-weight: 600; color: var(--txt-mid);
+      white-space: nowrap;
+    }
+    .filter-controls { display: flex; gap: 0.75rem; align-items: center; }
+    .filter-select {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--txt); background: var(--cream);
+      border: 1px solid var(--cream-dk); border-radius: 2px;
+      padding: 0.5rem 2rem 0.5rem 0.85rem;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.7rem center;
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .filter-select:focus { outline: none; border-color: var(--green); }
+    .filter-reset {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; color: var(--txt-lt);
+      background: none; border: none; cursor: pointer;
+      text-decoration: underline; transition: color 0.2s;
+    }
+    .filter-reset:hover { color: var(--green-dark); }
+
+    /* ══════════════════════════════════
+       CSA GRID
+    ══════════════════════════════════ */
+    .csa-list { padding: 5rem 0 8rem; }
+    .csa-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .csa-card {
+      background: var(--white);
+      border: 1px solid var(--cream-dk);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .csa-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.09); }
+    .csa-card-photo {
+      height: 220px; overflow: hidden; position: relative;
+    }
+    .csa-card-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .csa-card:hover .csa-card-photo img { transform: scale(1.05); }
+
+    .csa-card-body {
+      padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1;
+    }
+    .csa-card-location {
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--txt-lt); letter-spacing: 0.02em;
+    }
+    .csa-card-location::before { content: '◎  '; color: var(--amber); }
+    .csa-card-name {
+      font-family: 'Parkinsans', sans-serif;
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--green-dark); line-height: 1.25;
+    }
+    .csa-card-meta {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-top: 0.5rem; flex-wrap: wrap;
+    }
+    .csa-meta-freq {
+      font-size: 0.75rem; color: var(--txt-mid); font-weight: 500;
+    }
+    .csa-badge {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 20px;
+    }
+    .csa-badge--domicilio { background: rgba(45,80,22,0.1); color: var(--green-dark); }
+    .csa-badge--punto     { background: rgba(200,150,62,0.12); color: #8a6020; }
+
+    .csa-card-cta {
+      margin-top: auto; padding-top: 1.25rem;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--green-dark); letter-spacing: 0.04em;
+      display: flex; align-items: center; gap: 0.35rem;
+      transition: gap 0.2s, color 0.2s;
+      border-top: 1px solid var(--cream-dk);
+    }
+    .csa-card-cta:hover { color: var(--amber); gap: 0.6rem; }
+
+    /* Empty state */
+    .csa-empty {
+      display: none; grid-column: 1/-1;
+      text-align: center; padding: 5rem 0;
+    }
+    .csa-empty p { font-size: 1rem; color: var(--txt-lt); }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    .footer { background: var(--green-dark); padding: 5rem 0 3rem; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
+      gap: 2rem; margin-bottom: 3.5rem;
+    }
+    .f-brand img { height: 60px; width: auto; margin-bottom: 1.25rem; filter: brightness(0) invert(1); opacity: 0.85; }
+    .f-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 280px; }
+    .f-col h4 { font-family: 'Parkinsans', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; }
+    .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .f-col ul a { font-size: 0.85rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
+    .f-col ul a:hover { color: var(--amber-lt); }
+    .social-row { display: flex; gap: 0.75rem; }
+    .soc-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); font-size: 0.85rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .soc-btn:hover { background: var(--amber); color: #fff; }
+
+    /* WhatsApp float */
+    .wa-btn {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 800;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #25d366; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+      transition: transform 0.2s;
+    }
+    .wa-btn:hover { transform: scale(1.08); }
+    .wa-btn svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* Donate modal */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal-box {
+      background: #fff; border-radius: 4px; max-width: 480px; width: 90%;
+      padding: 2.5rem; position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--txt-lt);
+    }
+    .modal-box h3 { font-size: 1.5rem; color: var(--green-dark); margin-bottom: 0.5rem; }
+    .modal-box p { font-size: 0.9rem; color: var(--txt-mid); line-height: 1.75; margin-bottom: 1.25rem; }
+    .modal-bank { background: var(--cream); border-radius: 3px; padding: 1.25rem; font-size: 0.88rem; line-height: 2; }
+    .modal-bank strong { color: var(--green-dark); }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     NAV
+════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images-web/logo.webp" alt="CSA Colombia">
+    </a>
+    <ul class="nav-links">
+      <li class="has-dropdown">
+        <a href="index.html#sobre">La Red <span class="nav-chevron">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="index.html#sobre">Sobre La Red</a></li>
+          <li><a href="index.html#equipo">Quienes Somos</a></li>
+          <li><a href="index.html#informes">Gestión</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="index.html#que-son">¿Qué es CSA? <span class="nav-chevron">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="index.html#que-son">Nuestro Propósito</a></li>
+          <li><a href="index.html#como">Cómo Funciona</a></li>
+          <li><a href="index.html#principios">Principios</a></li>
+          <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#impacto">Impacto</a></li>
+      <li><a href="index.html#eventos">Eventos</a></li>
+      <li class="has-dropdown">
+        <a href="#">Recursos <span class="nav-chevron">▾</span></a>
+        <ul class="nav-dropdown">
+          <li><a href="#">Recetas</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="index.html#agricultores" class="nav-cta">Quiero unirme</a>
+      <button class="nav-cta-secondary" onclick="openModal()">♡ Apoyar</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+     PAGE HEADER
+════════════════════════════════ -->
+<section class="page-header">
+  <div class="container">
+    <span class="eyebrow">Red CSA Colombia</span>
+    <h1>CSAs en Colombia</h1>
+    <p>Cada CSA es única — diferente tierra, diferentes cultivos, diferente comunidad.<br>Encuentra la que está cerca de ti y únete como co-agricultor.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     FILTER BAR
+════════════════════════════════ -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <div class="filter-controls">
+        <select class="filter-select" id="filterCobertura" onchange="applyFilters()">
+          <option value="">Departamento: Todos</option>
+          <option value="Antioquia">Antioquia</option>
+          <option value="Cundinamarca">Cundinamarca</option>
+          <option value="Bogotá D.C.">Bogotá D.C.</option>
+          <option value="Valle del Cauca">Valle del Cauca</option>
+          <option value="Boyacá">Boyacá</option>
+          <option value="Santander">Santander</option>
+          <option value="Tolima">Tolima</option>
+          <option value="Huila">Huila</option>
+        </select>
+        <select class="filter-select" id="filterDomicilio" onchange="applyFilters()">
+          <option value="">Entrega: Todas</option>
+          <option value="domicilio">Con domicilio</option>
+          <option value="punto">Punto de entrega</option>
+        </select>
+        <button class="filter-reset" onclick="resetFilters()">Limpiar filtros</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     CSA GRID
+════════════════════════════════ -->
+<section class="csa-list">
+  <div class="container">
+    <div class="csa-grid" id="csaGrid">
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/Agromandala-325.jpg" alt="CSA Agromandala"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · El Retiro</p>
+          <h3 class="csa-card-name">CSA Agromandala</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/David Echavarría_Granja Feliz.jpg" alt="CSA La Granja Feliz"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · Medellín</p>
+          <h3 class="csa-card-name">CSA La Granja Feliz</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Semanal</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/Agromandala-389.jpg" alt="CSA Camino a la Montaña"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · Medellín</p>
+          <h3 class="csa-card-name">CSA Camino a la Montaña</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/Reinaldo Correa_Mastay.jpg" alt="CSA Mastay"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · Medellín</p>
+          <h3 class="csa-card-name">CSA Mastay</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/Agromandala-385 (1).jpg" alt="CSA La Bonga"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · Marinilla</p>
+          <h3 class="csa-card-name">CSA La Bonga</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/_IFE1263 (1).jpg" alt="CSA Bonga Nebraska"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · El Santuario</p>
+          <h3 class="csa-card-name">CSA Bonga Nebraska</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Mensual</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/Agromandala-399 (1).jpg" alt="CSA De mi Finca"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · Rionegro</p>
+          <h3 class="csa-card-name">CSA De mi Finca</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/IMG-20250915-WA0063.jpg" alt="CSA MiMaloka"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · Medellín</p>
+          <h3 class="csa-card-name">CSA MiMaloka</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Semanal</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/Agromandala-400.jpg" alt="CSA Vizcaya"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · Medellín</p>
+          <h3 class="csa-card-name">CSA Vizcaya</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Antioquia" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/Agromandala-264.jpg" alt="CSA Herbolaria la Floresta"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Antioquia · Medellín</p>
+          <h3 class="csa-card-name">CSA Herbolaria la Floresta</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Mensual</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Cundinamarca" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/Imagen de WhatsApp 2025-03-03 a las 08.19.39_ec1dfb6e.jpg" alt="CSA Kundina"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Cundinamarca · Bojacá</p>
+          <h3 class="csa-card-name">CSA Kundina</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Cundinamarca" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/WhatsApp Image 2026-05-26 at 9.01.5 AM.jpg" alt="CSA Cultivando Salud"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Cundinamarca · Chía</p>
+          <h3 class="csa-card-name">CSA Cultivando Salud</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Semanal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Cundinamarca" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/IMG-20251003-WA0048.jpg" alt="CSA Volver al Origen"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Cundinamarca · La Calera</p>
+          <h3 class="csa-card-name">CSA Volver al Origen</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Mensual</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Bogotá D.C." data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/Imagen de WhatsApp 2025-05-26 a las 18.08.39_f2cc5089.jpg" alt="CSA El Maná"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Bogotá D.C.</p>
+          <h3 class="csa-card-name">CSA El Maná</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Valle del Cauca" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/Isabel Cadavid_Agromandala.jpg" alt="CSA Arroyo Verde"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Valle del Cauca · Cali</p>
+          <h3 class="csa-card-name">CSA Arroyo Verde</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Boyacá" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/IMG-20250915-WA0064.jpg" alt="CSA Totta Terra"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Boyacá · Tunja</p>
+          <h3 class="csa-card-name">CSA Totta Terra</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Mensual</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Santander" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/IMG-20251006-WA0051.jpg" alt="CSA Muya Sungu"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Santander · Bucaramanga</p>
+          <h3 class="csa-card-name">CSA Muya Sungu</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Tolima" data-domicilio="domicilio">
+        <div class="csa-card-photo"><img src="images-web/IMG-20251006-WA0060.jpg" alt="CSA Despensa Manantial"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Tolima · Ibagué</p>
+          <h3 class="csa-card-name">CSA Despensa Manantial</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Mensual</span>
+            <span class="csa-badge csa-badge--domicilio">Con domicilio</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-card" data-cobertura="Huila" data-domicilio="punto">
+        <div class="csa-card-photo"><img src="images-web/Agromandala-385 (1).jpg" alt="CSA Elmasayá"></div>
+        <div class="csa-card-body">
+          <p class="csa-card-location">Huila · Neiva</p>
+          <h3 class="csa-card-name">CSA Elmasayá</h3>
+          <div class="csa-card-meta">
+            <span class="csa-meta-freq">Quincenal</span>
+            <span class="csa-badge csa-badge--punto">Punto de entrega</span>
+          </div>
+          <a href="#" class="csa-card-cta">Ver CSA →</a>
+        </div>
+      </div>
+
+      <div class="csa-empty" id="csaEmpty">
+        <p>No se encontraron CSAs con los filtros seleccionados.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     FOOTER
+════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="f-brand">
+        <img src="images-web/logo.webp" alt="CSA Colombia">
+        <p>Comunidades que Sustentan la Agricultura. Una red viva que conecta el campo y la ciudad a través de la agroecología y la solidaridad.</p>
+      </div>
+      <div class="f-col">
+        <h4>La Red</h4>
+        <ul>
+          <li><a href="index.html#sobre">Sobre nosotros</a></li>
+          <li><a href="index.html#que-son">¿Qué son las CSA?</a></li>
+          <li><a href="index.html#principios">Principios</a></li>
+          <li><a href="csas.html">CSAs en Colombia</a></li>
+          <li><a href="index.html#mapa">Mapa</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Participar</h4>
+        <ul>
+          <li><a href="index.html#contacto">Suscribirse</a></li>
+          <li><a href="index.html#agricultores">Guía del Agricultor</a></li>
+          <li><a href="index.html#eventos">Calendario</a></li>
+          <li><a href="#" onclick="openModal()">Apoyar / Donar</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">RTE</a></li>
+          <li><a href="#">PTD</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:contacto.csacolombia@gmail.com">contacto.csacolombia@gmail.com</a></li>
+          <li><a href="https://wa.me/573192897230">WhatsApp</a></li>
+        </ul>
+        <div class="social-row" style="margin-top:1.25rem">
+          <a class="soc-btn" href="https://www.instagram.com/csacolombia/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="soc-btn" href="https://www.facebook.com/csacolombia" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="soc-btn" href="https://www.youtube.com/@csacolombia" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a class="wa-btn" href="https://wa.me/573192897230" target="_blank" title="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Donate modal -->
+<div class="modal-overlay" id="donateModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3>Apoyar a la Red CSA</h3>
+    <p>Tu donación ayuda a fortalecer las comunidades agroecológicas en Colombia y a expandir la red CSA.</p>
+    <div class="modal-bank">
+      <strong>Banco:</strong> Bancolombia<br>
+      <strong>NIT:</strong> 900.XXX.XXX-X<br>
+      <strong>Cuenta corriente:</strong> 123 456789 78<br>
+      <strong>A nombre de:</strong> Red CSA Colombia
+    </div>
+    <p style="margin-top:1rem; font-size:0.82rem;">Después de tu transferencia, escríbenos a <a href="mailto:contacto.csacolombia@gmail.com" style="color:var(--green)">contacto.csacolombia@gmail.com</a> con el comprobante. ¡Gracias!</p>
+  </div>
+</div>
+
+<script>
+  function applyFilters() {
+    const cobertura = document.getElementById('filterCobertura').value;
+    const domicilio = document.getElementById('filterDomicilio').value;
+    const cards = document.querySelectorAll('.csa-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const matchC = !cobertura || card.dataset.cobertura === cobertura;
+      const matchD = !domicilio || card.dataset.domicilio === domicilio;
+      const show = matchC && matchD;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    document.getElementById('filterCount').textContent = `${visible} CSA${visible !== 1 ? 's' : ''}`;
+    document.getElementById('csaEmpty').style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  function resetFilters() {
+    document.getElementById('filterCobertura').value = '';
+    document.getElementById('filterDomicilio').value = '';
+    applyFilters();
+  }
+
+  function openModal() {
+    document.getElementById('donateModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('donateModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('donateModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+</body>
+</html>
